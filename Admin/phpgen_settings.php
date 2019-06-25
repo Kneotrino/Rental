@@ -32,12 +32,12 @@ function GetGlobalConnectionOptions()
 
 function HasAdminPage()
 {
-    return false;
+    return true;
 }
 
 function HasHomePage()
 {
-    return false;
+    return true;
 }
 
 function GetHomeURL()
@@ -85,7 +85,7 @@ function GetPagesFooter()
 
 function ApplyCommonPageSettings(Page $page, Grid $grid)
 {
-    $page->SetShowUserAuthBar(false);
+    $page->SetShowUserAuthBar(true);
     $page->setShowNavigation(true);
     $page->OnCustomHTMLHeader->AddListener('Global_CustomHTMLHeaderHandler');
     $page->OnGetCustomTemplate->AddListener('Global_GetCustomTemplateHandler');
@@ -129,9 +129,7 @@ function Global_OnGetFieldValue($fieldName, &$value, $tableName)
 
 function Global_GetCustomPageList(CommonPage $page, PageList $pageList)
 {
-    $pageList->addPage(new PageLink('Home Site', 'http://www.mysite.com', 
-    
-        'Vist my site', false, false, 'External links'));
+
 }
 
 function Global_BeforeInsertHandler($page, &$rowData, $tableName, &$cancel, &$message, &$messageDisplayTime)
@@ -166,12 +164,12 @@ function Global_AfterDeleteHandler($page, $rowData, $tableName, &$success, &$mes
 
 function GetDefaultDateFormat()
 {
-    return 'Y-m-d';
+    return 'd-m-Y';
 }
 
 function GetFirstDayOfWeek()
 {
-    return 0;
+    return 1;
 }
 
 function GetPageListType()

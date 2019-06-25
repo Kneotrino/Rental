@@ -16,7 +16,7 @@
     include_once dirname(__FILE__) . '/' . 'components/page/page.php';
     include_once dirname(__FILE__) . '/' . 'components/page/detail_page.php';
     include_once dirname(__FILE__) . '/' . 'components/page/nested_form_page.php';
-
+    include_once dirname(__FILE__) . '/' . 'authorization.php';
 
     function GetConnectionOptions()
     {
@@ -126,7 +126,7 @@
                 )
             );
             
-            $main_editor = new TextEdit('User_Nama');
+            $main_editor = new TextEdit('user_nama_edit');
             
             $filterBuilder->addColumn(
                 $columns['User_Nama'],
@@ -150,7 +150,7 @@
                 )
             );
             
-            $main_editor = new TextEdit('User_Pass');
+            $main_editor = new TextEdit('user_pass_edit');
             
             $filterBuilder->addColumn(
                 $columns['User_Pass'],
@@ -174,7 +174,7 @@
                 )
             );
             
-            $main_editor = new TextEdit('User_Nama_Lengkap');
+            $main_editor = new TextEdit('user_nama_lengkap_edit');
             
             $filterBuilder->addColumn(
                 $columns['User_Nama_Lengkap'],
@@ -273,16 +273,6 @@
                 $operation->OnShow->AddListener('ShowDeleteButtonHandler', $this);
                 $operation->SetAdditionalAttribute('data-modal-operation', 'delete');
                 $operation->SetAdditionalAttribute('data-delete-handler-name', $this->GetModalGridDeleteHandler());
-            }
-            
-            if ($this->GetSecurityInfo()->HasAddGrant())
-            {
-                $operation = new AjaxOperation(OPERATION_COPY,
-                    $this->GetLocalizerCaptions()->GetMessageString('Copy'),
-                    $this->GetLocalizerCaptions()->GetMessageString('Copy'), $this->dataset,
-                    $this->GetModalGridCopyHandler(), $grid);
-                $operation->setUseImage(false);
-                $actions->addOperation($operation);
             }
         }
     
@@ -427,7 +417,7 @@
             //
             // Edit column for User_Nama field
             //
-            $editor = new TextAreaEdit('user_nama_edit', 50, 8);
+            $editor = new TextEdit('user_nama_edit');
             $editColumn = new CustomEditColumn('User Nama', 'User_Nama', $editor, $this->dataset);
             $editColumn->SetAllowSetToNull(true);
             $this->ApplyCommonColumnEditProperties($editColumn);
@@ -436,7 +426,7 @@
             //
             // Edit column for User_Pass field
             //
-            $editor = new TextAreaEdit('user_pass_edit', 50, 8);
+            $editor = new TextEdit('user_pass_edit');
             $editColumn = new CustomEditColumn('User Pass', 'User_Pass', $editor, $this->dataset);
             $editColumn->SetAllowSetToNull(true);
             $this->ApplyCommonColumnEditProperties($editColumn);
@@ -445,7 +435,7 @@
             //
             // Edit column for User_Nama_Lengkap field
             //
-            $editor = new TextAreaEdit('user_nama_lengkap_edit', 50, 8);
+            $editor = new TextEdit('user_nama_lengkap_edit');
             $editColumn = new CustomEditColumn('User Nama Lengkap', 'User_Nama_Lengkap', $editor, $this->dataset);
             $editColumn->SetAllowSetToNull(true);
             $this->ApplyCommonColumnEditProperties($editColumn);
@@ -475,7 +465,7 @@
             //
             // Edit column for User_Nama field
             //
-            $editor = new TextAreaEdit('user_nama_edit', 50, 8);
+            $editor = new TextEdit('user_nama_edit');
             $editColumn = new CustomEditColumn('User Nama', 'User_Nama', $editor, $this->dataset);
             $editColumn->SetAllowSetToNull(true);
             $this->ApplyCommonColumnEditProperties($editColumn);
@@ -484,7 +474,7 @@
             //
             // Edit column for User_Pass field
             //
-            $editor = new TextAreaEdit('user_pass_edit', 50, 8);
+            $editor = new TextEdit('user_pass_edit');
             $editColumn = new CustomEditColumn('User Pass', 'User_Pass', $editor, $this->dataset);
             $editColumn->SetAllowSetToNull(true);
             $this->ApplyCommonColumnEditProperties($editColumn);
@@ -493,7 +483,7 @@
             //
             // Edit column for User_Nama_Lengkap field
             //
-            $editor = new TextAreaEdit('user_nama_lengkap_edit', 50, 8);
+            $editor = new TextEdit('user_nama_lengkap_edit');
             $editColumn = new CustomEditColumn('User Nama Lengkap', 'User_Nama_Lengkap', $editor, $this->dataset);
             $editColumn->SetAllowSetToNull(true);
             $this->ApplyCommonColumnEditProperties($editColumn);
@@ -523,7 +513,7 @@
             //
             // Edit column for User_Nama field
             //
-            $editor = new TextAreaEdit('user_nama_edit', 50, 8);
+            $editor = new TextEdit('user_nama_edit');
             $editColumn = new CustomEditColumn('User Nama', 'User_Nama', $editor, $this->dataset);
             $editColumn->SetAllowSetToNull(true);
             $this->ApplyCommonColumnEditProperties($editColumn);
@@ -532,7 +522,7 @@
             //
             // Edit column for User_Pass field
             //
-            $editor = new TextAreaEdit('user_pass_edit', 50, 8);
+            $editor = new TextEdit('user_pass_edit');
             $editColumn = new CustomEditColumn('User Pass', 'User_Pass', $editor, $this->dataset);
             $editColumn->SetAllowSetToNull(true);
             $this->ApplyCommonColumnEditProperties($editColumn);
@@ -541,7 +531,7 @@
             //
             // Edit column for User_Nama_Lengkap field
             //
-            $editor = new TextAreaEdit('user_nama_lengkap_edit', 50, 8);
+            $editor = new TextEdit('user_nama_lengkap_edit');
             $editColumn = new CustomEditColumn('User Nama Lengkap', 'User_Nama_Lengkap', $editor, $this->dataset);
             $editColumn->SetAllowSetToNull(true);
             $this->ApplyCommonColumnEditProperties($editColumn);
@@ -775,8 +765,6 @@
         public function GetEnableModalGridEdit() { return true; }
         
         protected function GetEnableModalGridDelete() { return true; }
-        
-        public function GetEnableModalGridCopy() { return true; }
     
         protected function CreateGrid()
         {
@@ -791,11 +779,9 @@
             $result->SetUseImagesForActions(false);
             $result->SetUseFixedHeader(false);
             $result->SetShowLineNumbers(false);
+            $result->SetShowKeyColumnsImagesInHeader(false);
             $result->SetViewMode(ViewMode::TABLE);
             $result->setEnableRuntimeCustomization(true);
-            $result->setAllowCompare(true);
-            $this->AddCompareHeaderColumns($result);
-            $this->AddCompareColumns($result);
             $result->setMultiEditAllowed($this->GetSecurityInfo()->HasEditGrant() && true);
             $result->setUseModalMultiEdit(true);
             $result->setTableBordered(false);
@@ -1100,7 +1086,7 @@
     
     }
 
-
+    SetUpUserAuthorization();
 
     try
     {

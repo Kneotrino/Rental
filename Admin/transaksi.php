@@ -16,7 +16,7 @@
     include_once dirname(__FILE__) . '/' . 'components/page/page.php';
     include_once dirname(__FILE__) . '/' . 'components/page/detail_page.php';
     include_once dirname(__FILE__) . '/' . 'components/page/nested_form_page.php';
-
+    include_once dirname(__FILE__) . '/' . 'authorization.php';
 
     function GetConnectionOptions()
     {
@@ -55,7 +55,7 @@
                 )
             );
             $this->dataset->AddLookupField('Laporan_Mobil', 'mobil', new IntegerField('Mobil_id'), new StringField('Mobil_No_Polisi', false, false, false, false, 'Laporan_Mobil_Mobil_No_Polisi', 'Laporan_Mobil_Mobil_No_Polisi_mobil'), 'Laporan_Mobil_Mobil_No_Polisi_mobil');
-            $this->dataset->AddLookupField('Laporan_Transaksi', 'transaksi', new IntegerField('Transaksi_ID'), new StringField('Transaksi_Nama', false, false, false, false, 'Laporan_Transaksi_Transaksi_Nama', 'Laporan_Transaksi_Transaksi_Nama_transaksi'), 'Laporan_Transaksi_Transaksi_Nama_transaksi');
+            $this->dataset->AddLookupField('Laporan_Transaksi', 'transaksi', new IntegerField('Transaksi_ID'), new IntegerField('Transaksi_ID', false, false, false, false, 'Laporan_Transaksi_Transaksi_ID', 'Laporan_Transaksi_Transaksi_ID_transaksi'), 'Laporan_Transaksi_Transaksi_ID_transaksi');
         }
     
         protected function DoPrepare() {
@@ -90,7 +90,7 @@
                 new FilterColumn($this->dataset, 'Laporan_Pemasukan', 'Laporan_Pemasukan', 'Laporan Pemasukan'),
                 new FilterColumn($this->dataset, 'Laporan_Pengeluaran', 'Laporan_Pengeluaran', 'Laporan Pengeluaran'),
                 new FilterColumn($this->dataset, 'Laporan_Mobil', 'Laporan_Mobil_Mobil_No_Polisi', 'Laporan Mobil'),
-                new FilterColumn($this->dataset, 'Laporan_Transaksi', 'Laporan_Transaksi_Transaksi_Nama', 'Laporan Transaksi'),
+                new FilterColumn($this->dataset, 'Laporan_Transaksi', 'Laporan_Transaksi_Transaksi_ID', 'Laporan Transaksi'),
                 new FilterColumn($this->dataset, 'Laporan_Keterangan', 'Laporan_Keterangan', 'Laporan Keterangan'),
                 new FilterColumn($this->dataset, 'Laporan_Tanggal', 'Laporan_Tanggal', 'Laporan Tanggal'),
                 new FilterColumn($this->dataset, 'Laporan_Created', 'Laporan_Created', 'Laporan Created')
@@ -206,10 +206,10 @@
             $main_editor->setAllowClear(true);
             $main_editor->setMinimumInputLength(0);
             $main_editor->SetAllowNullValue(false);
-            $main_editor->SetHandlerName('filter_builder_Laporan_Transaksi_Transaksi_Nama_search');
+            $main_editor->SetHandlerName('filter_builder_Laporan_Transaksi_Transaksi_ID_search');
             
             $multi_value_select_editor = new RemoteMultiValueSelect('Laporan_Transaksi', $this->CreateLinkBuilder());
-            $multi_value_select_editor->SetHandlerName('filter_builder_Laporan_Transaksi_Transaksi_Nama_search');
+            $multi_value_select_editor->SetHandlerName('filter_builder_Laporan_Transaksi_Transaksi_ID_search');
             
             $filterBuilder->addColumn(
                 $columns['Laporan_Transaksi'],
@@ -253,7 +253,7 @@
                 )
             );
             
-            $main_editor = new DateTimeEdit('laporan_tanggal_edit', false, 'Y-m-d H:i:s');
+            $main_editor = new DateTimeEdit('laporan_tanggal_edit', false, 'd-m-Y H:i:s');
             
             $filterBuilder->addColumn(
                 $columns['Laporan_Tanggal'],
@@ -274,7 +274,7 @@
                 )
             );
             
-            $main_editor = new DateTimeEdit('laporan_created_edit', false, 'Y-m-d H:i:s');
+            $main_editor = new DateTimeEdit('laporan_created_edit', false, 'd-m-Y H:i:s');
             
             $filterBuilder->addColumn(
                 $columns['Laporan_Created'],
@@ -328,16 +328,6 @@
                 $operation->OnShow->AddListener('ShowDeleteButtonHandler', $this);
                 $operation->SetAdditionalAttribute('data-modal-operation', 'delete');
                 $operation->SetAdditionalAttribute('data-delete-handler-name', $this->GetModalGridDeleteHandler());
-            }
-            
-            if ($this->GetSecurityInfo()->HasAddGrant())
-            {
-                $operation = new AjaxOperation(OPERATION_COPY,
-                    $this->GetLocalizerCaptions()->GetMessageString('Copy'),
-                    $this->GetLocalizerCaptions()->GetMessageString('Copy'), $this->dataset,
-                    $this->GetModalGridCopyHandler(), $grid);
-                $operation->setUseImage(false);
-                $actions->addOperation($operation);
             }
         }
     
@@ -393,10 +383,13 @@
             $grid->AddViewColumn($column);
             
             //
-            // View column for Transaksi_Nama field
+            // View column for Transaksi_ID field
             //
-            $column = new TextViewColumn('Laporan_Transaksi', 'Laporan_Transaksi_Transaksi_Nama', 'Laporan Transaksi', $this->dataset);
+            $column = new NumberViewColumn('Laporan_Transaksi', 'Laporan_Transaksi_Transaksi_ID', 'Laporan Transaksi', $this->dataset);
             $column->SetOrderable(true);
+            $column->setNumberAfterDecimal(0);
+            $column->setThousandsSeparator(',');
+            $column->setDecimalSeparator('.');
             $column->setMinimalVisibility(ColumnVisibility::PHONE);
             $column->SetDescription('');
             $column->SetFixedWidth(null);
@@ -419,7 +412,7 @@
             //
             $column = new DateTimeViewColumn('Laporan_Tanggal', 'Laporan_Tanggal', 'Laporan Tanggal', $this->dataset);
             $column->SetOrderable(true);
-            $column->SetDateTimeFormat('Y-m-d H:i:s');
+            $column->SetDateTimeFormat('d-m-Y H:i:s');
             $column->setMinimalVisibility(ColumnVisibility::PHONE);
             $column->SetDescription('');
             $column->SetFixedWidth(null);
@@ -430,7 +423,7 @@
             //
             $column = new DateTimeViewColumn('Laporan_Created', 'Laporan_Created', 'Laporan Created', $this->dataset);
             $column->SetOrderable(true);
-            $column->SetDateTimeFormat('Y-m-d H:i:s');
+            $column->SetDateTimeFormat('d-m-Y H:i:s');
             $column->setMinimalVisibility(ColumnVisibility::PHONE);
             $column->SetDescription('');
             $column->SetFixedWidth(null);
@@ -477,10 +470,13 @@
             $grid->AddSingleRecordViewColumn($column);
             
             //
-            // View column for Transaksi_Nama field
+            // View column for Transaksi_ID field
             //
-            $column = new TextViewColumn('Laporan_Transaksi', 'Laporan_Transaksi_Transaksi_Nama', 'Laporan Transaksi', $this->dataset);
+            $column = new NumberViewColumn('Laporan_Transaksi', 'Laporan_Transaksi_Transaksi_ID', 'Laporan Transaksi', $this->dataset);
             $column->SetOrderable(true);
+            $column->setNumberAfterDecimal(0);
+            $column->setThousandsSeparator(',');
+            $column->setDecimalSeparator('.');
             $grid->AddSingleRecordViewColumn($column);
             
             //
@@ -497,7 +493,7 @@
             //
             $column = new DateTimeViewColumn('Laporan_Tanggal', 'Laporan_Tanggal', 'Laporan Tanggal', $this->dataset);
             $column->SetOrderable(true);
-            $column->SetDateTimeFormat('Y-m-d H:i:s');
+            $column->SetDateTimeFormat('d-m-Y H:i:s');
             $grid->AddSingleRecordViewColumn($column);
             
             //
@@ -505,7 +501,7 @@
             //
             $column = new DateTimeViewColumn('Laporan_Created', 'Laporan_Created', 'Laporan Created', $this->dataset);
             $column->SetOrderable(true);
-            $column->SetDateTimeFormat('Y-m-d H:i:s');
+            $column->SetDateTimeFormat('d-m-Y H:i:s');
             $grid->AddSingleRecordViewColumn($column);
         }
     
@@ -551,47 +547,7 @@
                 )
             );
             $lookupDataset->setOrderByField('Mobil_No_Polisi', 'ASC');
-            $editColumn = new DynamicLookupEditColumn('Laporan Mobil', 'Laporan_Mobil', 'Laporan_Mobil_Mobil_No_Polisi', 'edit_Laporan_Mobil_Mobil_No_Polisi_search', $editor, $this->dataset, $lookupDataset, 'Mobil_id', 'Mobil_No_Polisi', '');
-            $validator = new RequiredValidator(StringUtils::Format($this->GetLocalizerCaptions()->GetMessageString('RequiredValidationMessage'), $editColumn->GetCaption()));
-            $editor->GetValidatorCollection()->AddValidator($validator);
-            $this->ApplyCommonColumnEditProperties($editColumn);
-            $grid->AddEditColumn($editColumn);
-            
-            //
-            // Edit column for Laporan_Transaksi field
-            //
-            $editor = new DynamicCombobox('laporan_transaksi_edit', $this->CreateLinkBuilder());
-            $editor->setAllowClear(true);
-            $editor->setMinimumInputLength(0);
-            $lookupDataset = new TableDataset(
-                MySqlIConnectionFactory::getInstance(),
-                GetConnectionOptions(),
-                '`transaksi`');
-            $lookupDataset->addFields(
-                array(
-                    new IntegerField('Transaksi_ID', true, true, true),
-                    new StringField('Transaksi_Nama'),
-                    new StringField('Transaksi_NomorHP'),
-                    new StringField('Transaksi_Alamat'),
-                    new StringField('Transaksi_Jaminan_Identitas'),
-                    new StringField('Transaksi_Nomor_Jaminan_Identitas'),
-                    new IntegerField('Transaksi_Mobil'),
-                    new IntegerField('Transaksi_Laporan', true),
-                    new IntegerField('Transaksi_Posisi_Bensin'),
-                    new DateTimeField('Transaksi_Tanggal', true),
-                    new IntegerField('Masa_Sewa_Jam'),
-                    new IntegerField('Masa_Sewa_Hari'),
-                    new IntegerField('Masa_Sewa_Bulan'),
-                    new IntegerField('Masa_Sewa_Tahun'),
-                    new StringField('Kelengkapan'),
-                    new DateTimeField('Tangal_Waktu_Mulai', true),
-                    new TimeField('Tanggal_Waktu_Berakhir'),
-                    new StringField('Keterangan_Lainnya')
-                )
-            );
-            $lookupDataset->setOrderByField('Transaksi_Nama', 'ASC');
-            $editColumn = new DynamicLookupEditColumn('Laporan Transaksi', 'Laporan_Transaksi', 'Laporan_Transaksi_Transaksi_Nama', 'edit_Laporan_Transaksi_Transaksi_Nama_search', $editor, $this->dataset, $lookupDataset, 'Transaksi_ID', 'Transaksi_Nama', '');
-            $editColumn->SetReadOnly(true);
+            $editColumn = new DynamicLookupEditColumn('Laporan Mobil', 'Laporan_Mobil', 'Laporan_Mobil_Mobil_No_Polisi', 'edit_Laporan_Mobil_Mobil_No_Polisi_search', $editor, $this->dataset, $lookupDataset, 'Mobil_id', 'Mobil_No_Polisi', '%Mobil_No_Polisi%');
             $validator = new RequiredValidator(StringUtils::Format($this->GetLocalizerCaptions()->GetMessageString('RequiredValidationMessage'), $editColumn->GetCaption()));
             $editor->GetValidatorCollection()->AddValidator($validator);
             $this->ApplyCommonColumnEditProperties($editColumn);
@@ -609,7 +565,7 @@
             //
             // Edit column for Laporan_Tanggal field
             //
-            $editor = new DateTimeEdit('laporan_tanggal_edit', false, 'Y-m-d H:i:s');
+            $editor = new DateTimeEdit('laporan_tanggal_edit', false, 'd-m-Y H:i:s');
             $editColumn = new CustomEditColumn('Laporan Tanggal', 'Laporan_Tanggal', $editor, $this->dataset);
             $validator = new RequiredValidator(StringUtils::Format($this->GetLocalizerCaptions()->GetMessageString('RequiredValidationMessage'), $editColumn->GetCaption()));
             $editor->GetValidatorCollection()->AddValidator($validator);
@@ -619,7 +575,7 @@
             //
             // Edit column for Laporan_Created field
             //
-            $editor = new DateTimeEdit('laporan_created_edit', false, 'Y-m-d H:i:s');
+            $editor = new DateTimeEdit('laporan_created_edit', false, 'd-m-Y H:i:s');
             $editColumn = new CustomEditColumn('Laporan Created', 'Laporan_Created', $editor, $this->dataset);
             $editColumn->SetReadOnly(true);
             $editColumn->setVisible(false);
@@ -671,7 +627,7 @@
                 )
             );
             $lookupDataset->setOrderByField('Mobil_No_Polisi', 'ASC');
-            $editColumn = new DynamicLookupEditColumn('Laporan Mobil', 'Laporan_Mobil', 'Laporan_Mobil_Mobil_No_Polisi', 'multi_edit_Laporan_Mobil_Mobil_No_Polisi_search', $editor, $this->dataset, $lookupDataset, 'Mobil_id', 'Mobil_No_Polisi', '');
+            $editColumn = new DynamicLookupEditColumn('Laporan Mobil', 'Laporan_Mobil', 'Laporan_Mobil_Mobil_No_Polisi', 'multi_edit_Laporan_Mobil_Mobil_No_Polisi_search', $editor, $this->dataset, $lookupDataset, 'Mobil_id', 'Mobil_No_Polisi', '%Mobil_No_Polisi%');
             $validator = new RequiredValidator(StringUtils::Format($this->GetLocalizerCaptions()->GetMessageString('RequiredValidationMessage'), $editColumn->GetCaption()));
             $editor->GetValidatorCollection()->AddValidator($validator);
             $this->ApplyCommonColumnEditProperties($editColumn);
@@ -698,19 +654,19 @@
                     new IntegerField('Transaksi_Mobil'),
                     new IntegerField('Transaksi_Laporan', true),
                     new IntegerField('Transaksi_Posisi_Bensin'),
-                    new DateTimeField('Transaksi_Tanggal', true),
+                    new DateField('Transaksi_Tanggal'),
                     new IntegerField('Masa_Sewa_Jam'),
                     new IntegerField('Masa_Sewa_Hari'),
                     new IntegerField('Masa_Sewa_Bulan'),
                     new IntegerField('Masa_Sewa_Tahun'),
                     new StringField('Kelengkapan'),
                     new DateTimeField('Tangal_Waktu_Mulai', true),
-                    new TimeField('Tanggal_Waktu_Berakhir'),
+                    new DateTimeField('Tanggal_Waktu_Berakhir'),
                     new StringField('Keterangan_Lainnya')
                 )
             );
-            $lookupDataset->setOrderByField('Transaksi_Nama', 'ASC');
-            $editColumn = new DynamicLookupEditColumn('Laporan Transaksi', 'Laporan_Transaksi', 'Laporan_Transaksi_Transaksi_Nama', 'multi_edit_Laporan_Transaksi_Transaksi_Nama_search', $editor, $this->dataset, $lookupDataset, 'Transaksi_ID', 'Transaksi_Nama', '');
+            $lookupDataset->setOrderByField('Transaksi_ID', 'ASC');
+            $editColumn = new DynamicLookupEditColumn('Laporan Transaksi', 'Laporan_Transaksi', 'Laporan_Transaksi_Transaksi_ID', 'multi_edit_Laporan_Transaksi_Transaksi_ID_search', $editor, $this->dataset, $lookupDataset, 'Transaksi_ID', 'Transaksi_ID', '');
             $editColumn->SetReadOnly(true);
             $validator = new RequiredValidator(StringUtils::Format($this->GetLocalizerCaptions()->GetMessageString('RequiredValidationMessage'), $editColumn->GetCaption()));
             $editor->GetValidatorCollection()->AddValidator($validator);
@@ -729,7 +685,7 @@
             //
             // Edit column for Laporan_Tanggal field
             //
-            $editor = new DateTimeEdit('laporan_tanggal_edit', false, 'Y-m-d H:i:s');
+            $editor = new DateTimeEdit('laporan_tanggal_edit', false, 'd-m-Y H:i:s');
             $editColumn = new CustomEditColumn('Laporan Tanggal', 'Laporan_Tanggal', $editor, $this->dataset);
             $validator = new RequiredValidator(StringUtils::Format($this->GetLocalizerCaptions()->GetMessageString('RequiredValidationMessage'), $editColumn->GetCaption()));
             $editor->GetValidatorCollection()->AddValidator($validator);
@@ -739,7 +695,7 @@
             //
             // Edit column for Laporan_Created field
             //
-            $editor = new DateTimeEdit('laporan_created_edit', false, 'Y-m-d H:i:s');
+            $editor = new DateTimeEdit('laporan_created_edit', false, 'd-m-Y H:i:s');
             $editColumn = new CustomEditColumn('Laporan Created', 'Laporan_Created', $editor, $this->dataset);
             $editColumn->SetReadOnly(true);
             $editColumn->setVisible(false);
@@ -793,7 +749,7 @@
                 )
             );
             $lookupDataset->setOrderByField('Mobil_No_Polisi', 'ASC');
-            $editColumn = new DynamicLookupEditColumn('Laporan Mobil', 'Laporan_Mobil', 'Laporan_Mobil_Mobil_No_Polisi', 'insert_Laporan_Mobil_Mobil_No_Polisi_search', $editor, $this->dataset, $lookupDataset, 'Mobil_id', 'Mobil_No_Polisi', '');
+            $editColumn = new DynamicLookupEditColumn('Laporan Mobil', 'Laporan_Mobil', 'Laporan_Mobil_Mobil_No_Polisi', 'insert_Laporan_Mobil_Mobil_No_Polisi_search', $editor, $this->dataset, $lookupDataset, 'Mobil_id', 'Mobil_No_Polisi', '%Mobil_No_Polisi%');
             $validator = new RequiredValidator(StringUtils::Format($this->GetLocalizerCaptions()->GetMessageString('RequiredValidationMessage'), $editColumn->GetCaption()));
             $editor->GetValidatorCollection()->AddValidator($validator);
             $this->ApplyCommonColumnEditProperties($editColumn);
@@ -820,19 +776,19 @@
                     new IntegerField('Transaksi_Mobil'),
                     new IntegerField('Transaksi_Laporan', true),
                     new IntegerField('Transaksi_Posisi_Bensin'),
-                    new DateTimeField('Transaksi_Tanggal', true),
+                    new DateField('Transaksi_Tanggal'),
                     new IntegerField('Masa_Sewa_Jam'),
                     new IntegerField('Masa_Sewa_Hari'),
                     new IntegerField('Masa_Sewa_Bulan'),
                     new IntegerField('Masa_Sewa_Tahun'),
                     new StringField('Kelengkapan'),
                     new DateTimeField('Tangal_Waktu_Mulai', true),
-                    new TimeField('Tanggal_Waktu_Berakhir'),
+                    new DateTimeField('Tanggal_Waktu_Berakhir'),
                     new StringField('Keterangan_Lainnya')
                 )
             );
-            $lookupDataset->setOrderByField('Transaksi_Nama', 'ASC');
-            $editColumn = new DynamicLookupEditColumn('Laporan Transaksi', 'Laporan_Transaksi', 'Laporan_Transaksi_Transaksi_Nama', 'insert_Laporan_Transaksi_Transaksi_Nama_search', $editor, $this->dataset, $lookupDataset, 'Transaksi_ID', 'Transaksi_Nama', '');
+            $lookupDataset->setOrderByField('Transaksi_ID', 'ASC');
+            $editColumn = new DynamicLookupEditColumn('Laporan Transaksi', 'Laporan_Transaksi', 'Laporan_Transaksi_Transaksi_ID', 'insert_Laporan_Transaksi_Transaksi_ID_search', $editor, $this->dataset, $lookupDataset, 'Transaksi_ID', 'Transaksi_ID', '');
             $editColumn->SetReadOnly(true);
             $validator = new RequiredValidator(StringUtils::Format($this->GetLocalizerCaptions()->GetMessageString('RequiredValidationMessage'), $editColumn->GetCaption()));
             $editor->GetValidatorCollection()->AddValidator($validator);
@@ -851,7 +807,7 @@
             //
             // Edit column for Laporan_Tanggal field
             //
-            $editor = new DateTimeEdit('laporan_tanggal_edit', false, 'Y-m-d H:i:s');
+            $editor = new DateTimeEdit('laporan_tanggal_edit', false, 'd-m-Y H:i:s');
             $editColumn = new CustomEditColumn('Laporan Tanggal', 'Laporan_Tanggal', $editor, $this->dataset);
             $editColumn->SetInsertDefaultValue('%CURRENT_DATE%');
             $validator = new RequiredValidator(StringUtils::Format($this->GetLocalizerCaptions()->GetMessageString('RequiredValidationMessage'), $editColumn->GetCaption()));
@@ -862,7 +818,7 @@
             //
             // Edit column for Laporan_Created field
             //
-            $editor = new DateTimeEdit('laporan_created_edit', false, 'Y-m-d H:i:s');
+            $editor = new DateTimeEdit('laporan_created_edit', false, 'd-m-Y H:i:s');
             $editColumn = new CustomEditColumn('Laporan Created', 'Laporan_Created', $editor, $this->dataset);
             $editColumn->SetReadOnly(true);
             $editColumn->setVisible(false);
@@ -919,10 +875,13 @@
             $grid->AddPrintColumn($column);
             
             //
-            // View column for Transaksi_Nama field
+            // View column for Transaksi_ID field
             //
-            $column = new TextViewColumn('Laporan_Transaksi', 'Laporan_Transaksi_Transaksi_Nama', 'Laporan Transaksi', $this->dataset);
+            $column = new NumberViewColumn('Laporan_Transaksi', 'Laporan_Transaksi_Transaksi_ID', 'Laporan Transaksi', $this->dataset);
             $column->SetOrderable(true);
+            $column->setNumberAfterDecimal(0);
+            $column->setThousandsSeparator(',');
+            $column->setDecimalSeparator('.');
             $grid->AddPrintColumn($column);
             
             //
@@ -939,7 +898,7 @@
             //
             $column = new DateTimeViewColumn('Laporan_Tanggal', 'Laporan_Tanggal', 'Laporan Tanggal', $this->dataset);
             $column->SetOrderable(true);
-            $column->SetDateTimeFormat('Y-m-d H:i:s');
+            $column->SetDateTimeFormat('d-m-Y H:i:s');
             $grid->AddPrintColumn($column);
             
             //
@@ -947,7 +906,7 @@
             //
             $column = new DateTimeViewColumn('Laporan_Created', 'Laporan_Created', 'Laporan Created', $this->dataset);
             $column->SetOrderable(true);
-            $column->SetDateTimeFormat('Y-m-d H:i:s');
+            $column->SetDateTimeFormat('d-m-Y H:i:s');
             $grid->AddPrintColumn($column);
         }
     
@@ -991,10 +950,13 @@
             $grid->AddExportColumn($column);
             
             //
-            // View column for Transaksi_Nama field
+            // View column for Transaksi_ID field
             //
-            $column = new TextViewColumn('Laporan_Transaksi', 'Laporan_Transaksi_Transaksi_Nama', 'Laporan Transaksi', $this->dataset);
+            $column = new NumberViewColumn('Laporan_Transaksi', 'Laporan_Transaksi_Transaksi_ID', 'Laporan Transaksi', $this->dataset);
             $column->SetOrderable(true);
+            $column->setNumberAfterDecimal(0);
+            $column->setThousandsSeparator(',');
+            $column->setDecimalSeparator('.');
             $grid->AddExportColumn($column);
             
             //
@@ -1011,7 +973,7 @@
             //
             $column = new DateTimeViewColumn('Laporan_Tanggal', 'Laporan_Tanggal', 'Laporan Tanggal', $this->dataset);
             $column->SetOrderable(true);
-            $column->SetDateTimeFormat('Y-m-d H:i:s');
+            $column->SetDateTimeFormat('d-m-Y H:i:s');
             $grid->AddExportColumn($column);
             
             //
@@ -1019,7 +981,7 @@
             //
             $column = new DateTimeViewColumn('Laporan_Created', 'Laporan_Created', 'Laporan Created', $this->dataset);
             $column->SetOrderable(true);
-            $column->SetDateTimeFormat('Y-m-d H:i:s');
+            $column->SetDateTimeFormat('d-m-Y H:i:s');
             $grid->AddExportColumn($column);
         }
     
@@ -1053,10 +1015,13 @@
             $grid->AddCompareColumn($column);
             
             //
-            // View column for Transaksi_Nama field
+            // View column for Transaksi_ID field
             //
-            $column = new TextViewColumn('Laporan_Transaksi', 'Laporan_Transaksi_Transaksi_Nama', 'Laporan Transaksi', $this->dataset);
+            $column = new NumberViewColumn('Laporan_Transaksi', 'Laporan_Transaksi_Transaksi_ID', 'Laporan Transaksi', $this->dataset);
             $column->SetOrderable(true);
+            $column->setNumberAfterDecimal(0);
+            $column->setThousandsSeparator(',');
+            $column->setDecimalSeparator('.');
             $grid->AddCompareColumn($column);
             
             //
@@ -1073,7 +1038,7 @@
             //
             $column = new DateTimeViewColumn('Laporan_Tanggal', 'Laporan_Tanggal', 'Laporan Tanggal', $this->dataset);
             $column->SetOrderable(true);
-            $column->SetDateTimeFormat('Y-m-d H:i:s');
+            $column->SetDateTimeFormat('d-m-Y H:i:s');
             $grid->AddCompareColumn($column);
             
             //
@@ -1081,7 +1046,7 @@
             //
             $column = new DateTimeViewColumn('Laporan_Created', 'Laporan_Created', 'Laporan Created', $this->dataset);
             $column->SetOrderable(true);
-            $column->SetDateTimeFormat('Y-m-d H:i:s');
+            $column->SetDateTimeFormat('d-m-Y H:i:s');
             $grid->AddCompareColumn($column);
         }
     
@@ -1121,8 +1086,6 @@
         public function GetEnableModalGridEdit() { return true; }
         
         protected function GetEnableModalGridDelete() { return true; }
-        
-        public function GetEnableModalGridCopy() { return true; }
     
         protected function CreateGrid()
         {
@@ -1137,15 +1100,15 @@
             $result->SetUseImagesForActions(false);
             $result->SetUseFixedHeader(false);
             $result->SetShowLineNumbers(false);
+            $result->SetShowKeyColumnsImagesInHeader(false);
             $result->SetViewMode(ViewMode::TABLE);
             $result->setEnableRuntimeCustomization(true);
-            $result->setAllowCompare(true);
-            $this->AddCompareHeaderColumns($result);
-            $this->AddCompareColumns($result);
             $result->setMultiEditAllowed($this->GetSecurityInfo()->HasEditGrant() && true);
             $result->setUseModalMultiEdit(true);
             $result->setTableBordered(false);
             $result->setTableCondensed(true);
+            $result->SetTotal('Laporan_Pemasukan', PredefinedAggregate::$Sum);
+            $result->SetTotal('Laporan_Pengeluaran', PredefinedAggregate::$Sum);
             
             $result->SetHighlightRowAtHover(false);
             $result->SetWidth('');
@@ -1220,7 +1183,7 @@
                 )
             );
             $lookupDataset->setOrderByField('Mobil_No_Polisi', 'ASC');
-            $handler = new DynamicSearchHandler($lookupDataset, $this, 'insert_Laporan_Mobil_Mobil_No_Polisi_search', 'Mobil_id', 'Mobil_No_Polisi', null, 20);
+            $handler = new DynamicSearchHandler($lookupDataset, $this, 'insert_Laporan_Mobil_Mobil_No_Polisi_search', 'Mobil_id', 'Mobil_No_Polisi', '%Mobil_No_Polisi%', 20);
             GetApplication()->RegisterHTTPHandler($handler);
             
             $lookupDataset = new TableDataset(
@@ -1238,19 +1201,19 @@
                     new IntegerField('Transaksi_Mobil'),
                     new IntegerField('Transaksi_Laporan', true),
                     new IntegerField('Transaksi_Posisi_Bensin'),
-                    new DateTimeField('Transaksi_Tanggal', true),
+                    new DateField('Transaksi_Tanggal'),
                     new IntegerField('Masa_Sewa_Jam'),
                     new IntegerField('Masa_Sewa_Hari'),
                     new IntegerField('Masa_Sewa_Bulan'),
                     new IntegerField('Masa_Sewa_Tahun'),
                     new StringField('Kelengkapan'),
                     new DateTimeField('Tangal_Waktu_Mulai', true),
-                    new TimeField('Tanggal_Waktu_Berakhir'),
+                    new DateTimeField('Tanggal_Waktu_Berakhir'),
                     new StringField('Keterangan_Lainnya')
                 )
             );
-            $lookupDataset->setOrderByField('Transaksi_Nama', 'ASC');
-            $handler = new DynamicSearchHandler($lookupDataset, $this, 'insert_Laporan_Transaksi_Transaksi_Nama_search', 'Transaksi_ID', 'Transaksi_Nama', null, 20);
+            $lookupDataset->setOrderByField('Transaksi_ID', 'ASC');
+            $handler = new DynamicSearchHandler($lookupDataset, $this, 'insert_Laporan_Transaksi_Transaksi_ID_search', 'Transaksi_ID', 'Transaksi_ID', null, 20);
             GetApplication()->RegisterHTTPHandler($handler);
             
             $lookupDataset = new TableDataset(
@@ -1269,7 +1232,7 @@
                 )
             );
             $lookupDataset->setOrderByField('Mobil_No_Polisi', 'ASC');
-            $handler = new DynamicSearchHandler($lookupDataset, $this, 'filter_builder_Laporan_Mobil_Mobil_No_Polisi_search', 'Mobil_id', 'Mobil_No_Polisi', null, 20);
+            $handler = new DynamicSearchHandler($lookupDataset, $this, 'filter_builder_Laporan_Mobil_Mobil_No_Polisi_search', 'Mobil_id', 'Mobil_No_Polisi', '%Mobil_No_Polisi%', 20);
             GetApplication()->RegisterHTTPHandler($handler);
             
             $lookupDataset = new TableDataset(
@@ -1287,19 +1250,19 @@
                     new IntegerField('Transaksi_Mobil'),
                     new IntegerField('Transaksi_Laporan', true),
                     new IntegerField('Transaksi_Posisi_Bensin'),
-                    new DateTimeField('Transaksi_Tanggal', true),
+                    new DateField('Transaksi_Tanggal'),
                     new IntegerField('Masa_Sewa_Jam'),
                     new IntegerField('Masa_Sewa_Hari'),
                     new IntegerField('Masa_Sewa_Bulan'),
                     new IntegerField('Masa_Sewa_Tahun'),
                     new StringField('Kelengkapan'),
                     new DateTimeField('Tangal_Waktu_Mulai', true),
-                    new TimeField('Tanggal_Waktu_Berakhir'),
+                    new DateTimeField('Tanggal_Waktu_Berakhir'),
                     new StringField('Keterangan_Lainnya')
                 )
             );
-            $lookupDataset->setOrderByField('Transaksi_Nama', 'ASC');
-            $handler = new DynamicSearchHandler($lookupDataset, $this, 'filter_builder_Laporan_Transaksi_Transaksi_Nama_search', 'Transaksi_ID', 'Transaksi_Nama', null, 20);
+            $lookupDataset->setOrderByField('Transaksi_ID', 'ASC');
+            $handler = new DynamicSearchHandler($lookupDataset, $this, 'filter_builder_Laporan_Transaksi_Transaksi_ID_search', 'Transaksi_ID', 'Transaksi_ID', null, 20);
             GetApplication()->RegisterHTTPHandler($handler);
             
             $lookupDataset = new TableDataset(
@@ -1317,19 +1280,19 @@
                     new IntegerField('Transaksi_Mobil'),
                     new IntegerField('Transaksi_Laporan', true),
                     new IntegerField('Transaksi_Posisi_Bensin'),
-                    new DateTimeField('Transaksi_Tanggal', true),
+                    new DateField('Transaksi_Tanggal'),
                     new IntegerField('Masa_Sewa_Jam'),
                     new IntegerField('Masa_Sewa_Hari'),
                     new IntegerField('Masa_Sewa_Bulan'),
                     new IntegerField('Masa_Sewa_Tahun'),
                     new StringField('Kelengkapan'),
                     new DateTimeField('Tangal_Waktu_Mulai', true),
-                    new TimeField('Tanggal_Waktu_Berakhir'),
+                    new DateTimeField('Tanggal_Waktu_Berakhir'),
                     new StringField('Keterangan_Lainnya')
                 )
             );
-            $lookupDataset->setOrderByField('Transaksi_Nama', 'ASC');
-            $handler = new DynamicSearchHandler($lookupDataset, $this, 'filter_builder_Laporan_Transaksi_Transaksi_Nama_search', 'Transaksi_ID', 'Transaksi_Nama', null, 20);
+            $lookupDataset->setOrderByField('Transaksi_ID', 'ASC');
+            $handler = new DynamicSearchHandler($lookupDataset, $this, 'filter_builder_Laporan_Transaksi_Transaksi_ID_search', 'Transaksi_ID', 'Transaksi_ID', null, 20);
             GetApplication()->RegisterHTTPHandler($handler);
             
             //
@@ -1356,37 +1319,7 @@
                 )
             );
             $lookupDataset->setOrderByField('Mobil_No_Polisi', 'ASC');
-            $handler = new DynamicSearchHandler($lookupDataset, $this, 'edit_Laporan_Mobil_Mobil_No_Polisi_search', 'Mobil_id', 'Mobil_No_Polisi', null, 20);
-            GetApplication()->RegisterHTTPHandler($handler);
-            
-            $lookupDataset = new TableDataset(
-                MySqlIConnectionFactory::getInstance(),
-                GetConnectionOptions(),
-                '`transaksi`');
-            $lookupDataset->addFields(
-                array(
-                    new IntegerField('Transaksi_ID', true, true, true),
-                    new StringField('Transaksi_Nama'),
-                    new StringField('Transaksi_NomorHP'),
-                    new StringField('Transaksi_Alamat'),
-                    new StringField('Transaksi_Jaminan_Identitas'),
-                    new StringField('Transaksi_Nomor_Jaminan_Identitas'),
-                    new IntegerField('Transaksi_Mobil'),
-                    new IntegerField('Transaksi_Laporan', true),
-                    new IntegerField('Transaksi_Posisi_Bensin'),
-                    new DateTimeField('Transaksi_Tanggal', true),
-                    new IntegerField('Masa_Sewa_Jam'),
-                    new IntegerField('Masa_Sewa_Hari'),
-                    new IntegerField('Masa_Sewa_Bulan'),
-                    new IntegerField('Masa_Sewa_Tahun'),
-                    new StringField('Kelengkapan'),
-                    new DateTimeField('Tangal_Waktu_Mulai', true),
-                    new TimeField('Tanggal_Waktu_Berakhir'),
-                    new StringField('Keterangan_Lainnya')
-                )
-            );
-            $lookupDataset->setOrderByField('Transaksi_Nama', 'ASC');
-            $handler = new DynamicSearchHandler($lookupDataset, $this, 'edit_Laporan_Transaksi_Transaksi_Nama_search', 'Transaksi_ID', 'Transaksi_Nama', null, 20);
+            $handler = new DynamicSearchHandler($lookupDataset, $this, 'edit_Laporan_Mobil_Mobil_No_Polisi_search', 'Mobil_id', 'Mobil_No_Polisi', '%Mobil_No_Polisi%', 20);
             GetApplication()->RegisterHTTPHandler($handler);
             
             $lookupDataset = new TableDataset(
@@ -1405,7 +1338,7 @@
                 )
             );
             $lookupDataset->setOrderByField('Mobil_No_Polisi', 'ASC');
-            $handler = new DynamicSearchHandler($lookupDataset, $this, 'multi_edit_Laporan_Mobil_Mobil_No_Polisi_search', 'Mobil_id', 'Mobil_No_Polisi', null, 20);
+            $handler = new DynamicSearchHandler($lookupDataset, $this, 'multi_edit_Laporan_Mobil_Mobil_No_Polisi_search', 'Mobil_id', 'Mobil_No_Polisi', '%Mobil_No_Polisi%', 20);
             GetApplication()->RegisterHTTPHandler($handler);
             
             $lookupDataset = new TableDataset(
@@ -1423,19 +1356,19 @@
                     new IntegerField('Transaksi_Mobil'),
                     new IntegerField('Transaksi_Laporan', true),
                     new IntegerField('Transaksi_Posisi_Bensin'),
-                    new DateTimeField('Transaksi_Tanggal', true),
+                    new DateField('Transaksi_Tanggal'),
                     new IntegerField('Masa_Sewa_Jam'),
                     new IntegerField('Masa_Sewa_Hari'),
                     new IntegerField('Masa_Sewa_Bulan'),
                     new IntegerField('Masa_Sewa_Tahun'),
                     new StringField('Kelengkapan'),
                     new DateTimeField('Tangal_Waktu_Mulai', true),
-                    new TimeField('Tanggal_Waktu_Berakhir'),
+                    new DateTimeField('Tanggal_Waktu_Berakhir'),
                     new StringField('Keterangan_Lainnya')
                 )
             );
-            $lookupDataset->setOrderByField('Transaksi_Nama', 'ASC');
-            $handler = new DynamicSearchHandler($lookupDataset, $this, 'multi_edit_Laporan_Transaksi_Transaksi_Nama_search', 'Transaksi_ID', 'Transaksi_Nama', null, 20);
+            $lookupDataset->setOrderByField('Transaksi_ID', 'ASC');
+            $handler = new DynamicSearchHandler($lookupDataset, $this, 'multi_edit_Laporan_Transaksi_Transaksi_ID_search', 'Transaksi_ID', 'Transaksi_ID', null, 20);
             GetApplication()->RegisterHTTPHandler($handler);
         }
        
@@ -1856,16 +1789,6 @@
                 $operation->SetAdditionalAttribute('data-modal-operation', 'delete');
                 $operation->SetAdditionalAttribute('data-delete-handler-name', $this->GetModalGridDeleteHandler());
             }
-            
-            if ($this->GetSecurityInfo()->HasAddGrant())
-            {
-                $operation = new AjaxOperation(OPERATION_COPY,
-                    $this->GetLocalizerCaptions()->GetMessageString('Copy'),
-                    $this->GetLocalizerCaptions()->GetMessageString('Copy'), $this->dataset,
-                    $this->GetModalGridCopyHandler(), $grid);
-                $operation->setUseImage(false);
-                $actions->addOperation($operation);
-            }
         }
     
         protected function AddFieldColumns(Grid $grid, $withDetails = true)
@@ -2276,8 +2199,6 @@
         public function GetEnableModalGridEdit() { return true; }
         
         protected function GetEnableModalGridDelete() { return true; }
-        
-        public function GetEnableModalGridCopy() { return true; }
     
         protected function CreateGrid()
         {
@@ -2292,12 +2213,10 @@
             $result->SetUseImagesForActions(false);
             $result->SetUseFixedHeader(false);
             $result->SetShowLineNumbers(false);
+            $result->SetShowKeyColumnsImagesInHeader(false);
             $result->SetViewMode(ViewMode::TABLE);
             $result->setEnableRuntimeCustomization(true);
             $result->setAllowAddMultipleRecords(false);
-            $result->setAllowCompare(true);
-            $this->AddCompareHeaderColumns($result);
-            $this->AddCompareColumns($result);
             $result->setMultiEditAllowed($this->GetSecurityInfo()->HasEditGrant() && true);
             $result->setUseModalMultiEdit(true);
             $result->setTableBordered(false);
@@ -2657,14 +2576,14 @@
                     new IntegerField('Transaksi_Mobil'),
                     new IntegerField('Transaksi_Laporan', true),
                     new IntegerField('Transaksi_Posisi_Bensin'),
-                    new DateTimeField('Transaksi_Tanggal', true),
+                    new DateField('Transaksi_Tanggal'),
                     new IntegerField('Masa_Sewa_Jam'),
                     new IntegerField('Masa_Sewa_Hari'),
                     new IntegerField('Masa_Sewa_Bulan'),
                     new IntegerField('Masa_Sewa_Tahun'),
                     new StringField('Kelengkapan'),
                     new DateTimeField('Tangal_Waktu_Mulai', true),
-                    new TimeField('Tanggal_Waktu_Berakhir'),
+                    new DateTimeField('Tanggal_Waktu_Berakhir'),
                     new StringField('Keterangan_Lainnya')
                 )
             );
@@ -2723,6 +2642,7 @@
         protected function setupQuickFilter(QuickFilter $quickFilter, FixedKeysArray $columns)
         {
             $quickFilter
+                ->addColumn($columns['Transaksi_ID'])
                 ->addColumn($columns['Transaksi_Nama'])
                 ->addColumn($columns['Transaksi_NomorHP'])
                 ->addColumn($columns['Transaksi_Alamat'])
@@ -2940,7 +2860,7 @@
                 )
             );
             
-            $main_editor = new DateTimeEdit('transaksi_tanggal_edit', false, 'Y-m-d H:i:s');
+            $main_editor = new DateTimeEdit('transaksi_tanggal_edit', false, 'd M Y');
             
             $filterBuilder->addColumn(
                 $columns['Transaksi_Tanggal'],
@@ -3057,7 +2977,7 @@
                 )
             );
             
-            $main_editor = new DateTimeEdit('tangal_waktu_mulai_edit', false, 'Y-m-d H:i:s');
+            $main_editor = new DateTimeEdit('tangal_waktu_mulai_edit', false, 'd-m-Y H:i:s');
             
             $filterBuilder->addColumn(
                 $columns['Tangal_Waktu_Mulai'],
@@ -3078,7 +2998,7 @@
                 )
             );
             
-            $main_editor = new TimeEdit('tanggal_waktu_berakhir_edit', 'H:i:s');
+            $main_editor = new DateTimeEdit('tanggal_waktu_berakhir_edit', false, 'd-m-Y H:i:s');
             
             $filterBuilder->addColumn(
                 $columns['Tanggal_Waktu_Berakhir'],
@@ -3153,16 +3073,6 @@
                 $operation->OnShow->AddListener('ShowDeleteButtonHandler', $this);
                 $operation->SetAdditionalAttribute('data-modal-operation', 'delete');
                 $operation->SetAdditionalAttribute('data-delete-handler-name', $this->GetModalGridDeleteHandler());
-            }
-            
-            if ($this->GetSecurityInfo()->HasAddGrant())
-            {
-                $operation = new AjaxOperation(OPERATION_COPY,
-                    $this->GetLocalizerCaptions()->GetMessageString('Copy'),
-                    $this->GetLocalizerCaptions()->GetMessageString('Copy'), $this->dataset,
-                    $this->GetModalGridCopyHandler(), $grid);
-                $operation->setUseImage(false);
-                $actions->addOperation($operation);
             }
         }
     
@@ -3289,7 +3199,7 @@
             //
             $column = new DateTimeViewColumn('Transaksi_Tanggal', 'Transaksi_Tanggal', 'Transaksi Tanggal', $this->dataset);
             $column->SetOrderable(true);
-            $column->SetDateTimeFormat('Y-m-d H:i:s');
+            $column->SetDateTimeFormat('d-m-Y');
             $column->setMinimalVisibility(ColumnVisibility::PHONE);
             $column->SetDescription('');
             $column->SetFixedWidth(null);
@@ -3364,7 +3274,7 @@
             //
             $column = new DateTimeViewColumn('Tangal_Waktu_Mulai', 'Tangal_Waktu_Mulai', 'Tangal Waktu Mulai', $this->dataset);
             $column->SetOrderable(true);
-            $column->SetDateTimeFormat('Y-m-d H:i:s');
+            $column->SetDateTimeFormat('d-m-Y H:i:s');
             $column->setMinimalVisibility(ColumnVisibility::PHONE);
             $column->SetDescription('');
             $column->SetFixedWidth(null);
@@ -3473,7 +3383,7 @@
             //
             $column = new DateTimeViewColumn('Transaksi_Tanggal', 'Transaksi_Tanggal', 'Transaksi Tanggal', $this->dataset);
             $column->SetOrderable(true);
-            $column->SetDateTimeFormat('Y-m-d H:i:s');
+            $column->SetDateTimeFormat('d-m-Y');
             $grid->AddSingleRecordViewColumn($column);
             
             //
@@ -3530,7 +3440,7 @@
             //
             $column = new DateTimeViewColumn('Tangal_Waktu_Mulai', 'Tangal_Waktu_Mulai', 'Tangal Waktu Mulai', $this->dataset);
             $column->SetOrderable(true);
-            $column->SetDateTimeFormat('Y-m-d H:i:s');
+            $column->SetDateTimeFormat('d-m-Y H:i:s');
             $grid->AddSingleRecordViewColumn($column);
             
             //
@@ -3640,7 +3550,8 @@
             );
             $lookupDataset->setOrderByField('Mobil_No_Polisi', 'ASC');
             $editColumn = new DynamicLookupEditColumn('Transaksi Mobil', 'Transaksi_Mobil', 'Transaksi_Mobil_Mobil_No_Polisi', 'edit_Transaksi_Mobil_Mobil_No_Polisi_search', $editor, $this->dataset, $lookupDataset, 'Mobil_id', 'Mobil_No_Polisi', '');
-            $editColumn->SetAllowSetToNull(true);
+            $validator = new RequiredValidator(StringUtils::Format($this->GetLocalizerCaptions()->GetMessageString('RequiredValidationMessage'), $editColumn->GetCaption()));
+            $editor->GetValidatorCollection()->AddValidator($validator);
             $this->ApplyCommonColumnEditProperties($editColumn);
             $grid->AddEditColumn($editColumn);
             
@@ -3656,7 +3567,7 @@
             //
             // Edit column for Transaksi_Tanggal field
             //
-            $editor = new DateTimeEdit('transaksi_tanggal_edit', false, 'Y-m-d H:i:s');
+            $editor = new DateTimeEdit('transaksi_tanggal_edit', false, 'd M Y');
             $editColumn = new CustomEditColumn('Transaksi Tanggal', 'Transaksi_Tanggal', $editor, $this->dataset);
             $validator = new RequiredValidator(StringUtils::Format($this->GetLocalizerCaptions()->GetMessageString('RequiredValidationMessage'), $editColumn->GetCaption()));
             $editor->GetValidatorCollection()->AddValidator($validator);
@@ -3711,7 +3622,7 @@
             //
             // Edit column for Tangal_Waktu_Mulai field
             //
-            $editor = new DateTimeEdit('tangal_waktu_mulai_edit', false, 'Y-m-d H:i:s');
+            $editor = new DateTimeEdit('tangal_waktu_mulai_edit', false, 'd-m-Y H:i:s');
             $editColumn = new CustomEditColumn('Tangal Waktu Mulai', 'Tangal_Waktu_Mulai', $editor, $this->dataset);
             $validator = new RequiredValidator(StringUtils::Format($this->GetLocalizerCaptions()->GetMessageString('RequiredValidationMessage'), $editColumn->GetCaption()));
             $editor->GetValidatorCollection()->AddValidator($validator);
@@ -3721,7 +3632,7 @@
             //
             // Edit column for Tanggal_Waktu_Berakhir field
             //
-            $editor = new TimeEdit('tanggal_waktu_berakhir_edit', 'H:i:s');
+            $editor = new DateTimeEdit('tanggal_waktu_berakhir_edit', false, 'd-m-Y H:i:s');
             $editColumn = new CustomEditColumn('Tanggal Waktu Berakhir', 'Tanggal_Waktu_Berakhir', $editor, $this->dataset);
             $editColumn->SetAllowSetToNull(true);
             $this->ApplyCommonColumnEditProperties($editColumn);
@@ -3816,7 +3727,8 @@
             );
             $lookupDataset->setOrderByField('Mobil_No_Polisi', 'ASC');
             $editColumn = new DynamicLookupEditColumn('Transaksi Mobil', 'Transaksi_Mobil', 'Transaksi_Mobil_Mobil_No_Polisi', 'multi_edit_Transaksi_Mobil_Mobil_No_Polisi_search', $editor, $this->dataset, $lookupDataset, 'Mobil_id', 'Mobil_No_Polisi', '');
-            $editColumn->SetAllowSetToNull(true);
+            $validator = new RequiredValidator(StringUtils::Format($this->GetLocalizerCaptions()->GetMessageString('RequiredValidationMessage'), $editColumn->GetCaption()));
+            $editor->GetValidatorCollection()->AddValidator($validator);
             $this->ApplyCommonColumnEditProperties($editColumn);
             $grid->AddMultiEditColumn($editColumn);
             
@@ -3832,7 +3744,7 @@
             //
             // Edit column for Transaksi_Tanggal field
             //
-            $editor = new DateTimeEdit('transaksi_tanggal_edit', false, 'Y-m-d H:i:s');
+            $editor = new DateTimeEdit('transaksi_tanggal_edit', false, 'd M Y');
             $editColumn = new CustomEditColumn('Transaksi Tanggal', 'Transaksi_Tanggal', $editor, $this->dataset);
             $validator = new RequiredValidator(StringUtils::Format($this->GetLocalizerCaptions()->GetMessageString('RequiredValidationMessage'), $editColumn->GetCaption()));
             $editor->GetValidatorCollection()->AddValidator($validator);
@@ -3887,7 +3799,7 @@
             //
             // Edit column for Tangal_Waktu_Mulai field
             //
-            $editor = new DateTimeEdit('tangal_waktu_mulai_edit', false, 'Y-m-d H:i:s');
+            $editor = new DateTimeEdit('tangal_waktu_mulai_edit', false, 'd-m-Y H:i:s');
             $editColumn = new CustomEditColumn('Tangal Waktu Mulai', 'Tangal_Waktu_Mulai', $editor, $this->dataset);
             $validator = new RequiredValidator(StringUtils::Format($this->GetLocalizerCaptions()->GetMessageString('RequiredValidationMessage'), $editColumn->GetCaption()));
             $editor->GetValidatorCollection()->AddValidator($validator);
@@ -3897,7 +3809,7 @@
             //
             // Edit column for Tanggal_Waktu_Berakhir field
             //
-            $editor = new TimeEdit('tanggal_waktu_berakhir_edit', 'H:i:s');
+            $editor = new DateTimeEdit('tanggal_waktu_berakhir_edit', false, 'd-m-Y H:i:s');
             $editColumn = new CustomEditColumn('Tanggal Waktu Berakhir', 'Tanggal_Waktu_Berakhir', $editor, $this->dataset);
             $editColumn->SetAllowSetToNull(true);
             $this->ApplyCommonColumnEditProperties($editColumn);
@@ -3992,7 +3904,8 @@
             );
             $lookupDataset->setOrderByField('Mobil_No_Polisi', 'ASC');
             $editColumn = new DynamicLookupEditColumn('Transaksi Mobil', 'Transaksi_Mobil', 'Transaksi_Mobil_Mobil_No_Polisi', 'insert_Transaksi_Mobil_Mobil_No_Polisi_search', $editor, $this->dataset, $lookupDataset, 'Mobil_id', 'Mobil_No_Polisi', '');
-            $editColumn->SetAllowSetToNull(true);
+            $validator = new RequiredValidator(StringUtils::Format($this->GetLocalizerCaptions()->GetMessageString('RequiredValidationMessage'), $editColumn->GetCaption()));
+            $editor->GetValidatorCollection()->AddValidator($validator);
             $this->ApplyCommonColumnEditProperties($editColumn);
             $grid->AddInsertColumn($editColumn);
             
@@ -4008,7 +3921,7 @@
             //
             // Edit column for Transaksi_Tanggal field
             //
-            $editor = new DateTimeEdit('transaksi_tanggal_edit', false, 'Y-m-d H:i:s');
+            $editor = new DateTimeEdit('transaksi_tanggal_edit', false, 'd M Y');
             $editColumn = new CustomEditColumn('Transaksi Tanggal', 'Transaksi_Tanggal', $editor, $this->dataset);
             $editColumn->SetInsertDefaultValue('%CURRENT_DATETIME%');
             $validator = new RequiredValidator(StringUtils::Format($this->GetLocalizerCaptions()->GetMessageString('RequiredValidationMessage'), $editColumn->GetCaption()));
@@ -4068,7 +3981,7 @@
             //
             // Edit column for Tangal_Waktu_Mulai field
             //
-            $editor = new DateTimeEdit('tangal_waktu_mulai_edit', false, 'Y-m-d H:i:s');
+            $editor = new DateTimeEdit('tangal_waktu_mulai_edit', false, 'd-m-Y H:i:s');
             $editColumn = new CustomEditColumn('Tangal Waktu Mulai', 'Tangal_Waktu_Mulai', $editor, $this->dataset);
             $validator = new RequiredValidator(StringUtils::Format($this->GetLocalizerCaptions()->GetMessageString('RequiredValidationMessage'), $editColumn->GetCaption()));
             $editor->GetValidatorCollection()->AddValidator($validator);
@@ -4078,7 +3991,7 @@
             //
             // Edit column for Tanggal_Waktu_Berakhir field
             //
-            $editor = new TimeEdit('tanggal_waktu_berakhir_edit', 'H:i:s');
+            $editor = new DateTimeEdit('tanggal_waktu_berakhir_edit', false, 'd-m-Y H:i:s');
             $editColumn = new CustomEditColumn('Tanggal Waktu Berakhir', 'Tanggal_Waktu_Berakhir', $editor, $this->dataset);
             $editColumn->SetAllowSetToNull(true);
             $this->ApplyCommonColumnEditProperties($editColumn);
@@ -4179,7 +4092,7 @@
             //
             $column = new DateTimeViewColumn('Transaksi_Tanggal', 'Transaksi_Tanggal', 'Transaksi Tanggal', $this->dataset);
             $column->SetOrderable(true);
-            $column->SetDateTimeFormat('Y-m-d H:i:s');
+            $column->SetDateTimeFormat('d-m-Y');
             $grid->AddPrintColumn($column);
             
             //
@@ -4236,7 +4149,7 @@
             //
             $column = new DateTimeViewColumn('Tangal_Waktu_Mulai', 'Tangal_Waktu_Mulai', 'Tangal Waktu Mulai', $this->dataset);
             $column->SetOrderable(true);
-            $column->SetDateTimeFormat('Y-m-d H:i:s');
+            $column->SetDateTimeFormat('d-m-Y H:i:s');
             $grid->AddPrintColumn($column);
             
             //
@@ -4336,7 +4249,7 @@
             //
             $column = new DateTimeViewColumn('Transaksi_Tanggal', 'Transaksi_Tanggal', 'Transaksi Tanggal', $this->dataset);
             $column->SetOrderable(true);
-            $column->SetDateTimeFormat('Y-m-d H:i:s');
+            $column->SetDateTimeFormat('d-m-Y');
             $grid->AddExportColumn($column);
             
             //
@@ -4393,7 +4306,7 @@
             //
             $column = new DateTimeViewColumn('Tangal_Waktu_Mulai', 'Tangal_Waktu_Mulai', 'Tangal Waktu Mulai', $this->dataset);
             $column->SetOrderable(true);
-            $column->SetDateTimeFormat('Y-m-d H:i:s');
+            $column->SetDateTimeFormat('d-m-Y H:i:s');
             $grid->AddExportColumn($column);
             
             //
@@ -4493,7 +4406,7 @@
             //
             $column = new DateTimeViewColumn('Transaksi_Tanggal', 'Transaksi_Tanggal', 'Transaksi Tanggal', $this->dataset);
             $column->SetOrderable(true);
-            $column->SetDateTimeFormat('Y-m-d H:i:s');
+            $column->SetDateTimeFormat('d-m-Y');
             $grid->AddCompareColumn($column);
             
             //
@@ -4550,7 +4463,7 @@
             //
             $column = new DateTimeViewColumn('Tangal_Waktu_Mulai', 'Tangal_Waktu_Mulai', 'Tangal Waktu Mulai', $this->dataset);
             $column->SetOrderable(true);
-            $column->SetDateTimeFormat('Y-m-d H:i:s');
+            $column->SetDateTimeFormat('d-m-Y H:i:s');
             $grid->AddCompareColumn($column);
             
             //
@@ -4628,8 +4541,6 @@
         public function GetEnableModalGridEdit() { return true; }
         
         protected function GetEnableModalGridDelete() { return true; }
-        
-        public function GetEnableModalGridCopy() { return true; }
     
         protected function CreateGrid()
         {
@@ -4644,11 +4555,9 @@
             $result->SetUseImagesForActions(false);
             $result->SetUseFixedHeader(false);
             $result->SetShowLineNumbers(false);
+            $result->SetShowKeyColumnsImagesInHeader(false);
             $result->SetViewMode(ViewMode::TABLE);
             $result->setEnableRuntimeCustomization(true);
-            $result->setAllowCompare(true);
-            $this->AddCompareHeaderColumns($result);
-            $this->AddCompareColumns($result);
             $result->setMultiEditAllowed($this->GetSecurityInfo()->HasEditGrant() && true);
             $result->setUseModalMultiEdit(true);
             $result->setTableBordered(false);
@@ -5145,7 +5054,7 @@
     
     }
 
-
+    SetUpUserAuthorization();
 
     try
     {

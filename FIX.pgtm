@@ -19,9 +19,9 @@
     <DataSource name="mobil"/>
     <DataSource name="laporan"/>
   </DataSources>
-  <Presentation disableMagicQuotesRuntime="false" showEnvironmentVariables="false" showExecutedQueries="false" showPHPErrorsAndWarnings="false">
+  <Presentation disableMagicQuotesRuntime="false" showEnvironmentVariables="false" showExecutedQueries="false" showPHPErrorsAndWarnings="false" hasHomePage="false">
     <Pages>
-      <Page type="table" tableName="laporan" numberByDataSource="0" fileName="laporan" caption="Laporan" shortCaption="Laporan" addSeparator="false" horizontalFilterCondition="" recordsPerPage="20" NavigatorPosition="3" insertAbilityMode="3" editAbilityMode="3" multiEditAbility="3" deleteAbilityMode="3" copyAbilityMode="0" deleteSelectedAbilityMode="3" contentEncoding="UTF-8" exportAllRecordsAvailable="31" exportSelectedRecordsAvailable="31" exportSingleRecordFromGridAvailable="0" exportRecordFromViewFormAvailable="31" printAvailable="13" showKeyColumnsImagesInGridHeader="false" recordsComparisionAvailable="false" condensedTable="true">
+      <Page type="table" tableName="laporan" numberByDataSource="0" fileName="laporan" caption="Laporan" shortCaption="Laporan" addSeparator="false" horizontalFilterCondition="" recordsPerPage="20" NavigatorPosition="3" insertAbilityMode="3" editAbilityMode="3" multiEditAbility="3" deleteAbilityMode="3" copyAbilityMode="3" deleteSelectedAbilityMode="3" contentEncoding="UTF-8" exportAllRecordsAvailable="31" exportSelectedRecordsAvailable="31" exportSingleRecordFromGridAvailable="0" exportRecordFromViewFormAvailable="31" printAvailable="13" showKeyColumnsImagesInGridHeader="false" recordsComparisionAvailable="false" condensedTable="true">
         <DefaultSortedColumns>
           <Column fieldName="Laporan_Created" orderType="1"/>
         </DefaultSortedColumns>
@@ -34,13 +34,13 @@
             </ViewProperties>
             <EditProperties type="textBox" maxLength="0"/>
           </ColumnPresentation>
-          <ColumnPresentation fieldName="Laporan_Pemasukan" caption="Laporan Pemasukan" totalFunction="2" showColumnFilter="false" canSetNull="true" defaultInsertValue="0" selectedFilterOperators="1573119">
+          <ColumnPresentation fieldName="Laporan_Pemasukan" caption="Laporan Pemasukan" showColumnFilter="false" canSetNull="true" defaultInsertValue="0" selectedFilterOperators="1573119">
             <ViewProperties type="text">
               <Format type="number" thousandSeparator=","/>
             </ViewProperties>
             <EditProperties type="textBox" maxLength="0"/>
           </ColumnPresentation>
-          <ColumnPresentation fieldName="Laporan_Pengeluaran" caption="Laporan Pengeluaran" totalFunction="2" showColumnFilter="false" canSetNull="true" defaultInsertValue="0" selectedFilterOperators="1573119">
+          <ColumnPresentation fieldName="Laporan_Pengeluaran" caption="Laporan Pengeluaran" showColumnFilter="false" canSetNull="true" defaultInsertValue="0" selectedFilterOperators="1573119">
             <ViewProperties type="text">
               <Format type="number" thousandSeparator=","/>
             </ViewProperties>
@@ -60,11 +60,9 @@
             <EditProperties type="dynamicCombobox"/>
           </ColumnPresentation>
           <ColumnPresentation fieldName="Laporan_Transaksi" caption="Laporan Transaksi" selectedFilterOperators="1573119">
-            <Lookup tableName="transaksi" linkFieldName="Transaksi_ID" displayFieldName="Transaksi_ID" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
-            <ViewProperties type="text">
-              <Format type="number" decimalSeparator="." thousandSeparator=","/>
-            </ViewProperties>
-            <EditProperties type="dynamicCombobox" itemTemplate="%Transaksi_Nama% %Transaksi_Tanggal%"/>
+            <Lookup tableName="transaksi" linkFieldName="Transaksi_ID" displayFieldName="Transaksi_Nama" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+            <ViewProperties type="text"/>
+            <EditProperties type="dynamicCombobox"/>
           </ColumnPresentation>
           <ColumnPresentation fieldName="Laporan_Created" caption="Laporan Created" selectedFilterOperators="2031871">
             <ViewProperties type="dateTime" dateTimeFormat="d-m-Y H:i:s"/>
@@ -177,7 +175,7 @@
         <RecordPermissions useRecordPermissions="false"/>
         <PartitionNavigators/>
       </Page>
-      <Page type="table" tableName="mobil" numberByDataSource="0" fileName="mobil" caption="Mobil" shortCaption="Mobil" viewFormCaptionTemplate="%Mobil_No_Polisi%" editFormCaptionTemplate="%Mobil_No_Polisi%" addSeparator="false" horizontalFilterCondition="" recordsPerPage="20" NavigatorPosition="3" insertAbilityMode="3" editAbilityMode="3" multiEditAbility="3" deleteAbilityMode="3" copyAbilityMode="0" deleteSelectedAbilityMode="3" contentEncoding="UTF-8" exportAllRecordsAvailable="31" exportSelectedRecordsAvailable="31" exportSingleRecordFromGridAvailable="0" exportRecordFromViewFormAvailable="31" printAvailable="13" showKeyColumnsImagesInGridHeader="false" recordsComparisionAvailable="false" condensedTable="true">
+      <Page type="table" tableName="mobil" numberByDataSource="0" fileName="mobil" caption="Mobil" shortCaption="Mobil" viewFormCaptionTemplate="%Mobil_No_Polisi%" editFormCaptionTemplate="%Mobil_No_Polisi%" addSeparator="false" horizontalFilterCondition="" recordsPerPage="20" NavigatorPosition="3" insertAbilityMode="3" editAbilityMode="3" multiEditAbility="3" deleteAbilityMode="3" copyAbilityMode="3" deleteSelectedAbilityMode="3" contentEncoding="UTF-8" exportAllRecordsAvailable="31" exportSelectedRecordsAvailable="31" exportSingleRecordFromGridAvailable="0" exportRecordFromViewFormAvailable="31" printAvailable="13" showKeyColumnsImagesInGridHeader="false" recordsComparisionAvailable="false" condensedTable="true">
         <BeforeGridText/>
         <DetailedDescription/>
         <ColumnPresentations>
@@ -201,7 +199,7 @@
           </ColumnPresentation>
           <ColumnPresentation fieldName="Mobil_Tahun" caption="Mobil Tahun" showColumnFilter="false" canSetNull="true" selectedFilterOperators="1573119">
             <ViewProperties type="text">
-              <Format type="number"/>
+              <Format type="number" thousandSeparator=","/>
             </ViewProperties>
             <EditProperties type="textBox" maxLength="0"/>
           </ColumnPresentation>
@@ -308,21 +306,23 @@
         </Columns>
         <Details>
           <Detail caption="Laporan">
-            <Page type="table" tableName="laporan" numberByDataSource="0" fileName="" caption="Laporan" shortCaption="Laporan" addSeparator="false" horizontalFilterCondition="" recordsPerPage="20" NavigatorPosition="3" insertAbilityMode="3" editAbilityMode="3" multiEditAbility="3" deleteAbilityMode="3" copyAbilityMode="0" deleteSelectedAbilityMode="3" contentEncoding="UTF-8" exportAllRecordsAvailable="31" exportSelectedRecordsAvailable="31" exportSingleRecordFromGridAvailable="0" exportRecordFromViewFormAvailable="31" printAvailable="13" showKeyColumnsImagesInGridHeader="false" recordsComparisionAvailable="false" condensedTable="true">
+            <Page type="table" tableName="laporan" numberByDataSource="0" fileName="" caption="Laporan" shortCaption="Laporan" addSeparator="false" horizontalFilterCondition="" recordsPerPage="20" NavigatorPosition="3" insertAbilityMode="3" editAbilityMode="3" multiEditAbility="3" deleteAbilityMode="3" copyAbilityMode="3" deleteSelectedAbilityMode="3" contentEncoding="UTF-8" exportAllRecordsAvailable="31" exportSelectedRecordsAvailable="31" exportSingleRecordFromGridAvailable="0" exportRecordFromViewFormAvailable="31" printAvailable="13" showKeyColumnsImagesInGridHeader="false" recordsComparisionAvailable="false" condensedTable="true">
               <BeforeGridText/>
               <DetailedDescription/>
               <ColumnPresentations>
                 <ColumnPresentation fieldName="Laporan_Id" caption="Laporan Id" showColumnFilter="false" selectedFilterOperators="1573119">
-                  <ViewProperties type="text"/>
-                  <EditProperties type="textBox" maxLength="0"/>
-                </ColumnPresentation>
-                <ColumnPresentation fieldName="Laporan_Pemasukan" caption="Laporan Pemasukan" totalFunction="2" showColumnFilter="false" canSetNull="true" defaultInsertValue="0" selectedFilterOperators="1573119">
                   <ViewProperties type="text">
                     <Format type="number" thousandSeparator=","/>
                   </ViewProperties>
                   <EditProperties type="textBox" maxLength="0"/>
                 </ColumnPresentation>
-                <ColumnPresentation fieldName="Laporan_Pengeluaran" caption="Laporan Pengeluaran" totalFunction="2" showColumnFilter="false" canSetNull="true" defaultInsertValue="0" selectedFilterOperators="1573119">
+                <ColumnPresentation fieldName="Laporan_Pemasukan" caption="Laporan Pemasukan" showColumnFilter="false" canSetNull="true" defaultInsertValue="0" selectedFilterOperators="1573119">
+                  <ViewProperties type="text">
+                    <Format type="number" thousandSeparator=","/>
+                  </ViewProperties>
+                  <EditProperties type="textBox" maxLength="0"/>
+                </ColumnPresentation>
+                <ColumnPresentation fieldName="Laporan_Pengeluaran" caption="Laporan Pengeluaran" showColumnFilter="false" canSetNull="true" defaultInsertValue="0" selectedFilterOperators="1573119">
                   <ViewProperties type="text">
                     <Format type="number" thousandSeparator=","/>
                   </ViewProperties>
@@ -334,11 +334,9 @@
                   <EditProperties type="comboBox"/>
                 </ColumnPresentation>
                 <ColumnPresentation fieldName="Laporan_Transaksi" caption="Laporan Transaksi" selectedFilterOperators="1573119">
-                  <Lookup tableName="transaksi" linkFieldName="Transaksi_ID" displayFieldName="Transaksi_ID" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
-                  <ViewProperties type="text">
-                    <Format type="number" decimalSeparator="." thousandSeparator=","/>
-                  </ViewProperties>
-                  <EditProperties type="comboBox" itemTemplate="%Transaksi_Nama% %Transaksi_Tanggal%"/>
+                  <Lookup tableName="transaksi" linkFieldName="Transaksi_ID" displayFieldName="Transaksi_Nama" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+                  <ViewProperties type="text"/>
+                  <EditProperties type="comboBox"/>
                 </ColumnPresentation>
                 <ColumnPresentation fieldName="Laporan_Keterangan" caption="Laporan Keterangan" showColumnFilter="false" canSetNull="true" selectedFilterOperators="1589247">
                   <ViewProperties type="text" maxLength="75"/>
@@ -467,7 +465,7 @@
         <RecordPermissions useRecordPermissions="false"/>
         <PartitionNavigators/>
       </Page>
-      <Page type="table" tableName="transaksi" numberByDataSource="0" fileName="transaksi" caption="Transaksi" shortCaption="Transaksi" addSeparator="false" horizontalFilterCondition="" recordsPerPage="20" NavigatorPosition="3" insertAbilityMode="3" editAbilityMode="3" multiEditAbility="3" deleteAbilityMode="3" copyAbilityMode="0" deleteSelectedAbilityMode="3" contentEncoding="UTF-8" exportAllRecordsAvailable="31" exportSelectedRecordsAvailable="31" exportSingleRecordFromGridAvailable="0" exportRecordFromViewFormAvailable="31" printAvailable="13" showKeyColumnsImagesInGridHeader="false" recordsComparisionAvailable="false" condensedTable="true">
+      <Page type="table" tableName="transaksi" numberByDataSource="0" fileName="transaksi" caption="Transaksi" shortCaption="Transaksi" addSeparator="false" horizontalFilterCondition="" recordsPerPage="20" NavigatorPosition="3" insertAbilityMode="3" editAbilityMode="3" multiEditAbility="3" deleteAbilityMode="3" copyAbilityMode="3" deleteSelectedAbilityMode="3" contentEncoding="UTF-8" exportAllRecordsAvailable="31" exportSelectedRecordsAvailable="31" exportSingleRecordFromGridAvailable="0" exportRecordFromViewFormAvailable="31" printAvailable="13" showKeyColumnsImagesInGridHeader="false" recordsComparisionAvailable="false" condensedTable="true">
         <BeforeGridText/>
         <DetailedDescription/>
         <ColumnPresentations>
@@ -497,7 +495,7 @@
             <ViewProperties type="text" maxLength="75"/>
             <EditProperties type="textBox" maxLength="100"/>
           </ColumnPresentation>
-          <ColumnPresentation fieldName="Transaksi_Mobil" caption="Transaksi Mobil" selectedFilterOperators="1573119">
+          <ColumnPresentation fieldName="Transaksi_Mobil" caption="Transaksi Mobil" canSetNull="true" selectedFilterOperators="1573119">
             <Lookup tableName="mobil" linkFieldName="Mobil_id" displayFieldName="Mobil_No_Polisi" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
             <ViewProperties type="text"/>
             <EditProperties type="dynamicCombobox"/>
@@ -509,8 +507,8 @@
             <EditProperties type="textBox" maxLength="0"/>
           </ColumnPresentation>
           <ColumnPresentation fieldName="Transaksi_Tanggal" caption="Transaksi Tanggal" defaultInsertValue="%CURRENT_DATETIME%" selectedFilterOperators="2031871">
-            <ViewProperties type="dateTime" dateTimeFormat="d-m-Y"/>
-            <EditProperties type="dateTime" dateTimeFormat="d M Y" firstDayOfWeek="0"/>
+            <ViewProperties type="dateTime" dateTimeFormat="d-m-Y H:i:s"/>
+            <EditProperties type="dateTime" dateTimeFormat="d-m-Y H:i:s" firstDayOfWeek="0"/>
           </ColumnPresentation>
           <ColumnPresentation fieldName="Masa_Sewa_Jam" caption="Masa Sewa Jam" showColumnFilter="false" canSetNull="true" defaultInsertValue="0" selectedFilterOperators="1573119">
             <ViewProperties type="text">
@@ -546,7 +544,7 @@
           </ColumnPresentation>
           <ColumnPresentation fieldName="Tanggal_Waktu_Berakhir" caption="Tanggal Waktu Berakhir" canSetNull="true" selectedFilterOperators="1573119">
             <ViewProperties type="dateTime" dateTimeFormat="H:i:s" dateTimeKind="2"/>
-            <EditProperties type="dateTime" dateTimeFormat="d-m-Y H:i:s" firstDayOfWeek="0"/>
+            <EditProperties type="time"/>
           </ColumnPresentation>
           <ColumnPresentation fieldName="Keterangan_Lainnya" caption="Keterangan Lainnya" showColumnFilter="false" canSetNull="true" selectedFilterOperators="1589247">
             <ViewProperties type="text" maxLength="75"/>
@@ -641,7 +639,7 @@
             <Column fieldName="Transaksi_Laporan" visible="false"/>
           </Insert>
           <QuickFilter>
-            <Column fieldName="Transaksi_ID"/>
+            <Column fieldName="Transaksi_ID" visible="false"/>
             <Column fieldName="Transaksi_Nama"/>
             <Column fieldName="Transaksi_NomorHP"/>
             <Column fieldName="Transaksi_Alamat"/>
@@ -763,7 +761,7 @@
         </Columns>
         <Details>
           <Detail caption="Laporan">
-            <Page type="table" tableName="laporan" numberByDataSource="0" fileName="" caption="Laporan" shortCaption="Laporan" addSeparator="false" horizontalFilterCondition="" recordsPerPage="20" NavigatorPosition="3" insertAbilityMode="3" editAbilityMode="3" multiEditAbility="3" deleteAbilityMode="3" copyAbilityMode="0" deleteSelectedAbilityMode="3" contentEncoding="UTF-8" exportAllRecordsAvailable="31" exportSelectedRecordsAvailable="31" exportSingleRecordFromGridAvailable="0" exportRecordFromViewFormAvailable="31" printAvailable="13" showKeyColumnsImagesInGridHeader="false" recordsComparisionAvailable="false" condensedTable="true">
+            <Page type="table" tableName="laporan" numberByDataSource="0" fileName="" caption="Laporan" shortCaption="Laporan" addSeparator="false" horizontalFilterCondition="" recordsPerPage="20" NavigatorPosition="3" insertAbilityMode="3" editAbilityMode="3" multiEditAbility="3" deleteAbilityMode="3" copyAbilityMode="3" deleteSelectedAbilityMode="3" contentEncoding="UTF-8" exportAllRecordsAvailable="31" exportSelectedRecordsAvailable="31" exportSingleRecordFromGridAvailable="0" exportRecordFromViewFormAvailable="31" printAvailable="13" showKeyColumnsImagesInGridHeader="false" recordsComparisionAvailable="false" condensedTable="true">
               <BeforeGridText/>
               <DetailedDescription/>
               <ColumnPresentations>
@@ -773,13 +771,13 @@
                   </ViewProperties>
                   <EditProperties type="textBox" maxLength="0"/>
                 </ColumnPresentation>
-                <ColumnPresentation fieldName="Laporan_Pemasukan" caption="Laporan Pemasukan" totalFunction="2" showColumnFilter="false" canSetNull="true" defaultInsertValue="0" selectedFilterOperators="1573119">
+                <ColumnPresentation fieldName="Laporan_Pemasukan" caption="Laporan Pemasukan" showColumnFilter="false" canSetNull="true" defaultInsertValue="0" selectedFilterOperators="1573119">
                   <ViewProperties type="text">
                     <Format type="number" thousandSeparator=","/>
                   </ViewProperties>
                   <EditProperties type="textBox" maxLength="0"/>
                 </ColumnPresentation>
-                <ColumnPresentation fieldName="Laporan_Pengeluaran" caption="Laporan Pengeluaran" totalFunction="2" showColumnFilter="false" canSetNull="true" defaultInsertValue="0" selectedFilterOperators="1573119">
+                <ColumnPresentation fieldName="Laporan_Pengeluaran" caption="Laporan Pengeluaran" showColumnFilter="false" canSetNull="true" defaultInsertValue="0" selectedFilterOperators="1573119">
                   <ViewProperties type="text">
                     <Format type="number" thousandSeparator=","/>
                   </ViewProperties>
@@ -788,13 +786,11 @@
                 <ColumnPresentation fieldName="Laporan_Mobil" caption="Laporan Mobil" selectedFilterOperators="1573119">
                   <Lookup tableName="mobil" linkFieldName="Mobil_id" displayFieldName="Mobil_No_Polisi" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
                   <ViewProperties type="text"/>
-                  <EditProperties type="dynamicCombobox" itemTemplate="%Mobil_No_Polisi%"/>
+                  <EditProperties type="dynamicCombobox"/>
                 </ColumnPresentation>
                 <ColumnPresentation fieldName="Laporan_Transaksi" caption="Laporan Transaksi" readOnly="true" selectedFilterOperators="1573119">
-                  <Lookup tableName="transaksi" linkFieldName="Transaksi_ID" displayFieldName="Transaksi_ID" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
-                  <ViewProperties type="text">
-                    <Format type="number" decimalSeparator="." thousandSeparator=","/>
-                  </ViewProperties>
+                  <Lookup tableName="transaksi" linkFieldName="Transaksi_ID" displayFieldName="Transaksi_Nama" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+                  <ViewProperties type="text"/>
                   <EditProperties type="dynamicCombobox"/>
                 </ColumnPresentation>
                 <ColumnPresentation fieldName="Laporan_Keterangan" caption="Laporan Keterangan" showColumnFilter="false" canSetNull="true" selectedFilterOperators="1589247">
@@ -836,7 +832,7 @@
                   <Column fieldName="Laporan_Pemasukan"/>
                   <Column fieldName="Laporan_Pengeluaran"/>
                   <Column fieldName="Laporan_Mobil"/>
-                  <Column fieldName="Laporan_Transaksi" visible="false"/>
+                  <Column fieldName="Laporan_Transaksi"/>
                   <Column fieldName="Laporan_Keterangan"/>
                   <Column fieldName="Laporan_Tanggal"/>
                   <Column fieldName="Laporan_Created"/>
@@ -921,7 +917,7 @@
             </MasterForeignKeyColumnMap>
           </Detail>
           <Detail caption="Mobil">
-            <Page type="table" tableName="mobil" numberByDataSource="0" fileName="" caption="Mobil" shortCaption="Mobil" allowAddMultipleRecords="false" addSeparator="false" horizontalFilterCondition="" recordsPerPage="20" NavigatorPosition="3" insertAbilityMode="3" editAbilityMode="3" multiEditAbility="3" deleteAbilityMode="3" copyAbilityMode="0" deleteSelectedAbilityMode="3" contentEncoding="UTF-8" exportAllRecordsAvailable="31" exportSelectedRecordsAvailable="31" exportSingleRecordFromGridAvailable="0" exportRecordFromViewFormAvailable="31" printAvailable="13" showKeyColumnsImagesInGridHeader="false" recordsComparisionAvailable="false" condensedTable="true">
+            <Page type="table" tableName="mobil" numberByDataSource="0" fileName="" caption="Mobil" shortCaption="Mobil" allowAddMultipleRecords="false" addSeparator="false" horizontalFilterCondition="" recordsPerPage="20" NavigatorPosition="3" insertAbilityMode="3" editAbilityMode="3" multiEditAbility="3" deleteAbilityMode="3" copyAbilityMode="3" deleteSelectedAbilityMode="3" contentEncoding="UTF-8" exportAllRecordsAvailable="31" exportSelectedRecordsAvailable="31" exportSingleRecordFromGridAvailable="0" exportRecordFromViewFormAvailable="31" printAvailable="13" showKeyColumnsImagesInGridHeader="false" recordsComparisionAvailable="false" condensedTable="true">
               <BeforeGridText/>
               <DetailedDescription/>
               <ColumnPresentations>
@@ -1062,7 +1058,7 @@
         <RecordPermissions useRecordPermissions="false"/>
         <PartitionNavigators/>
       </Page>
-      <Page type="table" tableName="user" numberByDataSource="0" fileName="user" caption="User" shortCaption="User" addSeparator="false" horizontalFilterCondition="" recordsPerPage="20" NavigatorPosition="3" insertAbilityMode="3" editAbilityMode="3" multiEditAbility="3" deleteAbilityMode="3" copyAbilityMode="0" deleteSelectedAbilityMode="3" contentEncoding="UTF-8" exportAllRecordsAvailable="31" exportSelectedRecordsAvailable="31" exportSingleRecordFromGridAvailable="0" exportRecordFromViewFormAvailable="31" printAvailable="13" showKeyColumnsImagesInGridHeader="false" recordsComparisionAvailable="false" condensedTable="true">
+      <Page type="table" tableName="user" numberByDataSource="0" fileName="user" caption="User" shortCaption="User" addSeparator="false" horizontalFilterCondition="" recordsPerPage="20" NavigatorPosition="3" insertAbilityMode="3" editAbilityMode="3" multiEditAbility="3" deleteAbilityMode="3" copyAbilityMode="3" deleteSelectedAbilityMode="3" contentEncoding="UTF-8" exportAllRecordsAvailable="31" exportSelectedRecordsAvailable="31" exportSingleRecordFromGridAvailable="0" exportRecordFromViewFormAvailable="31" printAvailable="13" showKeyColumnsImagesInGridHeader="false" recordsComparisionAvailable="false" condensedTable="true">
         <BeforeGridText/>
         <DetailedDescription/>
         <ColumnPresentations>
@@ -1074,15 +1070,15 @@
           </ColumnPresentation>
           <ColumnPresentation fieldName="User_Nama" caption="User Nama" showColumnFilter="false" canSetNull="true" selectedFilterOperators="1589247">
             <ViewProperties type="text" maxLength="75"/>
-            <EditProperties type="textBox" maxLength="0"/>
+            <EditProperties type="textArea" columnCount="50" rowCount="8" placeholder=""/>
           </ColumnPresentation>
           <ColumnPresentation fieldName="User_Pass" caption="User Pass" showColumnFilter="false" canSetNull="true" selectedFilterOperators="1589247">
             <ViewProperties type="text" maxLength="75"/>
-            <EditProperties type="textBox" maxLength="0"/>
+            <EditProperties type="textArea" columnCount="50" rowCount="8" placeholder=""/>
           </ColumnPresentation>
           <ColumnPresentation fieldName="User_Nama_Lengkap" caption="User Nama Lengkap" showColumnFilter="false" canSetNull="true" selectedFilterOperators="1589247">
             <ViewProperties type="text" maxLength="75"/>
-            <EditProperties type="textBox" maxLength="0"/>
+            <EditProperties type="textArea" columnCount="50" rowCount="8" placeholder=""/>
           </ColumnPresentation>
           <ColumnPresentation fieldName="User_Level" caption="User Level" showColumnFilter="false" canSetNull="true" selectedFilterOperators="1573119">
             <ViewProperties type="text">
@@ -1203,6 +1199,6 @@
   <UserCSS/>
   <UserJS/>
   <ExcludedPaths/>
-  <DefaultPageProperties recordsPerPage="20" NavigatorPosition="3" insertAbilityMode="3" editAbilityMode="3" multiEditAbility="3" deleteAbilityMode="3" copyAbilityMode="0" deleteSelectedAbilityMode="3" contentEncoding="UTF-8" exportAllRecordsAvailable="31" exportSelectedRecordsAvailable="31" exportSingleRecordFromGridAvailable="0" exportRecordFromViewFormAvailable="31" printAvailable="13" showKeyColumnsImagesInGridHeader="false" recordsComparisionAvailable="false" condensedTable="true"/>
+  <DefaultPageProperties recordsPerPage="20" NavigatorPosition="3" insertAbilityMode="3" editAbilityMode="3" multiEditAbility="3" deleteAbilityMode="3" copyAbilityMode="3" deleteSelectedAbilityMode="3" contentEncoding="UTF-8" exportAllRecordsAvailable="31" exportSelectedRecordsAvailable="31" exportSingleRecordFromGridAvailable="0" exportRecordFromViewFormAvailable="31" printAvailable="13" showKeyColumnsImagesInGridHeader="false" recordsComparisionAvailable="false" condensedTable="true"/>
   <DefaultDataFormats numberAfterDecimal="2" DecimalSeparator="." ThousandSeparator="," DateTimeFormat="d-m-Y H:i:s" DateFormat="d-m-Y" firstDayOfWeek="1"/>
 </Project>
