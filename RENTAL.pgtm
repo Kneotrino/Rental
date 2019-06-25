@@ -1,0 +1,437 @@
+<Project version="18.3.0.1" edition="pro" localizationFileName="E:\Program Files (x86)\SQL Maestro Group\PHP Generator for MySQL Professional\lang.en.php" phpDriver="1" outputPath="C:\xampp\htdocs\SS" copySystemFiles="true" outputFilesExtension="php" colorSchemeName="cerulean">
+  <ConnectionOptions host="localhost" port="3306" login="root" password="" database="rental" client_encoding="utf8" allow_old_password="false">
+    <ssh_secure secure="false" port="22" authentication_mode="0"/>
+    <http_tunnel tunneling="false" url="">
+      <http_proxy_server use_proxy="false" port="8080"/>
+      <http_authentication/>
+    </http_tunnel>
+  </ConnectionOptions>
+  <ScriptConnectionOptions host="localhost" port="3306" login="root" password="" database="rental" client_encoding="utf8" allow_old_password="false">
+    <ssh_secure secure="false" port="22" authentication_mode="0"/>
+    <http_tunnel tunneling="false" url="">
+      <http_proxy_server use_proxy="false" port="8080"/>
+      <http_authentication/>
+    </http_tunnel>
+  </ScriptConnectionOptions>
+  <DataSources>
+    <DataSource name="user"/>
+    <DataSource name="mobil"/>
+    <DataSource name="laporan"/>
+  </DataSources>
+  <Presentation disableMagicQuotesRuntime="false" showEnvironmentVariables="false" showExecutedQueries="false" showPHPErrorsAndWarnings="false" hasHomePage="false">
+    <Pages>
+      <Page type="table" tableName="laporan" numberByDataSource="0" fileName="laporan" caption="Laporan" shortCaption="Laporan" addSeparator="false" horizontalFilterCondition="" recordsPerPage="20" NavigatorPosition="3" insertAbilityMode="3" editAbilityMode="3" multiEditAbility="3" deleteAbilityMode="3" copyAbilityMode="3" deleteSelectedAbilityMode="3" contentEncoding="UTF-8" exportAllRecordsAvailable="31" exportSelectedRecordsAvailable="31" exportSingleRecordFromGridAvailable="0" exportRecordFromViewFormAvailable="31" printAvailable="13" useActionImages="true" showKeyColumnsImagesInGridHeader="false">
+        <BeforeGridText/>
+        <DetailedDescription/>
+        <ColumnPresentations>
+          <ColumnPresentation fieldName="Laporan_Id" caption="Laporan Id" showColumnFilter="false" selectedFilterOperators="1573119">
+            <ViewProperties type="text">
+              <Format type="number" thousandSeparator=","/>
+            </ViewProperties>
+            <EditProperties type="textBox" maxLength="0"/>
+          </ColumnPresentation>
+          <ColumnPresentation fieldName="Laporan_Pemasukan" caption="Laporan Pemasukan" showColumnFilter="false" canSetNull="true" selectedFilterOperators="1573119">
+            <ViewProperties type="text">
+              <Format type="number" thousandSeparator=","/>
+            </ViewProperties>
+            <EditProperties type="textBox" maxLength="0"/>
+          </ColumnPresentation>
+          <ColumnPresentation fieldName="Laporan_Pengeluaran" caption="Laporan Pengeluaran" showColumnFilter="false" canSetNull="true" selectedFilterOperators="1573119">
+            <ViewProperties type="text">
+              <Format type="number" thousandSeparator=","/>
+            </ViewProperties>
+            <EditProperties type="textBox" maxLength="0"/>
+          </ColumnPresentation>
+          <ColumnPresentation fieldName="Laporan_Mobil_Id" caption="Laporan Mobil Id" showColumnFilter="false" canSetNull="true" selectedFilterOperators="1573119">
+            <ViewProperties type="text">
+              <Format type="number" thousandSeparator=","/>
+            </ViewProperties>
+            <EditProperties type="textBox" maxLength="0"/>
+          </ColumnPresentation>
+          <ColumnPresentation fieldName="Laporan_Keterangan" caption="Laporan Keterangan" showColumnFilter="false" canSetNull="true" selectedFilterOperators="1589247">
+            <ViewProperties type="text" maxLength="75"/>
+            <EditProperties type="textArea" columnCount="50" rowCount="8" placeholder=""/>
+          </ColumnPresentation>
+          <ColumnPresentation fieldName="Laporan_Tanggal" caption="Laporan Tanggal" selectedFilterOperators="2031871">
+            <ViewProperties type="dateTime" dateTimeFormat="Y-m-d H:i:s"/>
+            <EditProperties type="dateTime" dateTimeFormat="Y-m-d H:i:s" firstDayOfWeek="0"/>
+          </ColumnPresentation>
+          <ColumnPresentation fieldName="Laporan_Created" caption="Laporan Created" selectedFilterOperators="2031871">
+            <ViewProperties type="dateTime" dateTimeFormat="Y-m-d H:i:s"/>
+            <EditProperties type="dateTime" dateTimeFormat="Y-m-d H:i:s" firstDayOfWeek="0"/>
+          </ColumnPresentation>
+        </ColumnPresentations>
+        <Columns>
+          <List>
+            <Column fieldName="Laporan_Id"/>
+            <Column fieldName="Laporan_Pemasukan"/>
+            <Column fieldName="Laporan_Pengeluaran"/>
+            <Column fieldName="Laporan_Mobil_Id"/>
+            <Column fieldName="Laporan_Keterangan"/>
+            <Column fieldName="Laporan_Tanggal"/>
+            <Column fieldName="Laporan_Created"/>
+          </List>
+          <View>
+            <Column fieldName="Laporan_Id"/>
+            <Column fieldName="Laporan_Pemasukan"/>
+            <Column fieldName="Laporan_Pengeluaran"/>
+            <Column fieldName="Laporan_Mobil_Id"/>
+            <Column fieldName="Laporan_Keterangan"/>
+            <Column fieldName="Laporan_Tanggal"/>
+            <Column fieldName="Laporan_Created"/>
+          </View>
+          <Edit>
+            <Column fieldName="Laporan_Id" visible="false"/>
+            <Column fieldName="Laporan_Pemasukan"/>
+            <Column fieldName="Laporan_Pengeluaran"/>
+            <Column fieldName="Laporan_Mobil_Id"/>
+            <Column fieldName="Laporan_Keterangan"/>
+            <Column fieldName="Laporan_Tanggal"/>
+            <Column fieldName="Laporan_Created"/>
+          </Edit>
+          <Insert>
+            <Column fieldName="Laporan_Id" visible="false"/>
+            <Column fieldName="Laporan_Pemasukan"/>
+            <Column fieldName="Laporan_Pengeluaran"/>
+            <Column fieldName="Laporan_Mobil_Id"/>
+            <Column fieldName="Laporan_Keterangan"/>
+            <Column fieldName="Laporan_Tanggal"/>
+            <Column fieldName="Laporan_Created"/>
+          </Insert>
+          <QuickFilter>
+            <Column fieldName="Laporan_Id"/>
+            <Column fieldName="Laporan_Pemasukan"/>
+            <Column fieldName="Laporan_Pengeluaran"/>
+            <Column fieldName="Laporan_Mobil_Id"/>
+            <Column fieldName="Laporan_Keterangan"/>
+            <Column fieldName="Laporan_Tanggal"/>
+            <Column fieldName="Laporan_Created"/>
+          </QuickFilter>
+          <FilterBuilder>
+            <Column fieldName="Laporan_Id"/>
+            <Column fieldName="Laporan_Pemasukan"/>
+            <Column fieldName="Laporan_Pengeluaran"/>
+            <Column fieldName="Laporan_Mobil_Id"/>
+            <Column fieldName="Laporan_Keterangan"/>
+            <Column fieldName="Laporan_Tanggal"/>
+            <Column fieldName="Laporan_Created"/>
+          </FilterBuilder>
+          <Print>
+            <Column fieldName="Laporan_Id"/>
+            <Column fieldName="Laporan_Pemasukan"/>
+            <Column fieldName="Laporan_Pengeluaran"/>
+            <Column fieldName="Laporan_Mobil_Id"/>
+            <Column fieldName="Laporan_Keterangan"/>
+            <Column fieldName="Laporan_Tanggal"/>
+            <Column fieldName="Laporan_Created"/>
+          </Print>
+          <Export>
+            <Column fieldName="Laporan_Id"/>
+            <Column fieldName="Laporan_Pemasukan"/>
+            <Column fieldName="Laporan_Pengeluaran"/>
+            <Column fieldName="Laporan_Mobil_Id"/>
+            <Column fieldName="Laporan_Keterangan"/>
+            <Column fieldName="Laporan_Tanggal"/>
+            <Column fieldName="Laporan_Created"/>
+          </Export>
+          <Compare>
+            <Column fieldName="Laporan_Id" visible="false"/>
+            <Column fieldName="Laporan_Pemasukan"/>
+            <Column fieldName="Laporan_Pengeluaran"/>
+            <Column fieldName="Laporan_Mobil_Id"/>
+            <Column fieldName="Laporan_Keterangan"/>
+            <Column fieldName="Laporan_Tanggal"/>
+            <Column fieldName="Laporan_Created"/>
+          </Compare>
+          <MultiEdit>
+            <Column fieldName="Laporan_Id" visible="false"/>
+            <Column fieldName="Laporan_Pemasukan"/>
+            <Column fieldName="Laporan_Pengeluaran"/>
+            <Column fieldName="Laporan_Mobil_Id"/>
+            <Column fieldName="Laporan_Keterangan"/>
+            <Column fieldName="Laporan_Tanggal"/>
+            <Column fieldName="Laporan_Created"/>
+          </MultiEdit>
+        </Columns>
+        <Details/>
+        <RecordPermissions useRecordPermissions="false"/>
+        <PartitionNavigators/>
+      </Page>
+      <Page type="table" tableName="mobil" numberByDataSource="0" fileName="mobil" caption="Mobil" shortCaption="Mobil" addSeparator="false" horizontalFilterCondition="" recordsPerPage="20" NavigatorPosition="3" insertAbilityMode="3" editAbilityMode="3" multiEditAbility="3" deleteAbilityMode="3" copyAbilityMode="3" deleteSelectedAbilityMode="3" contentEncoding="UTF-8" exportAllRecordsAvailable="31" exportSelectedRecordsAvailable="31" exportSingleRecordFromGridAvailable="0" exportRecordFromViewFormAvailable="31" printAvailable="13" useActionImages="true" showKeyColumnsImagesInGridHeader="false">
+        <BeforeGridText/>
+        <DetailedDescription/>
+        <ColumnPresentations>
+          <ColumnPresentation fieldName="Mobil_id" caption="Mobil Id" showColumnFilter="false" selectedFilterOperators="1573119">
+            <ViewProperties type="text">
+              <Format type="number" thousandSeparator=","/>
+            </ViewProperties>
+            <EditProperties type="textBox" maxLength="0"/>
+          </ColumnPresentation>
+          <ColumnPresentation fieldName="Mobil_Keterangan" caption="Mobil Keterangan" showColumnFilter="false" canSetNull="true" selectedFilterOperators="1589247">
+            <ViewProperties type="text" maxLength="75"/>
+            <EditProperties type="textArea" columnCount="50" rowCount="8" placeholder=""/>
+          </ColumnPresentation>
+          <ColumnPresentation fieldName="Mobil_Merk" caption="Mobil Merk" showColumnFilter="false" canSetNull="true" selectedFilterOperators="1589247">
+            <ViewProperties type="text" maxLength="75"/>
+            <EditProperties type="textArea" columnCount="50" rowCount="8" placeholder=""/>
+          </ColumnPresentation>
+          <ColumnPresentation fieldName="Mobil_No_Polisi" caption="Mobil No Polisi" showColumnFilter="false" canSetNull="true" selectedFilterOperators="1589247">
+            <ViewProperties type="text" maxLength="75"/>
+            <EditProperties type="textArea" columnCount="50" rowCount="8" placeholder=""/>
+          </ColumnPresentation>
+          <ColumnPresentation fieldName="Mobil_Tahun" caption="Mobil Tahun" showColumnFilter="false" canSetNull="true" selectedFilterOperators="1573119">
+            <ViewProperties type="text">
+              <Format type="number" thousandSeparator=","/>
+            </ViewProperties>
+            <EditProperties type="textBox" maxLength="0"/>
+          </ColumnPresentation>
+          <ColumnPresentation fieldName="Mobil_Tipe" caption="Mobil Tipe" showColumnFilter="false" canSetNull="true" selectedFilterOperators="1589247">
+            <ViewProperties type="text" maxLength="75"/>
+            <EditProperties type="textArea" columnCount="50" rowCount="8" placeholder=""/>
+          </ColumnPresentation>
+          <ColumnPresentation fieldName="Mobil_Warna" caption="Mobil Warna" showColumnFilter="false" canSetNull="true" selectedFilterOperators="1589247">
+            <ViewProperties type="text" maxLength="75"/>
+            <EditProperties type="textArea" columnCount="50" rowCount="8" placeholder=""/>
+          </ColumnPresentation>
+        </ColumnPresentations>
+        <Columns>
+          <List>
+            <Column fieldName="Mobil_id"/>
+            <Column fieldName="Mobil_Keterangan"/>
+            <Column fieldName="Mobil_Merk"/>
+            <Column fieldName="Mobil_No_Polisi"/>
+            <Column fieldName="Mobil_Tahun"/>
+            <Column fieldName="Mobil_Tipe"/>
+            <Column fieldName="Mobil_Warna"/>
+          </List>
+          <View>
+            <Column fieldName="Mobil_id"/>
+            <Column fieldName="Mobil_Keterangan"/>
+            <Column fieldName="Mobil_Merk"/>
+            <Column fieldName="Mobil_No_Polisi"/>
+            <Column fieldName="Mobil_Tahun"/>
+            <Column fieldName="Mobil_Tipe"/>
+            <Column fieldName="Mobil_Warna"/>
+          </View>
+          <Edit>
+            <Column fieldName="Mobil_id" visible="false"/>
+            <Column fieldName="Mobil_Keterangan"/>
+            <Column fieldName="Mobil_Merk"/>
+            <Column fieldName="Mobil_No_Polisi"/>
+            <Column fieldName="Mobil_Tahun"/>
+            <Column fieldName="Mobil_Tipe"/>
+            <Column fieldName="Mobil_Warna"/>
+          </Edit>
+          <Insert>
+            <Column fieldName="Mobil_id" visible="false"/>
+            <Column fieldName="Mobil_Keterangan"/>
+            <Column fieldName="Mobil_Merk"/>
+            <Column fieldName="Mobil_No_Polisi"/>
+            <Column fieldName="Mobil_Tahun"/>
+            <Column fieldName="Mobil_Tipe"/>
+            <Column fieldName="Mobil_Warna"/>
+          </Insert>
+          <QuickFilter>
+            <Column fieldName="Mobil_id"/>
+            <Column fieldName="Mobil_Keterangan"/>
+            <Column fieldName="Mobil_Merk"/>
+            <Column fieldName="Mobil_No_Polisi"/>
+            <Column fieldName="Mobil_Tahun"/>
+            <Column fieldName="Mobil_Tipe"/>
+            <Column fieldName="Mobil_Warna"/>
+          </QuickFilter>
+          <FilterBuilder>
+            <Column fieldName="Mobil_id"/>
+            <Column fieldName="Mobil_Keterangan"/>
+            <Column fieldName="Mobil_Merk"/>
+            <Column fieldName="Mobil_No_Polisi"/>
+            <Column fieldName="Mobil_Tahun"/>
+            <Column fieldName="Mobil_Tipe"/>
+            <Column fieldName="Mobil_Warna"/>
+          </FilterBuilder>
+          <Print>
+            <Column fieldName="Mobil_id"/>
+            <Column fieldName="Mobil_Keterangan"/>
+            <Column fieldName="Mobil_Merk"/>
+            <Column fieldName="Mobil_No_Polisi"/>
+            <Column fieldName="Mobil_Tahun"/>
+            <Column fieldName="Mobil_Tipe"/>
+            <Column fieldName="Mobil_Warna"/>
+          </Print>
+          <Export>
+            <Column fieldName="Mobil_id"/>
+            <Column fieldName="Mobil_Keterangan"/>
+            <Column fieldName="Mobil_Merk"/>
+            <Column fieldName="Mobil_No_Polisi"/>
+            <Column fieldName="Mobil_Tahun"/>
+            <Column fieldName="Mobil_Tipe"/>
+            <Column fieldName="Mobil_Warna"/>
+          </Export>
+          <Compare>
+            <Column fieldName="Mobil_id" visible="false"/>
+            <Column fieldName="Mobil_Keterangan"/>
+            <Column fieldName="Mobil_Merk"/>
+            <Column fieldName="Mobil_No_Polisi"/>
+            <Column fieldName="Mobil_Tahun"/>
+            <Column fieldName="Mobil_Tipe"/>
+            <Column fieldName="Mobil_Warna"/>
+          </Compare>
+          <MultiEdit>
+            <Column fieldName="Mobil_id" visible="false"/>
+            <Column fieldName="Mobil_Keterangan"/>
+            <Column fieldName="Mobil_Merk"/>
+            <Column fieldName="Mobil_No_Polisi"/>
+            <Column fieldName="Mobil_Tahun"/>
+            <Column fieldName="Mobil_Tipe"/>
+            <Column fieldName="Mobil_Warna"/>
+          </MultiEdit>
+        </Columns>
+        <Details/>
+        <RecordPermissions useRecordPermissions="false"/>
+        <PartitionNavigators/>
+      </Page>
+      <Page type="table" tableName="user" numberByDataSource="0" fileName="user" caption="User" shortCaption="Puki" addSeparator="false" horizontalFilterCondition="" recordsPerPage="20" NavigatorPosition="3" insertAbilityMode="3" editAbilityMode="3" multiEditAbility="3" deleteAbilityMode="3" copyAbilityMode="3" deleteSelectedAbilityMode="3" contentEncoding="UTF-8" exportAllRecordsAvailable="31" exportSelectedRecordsAvailable="31" exportSingleRecordFromGridAvailable="0" exportRecordFromViewFormAvailable="31" printAvailable="13" useActionImages="true" showKeyColumnsImagesInGridHeader="false">
+        <BeforeGridText/>
+        <DetailedDescription/>
+        <ColumnPresentations>
+          <ColumnPresentation fieldName="User_id" caption="User Id" showColumnFilter="false" selectedFilterOperators="1573119">
+            <ViewProperties type="text">
+              <Format type="number" thousandSeparator=","/>
+            </ViewProperties>
+            <EditProperties type="textBox" maxLength="0"/>
+          </ColumnPresentation>
+          <ColumnPresentation fieldName="User_Nama" caption="User Nama" showColumnFilter="false" canSetNull="true" selectedFilterOperators="1589247">
+            <ViewProperties type="text" maxLength="75"/>
+            <EditProperties type="textArea" columnCount="50" rowCount="8" placeholder=""/>
+          </ColumnPresentation>
+          <ColumnPresentation fieldName="User_Pass" caption="User Pass" showColumnFilter="false" canSetNull="true" selectedFilterOperators="1589247">
+            <ViewProperties type="text" maxLength="75"/>
+            <EditProperties type="textArea" columnCount="50" rowCount="8" placeholder=""/>
+          </ColumnPresentation>
+          <ColumnPresentation fieldName="User_Nama_Lengkap" caption="User Nama Lengkap" showColumnFilter="false" canSetNull="true" selectedFilterOperators="1589247">
+            <ViewProperties type="text" maxLength="75"/>
+            <EditProperties type="textArea" columnCount="50" rowCount="8" placeholder=""/>
+          </ColumnPresentation>
+          <ColumnPresentation fieldName="User_Level" caption="User Level" showColumnFilter="false" canSetNull="true" selectedFilterOperators="1573119">
+            <ViewProperties type="text">
+              <Format type="number" thousandSeparator=","/>
+            </ViewProperties>
+            <EditProperties type="textBox" maxLength="0"/>
+          </ColumnPresentation>
+          <ColumnPresentation fieldName="User_Keterangan" caption="User Keterangan" showColumnFilter="false" canSetNull="true" selectedFilterOperators="1589247">
+            <ViewProperties type="text" maxLength="75"/>
+            <EditProperties type="textArea" columnCount="50" rowCount="8" placeholder=""/>
+          </ColumnPresentation>
+        </ColumnPresentations>
+        <Columns>
+          <List>
+            <Column fieldName="User_id"/>
+            <Column fieldName="User_Nama"/>
+            <Column fieldName="User_Pass"/>
+            <Column fieldName="User_Nama_Lengkap"/>
+            <Column fieldName="User_Level"/>
+            <Column fieldName="User_Keterangan"/>
+          </List>
+          <View>
+            <Column fieldName="User_id"/>
+            <Column fieldName="User_Nama"/>
+            <Column fieldName="User_Pass"/>
+            <Column fieldName="User_Nama_Lengkap"/>
+            <Column fieldName="User_Level"/>
+            <Column fieldName="User_Keterangan"/>
+          </View>
+          <Edit>
+            <Column fieldName="User_id" visible="false"/>
+            <Column fieldName="User_Nama"/>
+            <Column fieldName="User_Pass"/>
+            <Column fieldName="User_Nama_Lengkap"/>
+            <Column fieldName="User_Level"/>
+            <Column fieldName="User_Keterangan"/>
+          </Edit>
+          <Insert>
+            <Column fieldName="User_id" visible="false"/>
+            <Column fieldName="User_Nama"/>
+            <Column fieldName="User_Pass"/>
+            <Column fieldName="User_Nama_Lengkap"/>
+            <Column fieldName="User_Level"/>
+            <Column fieldName="User_Keterangan"/>
+          </Insert>
+          <QuickFilter>
+            <Column fieldName="User_id"/>
+            <Column fieldName="User_Nama"/>
+            <Column fieldName="User_Pass"/>
+            <Column fieldName="User_Nama_Lengkap"/>
+            <Column fieldName="User_Level"/>
+            <Column fieldName="User_Keterangan"/>
+          </QuickFilter>
+          <FilterBuilder>
+            <Column fieldName="User_id"/>
+            <Column fieldName="User_Nama"/>
+            <Column fieldName="User_Pass"/>
+            <Column fieldName="User_Nama_Lengkap"/>
+            <Column fieldName="User_Level"/>
+            <Column fieldName="User_Keterangan"/>
+          </FilterBuilder>
+          <Print>
+            <Column fieldName="User_id"/>
+            <Column fieldName="User_Nama"/>
+            <Column fieldName="User_Pass"/>
+            <Column fieldName="User_Nama_Lengkap"/>
+            <Column fieldName="User_Level"/>
+            <Column fieldName="User_Keterangan"/>
+          </Print>
+          <Export>
+            <Column fieldName="User_id"/>
+            <Column fieldName="User_Nama"/>
+            <Column fieldName="User_Pass"/>
+            <Column fieldName="User_Nama_Lengkap"/>
+            <Column fieldName="User_Level"/>
+            <Column fieldName="User_Keterangan"/>
+          </Export>
+          <Compare>
+            <Column fieldName="User_id" visible="false"/>
+            <Column fieldName="User_Nama"/>
+            <Column fieldName="User_Pass"/>
+            <Column fieldName="User_Nama_Lengkap"/>
+            <Column fieldName="User_Level"/>
+            <Column fieldName="User_Keterangan"/>
+          </Compare>
+          <MultiEdit>
+            <Column fieldName="User_id" visible="false"/>
+            <Column fieldName="User_Nama"/>
+            <Column fieldName="User_Pass"/>
+            <Column fieldName="User_Nama_Lengkap"/>
+            <Column fieldName="User_Level"/>
+            <Column fieldName="User_Keterangan"/>
+          </MultiEdit>
+        </Columns>
+        <Details/>
+        <RecordPermissions useRecordPermissions="false"/>
+        <PartitionNavigators/>
+      </Page>
+    </Pages>
+    <UserAuthorization/>
+    <UserGrants enableGuestAccess="false">
+      <UserPageGrants/>
+    </UserGrants>
+    <EventHandlers>
+      <CustomizePageList enabled="true">
+$pageList-&gt;addPage(new PageLink('Home Site', 'http://www.mysite.com', 
+
+    'Vist my site', false, false, 'External links'));      </CustomizePageList>
+    </EventHandlers>
+    <Header/>
+    <Footer/>
+    <PHPOptions/>
+    <Groups>
+      <Group caption="No group"/>
+      <Group caption="dd"/>
+    </Groups>
+    <outgoingMailSettings mailer="0" fromEmail="" fromName=""/>
+  </Presentation>
+  <UserCSS/>
+  <UserJS/>
+  <ExcludedPaths/>
+  <DefaultPageProperties recordsPerPage="20" NavigatorPosition="3" insertAbilityMode="3" editAbilityMode="3" multiEditAbility="3" deleteAbilityMode="3" copyAbilityMode="3" deleteSelectedAbilityMode="3" contentEncoding="UTF-8" exportAllRecordsAvailable="31" exportSelectedRecordsAvailable="31" exportSingleRecordFromGridAvailable="0" exportRecordFromViewFormAvailable="31" printAvailable="13" useActionImages="true" showKeyColumnsImagesInGridHeader="false"/>
+  <DefaultDataFormats numberAfterDecimal="4" DecimalSeparator="." ThousandSeparator="," DateTimeFormat="Y-m-d H:i:s" DateFormat="Y-m-d" firstDayOfWeek="0"/>
+</Project>
