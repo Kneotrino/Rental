@@ -32,12 +32,12 @@ function GetGlobalConnectionOptions()
 
 function HasAdminPage()
 {
-    return true;
+    return false;
 }
 
 function HasHomePage()
 {
-    return true;
+    return false;
 }
 
 function GetHomeURL()
@@ -62,6 +62,7 @@ function GetPageInfos()
     $result = array();
     $result[] = array('caption' => 'Laporan', 'short_caption' => 'Laporan', 'filename' => 'laporan.php', 'name' => 'laporan', 'group_name' => 'Default', 'add_separator' => false, 'description' => '');
     $result[] = array('caption' => 'Mobil', 'short_caption' => 'Mobil', 'filename' => 'mobil.php', 'name' => 'mobil', 'group_name' => 'Default', 'add_separator' => false, 'description' => '');
+    $result[] = array('caption' => 'Transaksi', 'short_caption' => 'Transaksi', 'filename' => 'transaksi.php', 'name' => 'transaksi', 'group_name' => 'Default', 'add_separator' => false, 'description' => '');
     $result[] = array('caption' => 'User', 'short_caption' => 'User', 'filename' => 'user.php', 'name' => 'user', 'group_name' => 'Default', 'add_separator' => false, 'description' => '');
     return $result;
 }
@@ -69,7 +70,11 @@ function GetPageInfos()
 function GetPagesHeader()
 {
     return
-        '';
+        '<span class="navbar-brand">    
+
+    <span class="hidden-xs"><strong>Hay Rental System</strong></span>
+
+</span>';
 }
 
 function GetPagesFooter()
@@ -80,7 +85,7 @@ function GetPagesFooter()
 
 function ApplyCommonPageSettings(Page $page, Grid $grid)
 {
-    $page->SetShowUserAuthBar(true);
+    $page->SetShowUserAuthBar(false);
     $page->setShowNavigation(true);
     $page->OnCustomHTMLHeader->AddListener('Global_CustomHTMLHeaderHandler');
     $page->OnGetCustomTemplate->AddListener('Global_GetCustomTemplateHandler');
@@ -124,7 +129,9 @@ function Global_OnGetFieldValue($fieldName, &$value, $tableName)
 
 function Global_GetCustomPageList(CommonPage $page, PageList $pageList)
 {
-
+    $pageList->addPage(new PageLink('Home Site', 'http://www.mysite.com', 
+    
+        'Vist my site', false, false, 'External links'));
 }
 
 function Global_BeforeInsertHandler($page, &$rowData, $tableName, &$cancel, &$message, &$messageDisplayTime)

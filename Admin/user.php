@@ -16,7 +16,7 @@
     include_once dirname(__FILE__) . '/' . 'components/page/page.php';
     include_once dirname(__FILE__) . '/' . 'components/page/detail_page.php';
     include_once dirname(__FILE__) . '/' . 'components/page/nested_form_page.php';
-    include_once dirname(__FILE__) . '/' . 'authorization.php';
+
 
     function GetConnectionOptions()
     {
@@ -249,11 +249,8 @@
             
             if ($this->GetSecurityInfo()->HasViewGrant())
             {
-                $operation = new AjaxOperation(OPERATION_VIEW,
-                    $this->GetLocalizerCaptions()->GetMessageString('View'),
-                    $this->GetLocalizerCaptions()->GetMessageString('View'), $this->dataset,
-                    $this->GetModalGridViewHandler(), $grid);
-                $operation->setUseImage(true);
+                $operation = new LinkOperation($this->GetLocalizerCaptions()->GetMessageString('View'), OPERATION_VIEW, $this->dataset, $grid);
+                $operation->setUseImage(false);
                 $actions->addOperation($operation);
             }
             
@@ -263,7 +260,7 @@
                     $this->GetLocalizerCaptions()->GetMessageString('Edit'),
                     $this->GetLocalizerCaptions()->GetMessageString('Edit'), $this->dataset,
                     $this->GetGridEditHandler(), $grid);
-                $operation->setUseImage(true);
+                $operation->setUseImage(false);
                 $actions->addOperation($operation);
                 $operation->OnShow->AddListener('ShowEditButtonHandler', $this);
             }
@@ -271,7 +268,7 @@
             if ($this->GetSecurityInfo()->HasDeleteGrant())
             {
                 $operation = new LinkOperation($this->GetLocalizerCaptions()->GetMessageString('Delete'), OPERATION_DELETE, $this->dataset, $grid);
-                $operation->setUseImage(true);
+                $operation->setUseImage(false);
                 $actions->addOperation($operation);
                 $operation->OnShow->AddListener('ShowDeleteButtonHandler', $this);
                 $operation->SetAdditionalAttribute('data-modal-operation', 'delete');
@@ -280,8 +277,11 @@
             
             if ($this->GetSecurityInfo()->HasAddGrant())
             {
-                $operation = new LinkOperation($this->GetLocalizerCaptions()->GetMessageString('Copy'), OPERATION_COPY, $this->dataset, $grid);
-                $operation->setUseImage(true);
+                $operation = new AjaxOperation(OPERATION_COPY,
+                    $this->GetLocalizerCaptions()->GetMessageString('Copy'),
+                    $this->GetLocalizerCaptions()->GetMessageString('Copy'), $this->dataset,
+                    $this->GetModalGridCopyHandler(), $grid);
+                $operation->setUseImage(false);
                 $actions->addOperation($operation);
             }
         }
@@ -772,11 +772,11 @@
         }
         
         public function GetEnableModalGridInsert() { return true; }
-        public function GetEnableModalSingleRecordView() { return true; }
-        
         public function GetEnableModalGridEdit() { return true; }
         
         protected function GetEnableModalGridDelete() { return true; }
+        
+        public function GetEnableModalGridCopy() { return true; }
     
         protected function CreateGrid()
         {
@@ -788,10 +788,9 @@
             
             ApplyCommonPageSettings($this, $result);
             
-            $result->SetUseImagesForActions(true);
+            $result->SetUseImagesForActions(false);
             $result->SetUseFixedHeader(false);
             $result->SetShowLineNumbers(false);
-            $result->SetShowKeyColumnsImagesInHeader(false);
             $result->SetViewMode(ViewMode::TABLE);
             $result->setEnableRuntimeCustomization(true);
             $result->setAllowCompare(true);
@@ -1101,7 +1100,7 @@
     
     }
 
-    SetUpUserAuthorization();
+
 
     try
     {
