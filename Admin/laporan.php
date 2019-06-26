@@ -565,7 +565,7 @@
                 )
             );
             $lookupDataset->setOrderByField('Mobil_No_Polisi', 'ASC');
-            $editColumn = new DynamicLookupEditColumn('Laporan Mobil', 'Laporan_Mobil', 'Laporan_Mobil_Mobil_No_Polisi', 'edit_Laporan_Mobil_Mobil_No_Polisi_search', $editor, $this->dataset, $lookupDataset, 'Mobil_id', 'Mobil_No_Polisi', '');
+            $editColumn = new DynamicLookupEditColumn('Laporan Mobil', 'Laporan_Mobil', 'Laporan_Mobil_Mobil_No_Polisi', 'edit_Laporan_Mobil_Mobil_No_Polisi_search', $editor, $this->dataset, $lookupDataset, 'Mobil_id', 'Mobil_No_Polisi', '%Mobil_No_Polisi% %Mobil_Tipe%');
             $validator = new RequiredValidator(StringUtils::Format($this->GetLocalizerCaptions()->GetMessageString('RequiredValidationMessage'), $editColumn->GetCaption()));
             $editor->GetValidatorCollection()->AddValidator($validator);
             $this->ApplyCommonColumnEditProperties($editColumn);
@@ -604,7 +604,7 @@
                 )
             );
             $lookupDataset->setOrderByField('Transaksi_ID', 'ASC');
-            $editColumn = new DynamicLookupEditColumn('Laporan Transaksi', 'Laporan_Transaksi', 'Laporan_Transaksi_Transaksi_ID', 'edit_Laporan_Transaksi_Transaksi_ID_search', $editor, $this->dataset, $lookupDataset, 'Transaksi_ID', 'Transaksi_ID', '%Transaksi_Nama% %Transaksi_Tanggal%');
+            $editColumn = new DynamicLookupEditColumn('Laporan Transaksi', 'Laporan_Transaksi', 'Laporan_Transaksi_Transaksi_ID', 'edit_Laporan_Transaksi_Transaksi_ID_search', $editor, $this->dataset, $lookupDataset, 'Transaksi_ID', 'Transaksi_ID', '%Transaksi_ID%-%Transaksi_Nama%');
             $validator = new RequiredValidator(StringUtils::Format($this->GetLocalizerCaptions()->GetMessageString('RequiredValidationMessage'), $editColumn->GetCaption()));
             $editor->GetValidatorCollection()->AddValidator($validator);
             $this->ApplyCommonColumnEditProperties($editColumn);
@@ -672,7 +672,7 @@
                 )
             );
             $lookupDataset->setOrderByField('Mobil_No_Polisi', 'ASC');
-            $editColumn = new DynamicLookupEditColumn('Laporan Mobil', 'Laporan_Mobil', 'Laporan_Mobil_Mobil_No_Polisi', 'multi_edit_Laporan_Mobil_Mobil_No_Polisi_search', $editor, $this->dataset, $lookupDataset, 'Mobil_id', 'Mobil_No_Polisi', '');
+            $editColumn = new DynamicLookupEditColumn('Laporan Mobil', 'Laporan_Mobil', 'Laporan_Mobil_Mobil_No_Polisi', 'multi_edit_Laporan_Mobil_Mobil_No_Polisi_search', $editor, $this->dataset, $lookupDataset, 'Mobil_id', 'Mobil_No_Polisi', '%Mobil_No_Polisi% %Mobil_Tipe%');
             $validator = new RequiredValidator(StringUtils::Format($this->GetLocalizerCaptions()->GetMessageString('RequiredValidationMessage'), $editColumn->GetCaption()));
             $editor->GetValidatorCollection()->AddValidator($validator);
             $this->ApplyCommonColumnEditProperties($editColumn);
@@ -711,7 +711,7 @@
                 )
             );
             $lookupDataset->setOrderByField('Transaksi_ID', 'ASC');
-            $editColumn = new DynamicLookupEditColumn('Laporan Transaksi', 'Laporan_Transaksi', 'Laporan_Transaksi_Transaksi_ID', 'multi_edit_Laporan_Transaksi_Transaksi_ID_search', $editor, $this->dataset, $lookupDataset, 'Transaksi_ID', 'Transaksi_ID', '%Transaksi_Nama% %Transaksi_Tanggal%');
+            $editColumn = new DynamicLookupEditColumn('Laporan Transaksi', 'Laporan_Transaksi', 'Laporan_Transaksi_Transaksi_ID', 'multi_edit_Laporan_Transaksi_Transaksi_ID_search', $editor, $this->dataset, $lookupDataset, 'Transaksi_ID', 'Transaksi_ID', '%Transaksi_ID%-%Transaksi_Nama%');
             $validator = new RequiredValidator(StringUtils::Format($this->GetLocalizerCaptions()->GetMessageString('RequiredValidationMessage'), $editColumn->GetCaption()));
             $editor->GetValidatorCollection()->AddValidator($validator);
             $this->ApplyCommonColumnEditProperties($editColumn);
@@ -782,7 +782,7 @@
                 )
             );
             $lookupDataset->setOrderByField('Mobil_No_Polisi', 'ASC');
-            $editColumn = new DynamicLookupEditColumn('Laporan Mobil', 'Laporan_Mobil', 'Laporan_Mobil_Mobil_No_Polisi', 'insert_Laporan_Mobil_Mobil_No_Polisi_search', $editor, $this->dataset, $lookupDataset, 'Mobil_id', 'Mobil_No_Polisi', '');
+            $editColumn = new DynamicLookupEditColumn('Laporan Mobil', 'Laporan_Mobil', 'Laporan_Mobil_Mobil_No_Polisi', 'insert_Laporan_Mobil_Mobil_No_Polisi_search', $editor, $this->dataset, $lookupDataset, 'Mobil_id', 'Mobil_No_Polisi', '%Mobil_No_Polisi% %Mobil_Tipe%');
             $validator = new RequiredValidator(StringUtils::Format($this->GetLocalizerCaptions()->GetMessageString('RequiredValidationMessage'), $editColumn->GetCaption()));
             $editor->GetValidatorCollection()->AddValidator($validator);
             $this->ApplyCommonColumnEditProperties($editColumn);
@@ -821,7 +821,7 @@
                 )
             );
             $lookupDataset->setOrderByField('Transaksi_ID', 'ASC');
-            $editColumn = new DynamicLookupEditColumn('Laporan Transaksi', 'Laporan_Transaksi', 'Laporan_Transaksi_Transaksi_ID', 'insert_Laporan_Transaksi_Transaksi_ID_search', $editor, $this->dataset, $lookupDataset, 'Transaksi_ID', 'Transaksi_ID', '%Transaksi_Nama% %Transaksi_Tanggal%');
+            $editColumn = new DynamicLookupEditColumn('Laporan Transaksi', 'Laporan_Transaksi', 'Laporan_Transaksi_Transaksi_ID', 'insert_Laporan_Transaksi_Transaksi_ID_search', $editor, $this->dataset, $lookupDataset, 'Transaksi_ID', 'Transaksi_ID', '%Transaksi_ID%-%Transaksi_Nama%');
             $validator = new RequiredValidator(StringUtils::Format($this->GetLocalizerCaptions()->GetMessageString('RequiredValidationMessage'), $editColumn->GetCaption()));
             $editor->GetValidatorCollection()->AddValidator($validator);
             $this->ApplyCommonColumnEditProperties($editColumn);
@@ -1109,8 +1109,6 @@
             $result->setUseModalMultiEdit(true);
             $result->setTableBordered(false);
             $result->setTableCondensed(true);
-            $result->SetTotal('Laporan_Pemasukan', PredefinedAggregate::$Sum);
-            $result->SetTotal('Laporan_Pengeluaran', PredefinedAggregate::$Sum);
             
             $result->SetHighlightRowAtHover(false);
             $result->SetWidth('');
@@ -1185,7 +1183,7 @@
                 )
             );
             $lookupDataset->setOrderByField('Mobil_No_Polisi', 'ASC');
-            $handler = new DynamicSearchHandler($lookupDataset, $this, 'insert_Laporan_Mobil_Mobil_No_Polisi_search', 'Mobil_id', 'Mobil_No_Polisi', null, 20);
+            $handler = new DynamicSearchHandler($lookupDataset, $this, 'insert_Laporan_Mobil_Mobil_No_Polisi_search', 'Mobil_id', 'Mobil_No_Polisi', '%Mobil_No_Polisi% %Mobil_Tipe%', 20);
             GetApplication()->RegisterHTTPHandler($handler);
             
             $lookupDataset = new TableDataset(
@@ -1215,7 +1213,7 @@
                 )
             );
             $lookupDataset->setOrderByField('Transaksi_ID', 'ASC');
-            $handler = new DynamicSearchHandler($lookupDataset, $this, 'insert_Laporan_Transaksi_Transaksi_ID_search', 'Transaksi_ID', 'Transaksi_ID', '%Transaksi_Nama% %Transaksi_Tanggal%', 20);
+            $handler = new DynamicSearchHandler($lookupDataset, $this, 'insert_Laporan_Transaksi_Transaksi_ID_search', 'Transaksi_ID', 'Transaksi_ID', '%Transaksi_ID%-%Transaksi_Nama%', 20);
             GetApplication()->RegisterHTTPHandler($handler);
             
             $lookupDataset = new TableDataset(
@@ -1234,7 +1232,7 @@
                 )
             );
             $lookupDataset->setOrderByField('Mobil_No_Polisi', 'ASC');
-            $handler = new DynamicSearchHandler($lookupDataset, $this, 'filter_builder_Laporan_Mobil_Mobil_No_Polisi_search', 'Mobil_id', 'Mobil_No_Polisi', null, 20);
+            $handler = new DynamicSearchHandler($lookupDataset, $this, 'filter_builder_Laporan_Mobil_Mobil_No_Polisi_search', 'Mobil_id', 'Mobil_No_Polisi', '%Mobil_No_Polisi% %Mobil_Tipe%', 20);
             GetApplication()->RegisterHTTPHandler($handler);
             
             $lookupDataset = new TableDataset(
@@ -1264,7 +1262,7 @@
                 )
             );
             $lookupDataset->setOrderByField('Transaksi_ID', 'ASC');
-            $handler = new DynamicSearchHandler($lookupDataset, $this, 'filter_builder_Laporan_Transaksi_Transaksi_ID_search', 'Transaksi_ID', 'Transaksi_ID', '%Transaksi_Nama% %Transaksi_Tanggal%', 20);
+            $handler = new DynamicSearchHandler($lookupDataset, $this, 'filter_builder_Laporan_Transaksi_Transaksi_ID_search', 'Transaksi_ID', 'Transaksi_ID', '%Transaksi_ID%-%Transaksi_Nama%', 20);
             GetApplication()->RegisterHTTPHandler($handler);
             
             //
@@ -1291,7 +1289,7 @@
                 )
             );
             $lookupDataset->setOrderByField('Mobil_No_Polisi', 'ASC');
-            $handler = new DynamicSearchHandler($lookupDataset, $this, 'edit_Laporan_Mobil_Mobil_No_Polisi_search', 'Mobil_id', 'Mobil_No_Polisi', null, 20);
+            $handler = new DynamicSearchHandler($lookupDataset, $this, 'edit_Laporan_Mobil_Mobil_No_Polisi_search', 'Mobil_id', 'Mobil_No_Polisi', '%Mobil_No_Polisi% %Mobil_Tipe%', 20);
             GetApplication()->RegisterHTTPHandler($handler);
             
             $lookupDataset = new TableDataset(
@@ -1321,7 +1319,7 @@
                 )
             );
             $lookupDataset->setOrderByField('Transaksi_ID', 'ASC');
-            $handler = new DynamicSearchHandler($lookupDataset, $this, 'edit_Laporan_Transaksi_Transaksi_ID_search', 'Transaksi_ID', 'Transaksi_ID', '%Transaksi_Nama% %Transaksi_Tanggal%', 20);
+            $handler = new DynamicSearchHandler($lookupDataset, $this, 'edit_Laporan_Transaksi_Transaksi_ID_search', 'Transaksi_ID', 'Transaksi_ID', '%Transaksi_ID%-%Transaksi_Nama%', 20);
             GetApplication()->RegisterHTTPHandler($handler);
             
             $lookupDataset = new TableDataset(
@@ -1340,7 +1338,7 @@
                 )
             );
             $lookupDataset->setOrderByField('Mobil_No_Polisi', 'ASC');
-            $handler = new DynamicSearchHandler($lookupDataset, $this, 'multi_edit_Laporan_Mobil_Mobil_No_Polisi_search', 'Mobil_id', 'Mobil_No_Polisi', null, 20);
+            $handler = new DynamicSearchHandler($lookupDataset, $this, 'multi_edit_Laporan_Mobil_Mobil_No_Polisi_search', 'Mobil_id', 'Mobil_No_Polisi', '%Mobil_No_Polisi% %Mobil_Tipe%', 20);
             GetApplication()->RegisterHTTPHandler($handler);
             
             $lookupDataset = new TableDataset(
@@ -1370,7 +1368,7 @@
                 )
             );
             $lookupDataset->setOrderByField('Transaksi_ID', 'ASC');
-            $handler = new DynamicSearchHandler($lookupDataset, $this, 'multi_edit_Laporan_Transaksi_Transaksi_ID_search', 'Transaksi_ID', 'Transaksi_ID', '%Transaksi_Nama% %Transaksi_Tanggal%', 20);
+            $handler = new DynamicSearchHandler($lookupDataset, $this, 'multi_edit_Laporan_Transaksi_Transaksi_ID_search', 'Transaksi_ID', 'Transaksi_ID', '%Transaksi_ID%-%Transaksi_Nama%', 20);
             GetApplication()->RegisterHTTPHandler($handler);
         }
        

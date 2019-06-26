@@ -37,7 +37,7 @@ function HasAdminPage()
 
 function HasHomePage()
 {
-    return true;
+    return false;
 }
 
 function GetHomeURL()

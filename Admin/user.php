@@ -126,7 +126,7 @@
                 )
             );
             
-            $main_editor = new TextEdit('user_nama_edit');
+            $main_editor = new TextEdit('User_Nama');
             
             $filterBuilder->addColumn(
                 $columns['User_Nama'],
@@ -150,7 +150,7 @@
                 )
             );
             
-            $main_editor = new TextEdit('user_pass_edit');
+            $main_editor = new TextEdit('User_Pass');
             
             $filterBuilder->addColumn(
                 $columns['User_Pass'],
@@ -174,7 +174,7 @@
                 )
             );
             
-            $main_editor = new TextEdit('user_nama_lengkap_edit');
+            $main_editor = new TextEdit('User_Nama_Lengkap');
             
             $filterBuilder->addColumn(
                 $columns['User_Nama_Lengkap'],
@@ -417,7 +417,7 @@
             //
             // Edit column for User_Nama field
             //
-            $editor = new TextEdit('user_nama_edit');
+            $editor = new TextAreaEdit('user_nama_edit', 50, 8);
             $editColumn = new CustomEditColumn('User Nama', 'User_Nama', $editor, $this->dataset);
             $editColumn->SetAllowSetToNull(true);
             $this->ApplyCommonColumnEditProperties($editColumn);
@@ -426,7 +426,7 @@
             //
             // Edit column for User_Pass field
             //
-            $editor = new TextEdit('user_pass_edit');
+            $editor = new TextAreaEdit('user_pass_edit', 50, 8);
             $editColumn = new CustomEditColumn('User Pass', 'User_Pass', $editor, $this->dataset);
             $editColumn->SetAllowSetToNull(true);
             $this->ApplyCommonColumnEditProperties($editColumn);
@@ -435,7 +435,7 @@
             //
             // Edit column for User_Nama_Lengkap field
             //
-            $editor = new TextEdit('user_nama_lengkap_edit');
+            $editor = new TextAreaEdit('user_nama_lengkap_edit', 50, 8);
             $editColumn = new CustomEditColumn('User Nama Lengkap', 'User_Nama_Lengkap', $editor, $this->dataset);
             $editColumn->SetAllowSetToNull(true);
             $this->ApplyCommonColumnEditProperties($editColumn);
@@ -465,7 +465,7 @@
             //
             // Edit column for User_Nama field
             //
-            $editor = new TextEdit('user_nama_edit');
+            $editor = new TextAreaEdit('user_nama_edit', 50, 8);
             $editColumn = new CustomEditColumn('User Nama', 'User_Nama', $editor, $this->dataset);
             $editColumn->SetAllowSetToNull(true);
             $this->ApplyCommonColumnEditProperties($editColumn);
@@ -474,7 +474,7 @@
             //
             // Edit column for User_Pass field
             //
-            $editor = new TextEdit('user_pass_edit');
+            $editor = new TextAreaEdit('user_pass_edit', 50, 8);
             $editColumn = new CustomEditColumn('User Pass', 'User_Pass', $editor, $this->dataset);
             $editColumn->SetAllowSetToNull(true);
             $this->ApplyCommonColumnEditProperties($editColumn);
@@ -483,7 +483,7 @@
             //
             // Edit column for User_Nama_Lengkap field
             //
-            $editor = new TextEdit('user_nama_lengkap_edit');
+            $editor = new TextAreaEdit('user_nama_lengkap_edit', 50, 8);
             $editColumn = new CustomEditColumn('User Nama Lengkap', 'User_Nama_Lengkap', $editor, $this->dataset);
             $editColumn->SetAllowSetToNull(true);
             $this->ApplyCommonColumnEditProperties($editColumn);
@@ -513,7 +513,7 @@
             //
             // Edit column for User_Nama field
             //
-            $editor = new TextEdit('user_nama_edit');
+            $editor = new TextAreaEdit('user_nama_edit', 50, 8);
             $editColumn = new CustomEditColumn('User Nama', 'User_Nama', $editor, $this->dataset);
             $editColumn->SetAllowSetToNull(true);
             $this->ApplyCommonColumnEditProperties($editColumn);
@@ -522,7 +522,7 @@
             //
             // Edit column for User_Pass field
             //
-            $editor = new TextEdit('user_pass_edit');
+            $editor = new TextAreaEdit('user_pass_edit', 50, 8);
             $editColumn = new CustomEditColumn('User Pass', 'User_Pass', $editor, $this->dataset);
             $editColumn->SetAllowSetToNull(true);
             $this->ApplyCommonColumnEditProperties($editColumn);
@@ -531,7 +531,7 @@
             //
             // Edit column for User_Nama_Lengkap field
             //
-            $editor = new TextEdit('user_nama_lengkap_edit');
+            $editor = new TextAreaEdit('user_nama_lengkap_edit', 50, 8);
             $editColumn = new CustomEditColumn('User Nama Lengkap', 'User_Nama_Lengkap', $editor, $this->dataset);
             $editColumn->SetAllowSetToNull(true);
             $this->ApplyCommonColumnEditProperties($editColumn);

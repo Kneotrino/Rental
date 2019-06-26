@@ -336,8 +336,11 @@
             //
             // View column for Laporan_Id field
             //
-            $column = new TextViewColumn('Laporan_Id', 'Laporan_Id', 'Laporan Id', $this->dataset);
+            $column = new NumberViewColumn('Laporan_Id', 'Laporan_Id', 'Laporan Id', $this->dataset);
             $column->SetOrderable(true);
+            $column->setNumberAfterDecimal(0);
+            $column->setThousandsSeparator(',');
+            $column->setDecimalSeparator('');
             $column->setMinimalVisibility(ColumnVisibility::PHONE);
             $column->SetDescription('');
             $column->SetFixedWidth(null);
@@ -432,8 +435,11 @@
             //
             // View column for Laporan_Id field
             //
-            $column = new TextViewColumn('Laporan_Id', 'Laporan_Id', 'Laporan Id', $this->dataset);
+            $column = new NumberViewColumn('Laporan_Id', 'Laporan_Id', 'Laporan Id', $this->dataset);
             $column->SetOrderable(true);
+            $column->setNumberAfterDecimal(0);
+            $column->setThousandsSeparator(',');
+            $column->setDecimalSeparator('');
             $grid->AddSingleRecordViewColumn($column);
             
             //
@@ -585,7 +591,6 @@
                 'Laporan_Transaksi', 
                 $editor, 
                 $this->dataset, 'Transaksi_ID', 'Transaksi_ID', $lookupDataset);
-            $editColumn->SetCaptionTemplate('%Transaksi_Nama% %Transaksi_Tanggal%');
             $validator = new RequiredValidator(StringUtils::Format($this->GetLocalizerCaptions()->GetMessageString('RequiredValidationMessage'), $editColumn->GetCaption()));
             $editor->GetValidatorCollection()->AddValidator($validator);
             $this->ApplyCommonColumnEditProperties($editColumn);
@@ -708,7 +713,6 @@
                 'Laporan_Transaksi', 
                 $editor, 
                 $this->dataset, 'Transaksi_ID', 'Transaksi_ID', $lookupDataset);
-            $editColumn->SetCaptionTemplate('%Transaksi_Nama% %Transaksi_Tanggal%');
             $validator = new RequiredValidator(StringUtils::Format($this->GetLocalizerCaptions()->GetMessageString('RequiredValidationMessage'), $editColumn->GetCaption()));
             $editor->GetValidatorCollection()->AddValidator($validator);
             $this->ApplyCommonColumnEditProperties($editColumn);
@@ -833,7 +837,6 @@
                 'Laporan_Transaksi', 
                 $editor, 
                 $this->dataset, 'Transaksi_ID', 'Transaksi_ID', $lookupDataset);
-            $editColumn->SetCaptionTemplate('%Transaksi_Nama% %Transaksi_Tanggal%');
             $validator = new RequiredValidator(StringUtils::Format($this->GetLocalizerCaptions()->GetMessageString('RequiredValidationMessage'), $editColumn->GetCaption()));
             $editor->GetValidatorCollection()->AddValidator($validator);
             $this->ApplyCommonColumnEditProperties($editColumn);
@@ -883,8 +886,11 @@
             //
             // View column for Laporan_Id field
             //
-            $column = new TextViewColumn('Laporan_Id', 'Laporan_Id', 'Laporan Id', $this->dataset);
+            $column = new NumberViewColumn('Laporan_Id', 'Laporan_Id', 'Laporan Id', $this->dataset);
             $column->SetOrderable(true);
+            $column->setNumberAfterDecimal(0);
+            $column->setThousandsSeparator(',');
+            $column->setDecimalSeparator('');
             $grid->AddPrintColumn($column);
             
             //
@@ -955,8 +961,11 @@
             //
             // View column for Laporan_Id field
             //
-            $column = new TextViewColumn('Laporan_Id', 'Laporan_Id', 'Laporan Id', $this->dataset);
+            $column = new NumberViewColumn('Laporan_Id', 'Laporan_Id', 'Laporan Id', $this->dataset);
             $column->SetOrderable(true);
+            $column->setNumberAfterDecimal(0);
+            $column->setThousandsSeparator(',');
+            $column->setDecimalSeparator('');
             $grid->AddExportColumn($column);
             
             //
@@ -1144,8 +1153,6 @@
             $result->setUseModalMultiEdit(true);
             $result->setTableBordered(false);
             $result->setTableCondensed(true);
-            $result->SetTotal('Laporan_Pemasukan', PredefinedAggregate::$Sum);
-            $result->SetTotal('Laporan_Pengeluaran', PredefinedAggregate::$Sum);
             
             $result->SetHighlightRowAtHover(false);
             $result->SetWidth('');
@@ -1529,7 +1536,7 @@
                 )
             );
             
-            $main_editor = new TextEdit('Mobil_Keterangan');
+            $main_editor = new TextEdit('mobil_keterangan_edit');
             
             $filterBuilder->addColumn(
                 $columns['Mobil_Keterangan'],
@@ -1553,7 +1560,7 @@
                 )
             );
             
-            $main_editor = new TextEdit('Mobil_Merk');
+            $main_editor = new TextEdit('mobil_merk_edit');
             
             $filterBuilder->addColumn(
                 $columns['Mobil_Merk'],
@@ -1577,7 +1584,7 @@
                 )
             );
             
-            $main_editor = new TextEdit('Mobil_No_Polisi');
+            $main_editor = new TextEdit('mobil_no_polisi_edit');
             
             $filterBuilder->addColumn(
                 $columns['Mobil_No_Polisi'],
@@ -1619,7 +1626,7 @@
                 )
             );
             
-            $main_editor = new TextEdit('Mobil_Tipe');
+            $main_editor = new TextEdit('mobil_tipe_edit');
             
             $filterBuilder->addColumn(
                 $columns['Mobil_Tipe'],
@@ -1643,7 +1650,7 @@
                 )
             );
             
-            $main_editor = new TextEdit('Mobil_Warna');
+            $main_editor = new TextEdit('mobil_warna_edit');
             
             $filterBuilder->addColumn(
                 $columns['Mobil_Warna'],
@@ -1875,7 +1882,7 @@
             //
             // Edit column for Mobil_Keterangan field
             //
-            $editor = new TextAreaEdit('mobil_keterangan_edit', 50, 8);
+            $editor = new TextEdit('mobil_keterangan_edit');
             $editColumn = new CustomEditColumn('Mobil Keterangan', 'Mobil_Keterangan', $editor, $this->dataset);
             $editColumn->SetAllowSetToNull(true);
             $this->ApplyCommonColumnEditProperties($editColumn);
@@ -1884,7 +1891,7 @@
             //
             // Edit column for Mobil_Merk field
             //
-            $editor = new TextAreaEdit('mobil_merk_edit', 50, 8);
+            $editor = new TextEdit('mobil_merk_edit');
             $editColumn = new CustomEditColumn('Mobil Merk', 'Mobil_Merk', $editor, $this->dataset);
             $editColumn->SetAllowSetToNull(true);
             $this->ApplyCommonColumnEditProperties($editColumn);
@@ -1893,7 +1900,7 @@
             //
             // Edit column for Mobil_No_Polisi field
             //
-            $editor = new TextAreaEdit('mobil_no_polisi_edit', 50, 8);
+            $editor = new TextEdit('mobil_no_polisi_edit');
             $editColumn = new CustomEditColumn('Mobil No Polisi', 'Mobil_No_Polisi', $editor, $this->dataset);
             $editColumn->SetAllowSetToNull(true);
             $this->ApplyCommonColumnEditProperties($editColumn);
@@ -1911,7 +1918,7 @@
             //
             // Edit column for Mobil_Tipe field
             //
-            $editor = new TextAreaEdit('mobil_tipe_edit', 50, 8);
+            $editor = new TextEdit('mobil_tipe_edit');
             $editColumn = new CustomEditColumn('Mobil Tipe', 'Mobil_Tipe', $editor, $this->dataset);
             $editColumn->SetAllowSetToNull(true);
             $this->ApplyCommonColumnEditProperties($editColumn);
@@ -1920,7 +1927,7 @@
             //
             // Edit column for Mobil_Warna field
             //
-            $editor = new TextAreaEdit('mobil_warna_edit', 50, 8);
+            $editor = new TextEdit('mobil_warna_edit');
             $editColumn = new CustomEditColumn('Mobil Warna', 'Mobil_Warna', $editor, $this->dataset);
             $editColumn->SetAllowSetToNull(true);
             $this->ApplyCommonColumnEditProperties($editColumn);
@@ -1932,7 +1939,7 @@
             //
             // Edit column for Mobil_Keterangan field
             //
-            $editor = new TextAreaEdit('mobil_keterangan_edit', 50, 8);
+            $editor = new TextEdit('mobil_keterangan_edit');
             $editColumn = new CustomEditColumn('Mobil Keterangan', 'Mobil_Keterangan', $editor, $this->dataset);
             $editColumn->SetAllowSetToNull(true);
             $this->ApplyCommonColumnEditProperties($editColumn);
@@ -1941,7 +1948,7 @@
             //
             // Edit column for Mobil_Merk field
             //
-            $editor = new TextAreaEdit('mobil_merk_edit', 50, 8);
+            $editor = new TextEdit('mobil_merk_edit');
             $editColumn = new CustomEditColumn('Mobil Merk', 'Mobil_Merk', $editor, $this->dataset);
             $editColumn->SetAllowSetToNull(true);
             $this->ApplyCommonColumnEditProperties($editColumn);
@@ -1950,7 +1957,7 @@
             //
             // Edit column for Mobil_No_Polisi field
             //
-            $editor = new TextAreaEdit('mobil_no_polisi_edit', 50, 8);
+            $editor = new TextEdit('mobil_no_polisi_edit');
             $editColumn = new CustomEditColumn('Mobil No Polisi', 'Mobil_No_Polisi', $editor, $this->dataset);
             $editColumn->SetAllowSetToNull(true);
             $this->ApplyCommonColumnEditProperties($editColumn);
@@ -1968,7 +1975,7 @@
             //
             // Edit column for Mobil_Tipe field
             //
-            $editor = new TextAreaEdit('mobil_tipe_edit', 50, 8);
+            $editor = new TextEdit('mobil_tipe_edit');
             $editColumn = new CustomEditColumn('Mobil Tipe', 'Mobil_Tipe', $editor, $this->dataset);
             $editColumn->SetAllowSetToNull(true);
             $this->ApplyCommonColumnEditProperties($editColumn);
@@ -1977,7 +1984,7 @@
             //
             // Edit column for Mobil_Warna field
             //
-            $editor = new TextAreaEdit('mobil_warna_edit', 50, 8);
+            $editor = new TextEdit('mobil_warna_edit');
             $editColumn = new CustomEditColumn('Mobil Warna', 'Mobil_Warna', $editor, $this->dataset);
             $editColumn->SetAllowSetToNull(true);
             $this->ApplyCommonColumnEditProperties($editColumn);
@@ -1989,7 +1996,7 @@
             //
             // Edit column for Mobil_Keterangan field
             //
-            $editor = new TextAreaEdit('mobil_keterangan_edit', 50, 8);
+            $editor = new TextEdit('mobil_keterangan_edit');
             $editColumn = new CustomEditColumn('Mobil Keterangan', 'Mobil_Keterangan', $editor, $this->dataset);
             $editColumn->SetAllowSetToNull(true);
             $this->ApplyCommonColumnEditProperties($editColumn);
@@ -1998,7 +2005,7 @@
             //
             // Edit column for Mobil_Merk field
             //
-            $editor = new TextAreaEdit('mobil_merk_edit', 50, 8);
+            $editor = new TextEdit('mobil_merk_edit');
             $editColumn = new CustomEditColumn('Mobil Merk', 'Mobil_Merk', $editor, $this->dataset);
             $editColumn->SetAllowSetToNull(true);
             $this->ApplyCommonColumnEditProperties($editColumn);
@@ -2007,7 +2014,7 @@
             //
             // Edit column for Mobil_No_Polisi field
             //
-            $editor = new TextAreaEdit('mobil_no_polisi_edit', 50, 8);
+            $editor = new TextEdit('mobil_no_polisi_edit');
             $editColumn = new CustomEditColumn('Mobil No Polisi', 'Mobil_No_Polisi', $editor, $this->dataset);
             $editColumn->SetAllowSetToNull(true);
             $this->ApplyCommonColumnEditProperties($editColumn);
@@ -2025,7 +2032,7 @@
             //
             // Edit column for Mobil_Tipe field
             //
-            $editor = new TextAreaEdit('mobil_tipe_edit', 50, 8);
+            $editor = new TextEdit('mobil_tipe_edit');
             $editColumn = new CustomEditColumn('Mobil Tipe', 'Mobil_Tipe', $editor, $this->dataset);
             $editColumn->SetAllowSetToNull(true);
             $this->ApplyCommonColumnEditProperties($editColumn);
@@ -2034,7 +2041,7 @@
             //
             // Edit column for Mobil_Warna field
             //
-            $editor = new TextAreaEdit('mobil_warna_edit', 50, 8);
+            $editor = new TextEdit('mobil_warna_edit');
             $editColumn = new CustomEditColumn('Mobil Warna', 'Mobil_Warna', $editor, $this->dataset);
             $editColumn->SetAllowSetToNull(true);
             $this->ApplyCommonColumnEditProperties($editColumn);

@@ -60,9 +60,11 @@
             <EditProperties type="dynamicCombobox" itemTemplate="%Mobil_No_Polisi% %Mobil_Tipe%"/>
           </ColumnPresentation>
           <ColumnPresentation fieldName="Laporan_Transaksi" caption="Laporan Transaksi" selectedFilterOperators="1573119">
-            <Lookup tableName="transaksi" linkFieldName="Transaksi_ID" displayFieldName="Transaksi_Nama" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
-            <ViewProperties type="text"/>
-            <EditProperties type="dynamicCombobox"/>
+            <Lookup tableName="transaksi" linkFieldName="Transaksi_ID" displayFieldName="Transaksi_ID" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+            <ViewProperties type="text">
+              <Format type="number" decimalSeparator="." thousandSeparator=","/>
+            </ViewProperties>
+            <EditProperties type="dynamicCombobox" itemTemplate="%Transaksi_ID%-%Transaksi_Nama%"/>
           </ColumnPresentation>
           <ColumnPresentation fieldName="Laporan_Created" caption="Laporan Created" selectedFilterOperators="2031871">
             <ViewProperties type="dateTime" dateTimeFormat="d-m-Y H:i:s"/>
