@@ -576,7 +576,8 @@
                     new StringField('Kelengkapan'),
                     new DateTimeField('Tangal_Waktu_Mulai', true),
                     new DateTimeField('Tanggal_Waktu_Berakhir'),
-                    new StringField('Keterangan_Lainnya')
+                    new StringField('Keterangan_Lainnya'),
+                    new StringField('Print', true)
                 )
             );
             $lookupDataset->setOrderByField('Transaksi_Nama', 'ASC');
@@ -696,7 +697,8 @@
                     new StringField('Kelengkapan'),
                     new DateTimeField('Tangal_Waktu_Mulai', true),
                     new DateTimeField('Tanggal_Waktu_Berakhir'),
-                    new StringField('Keterangan_Lainnya')
+                    new StringField('Keterangan_Lainnya'),
+                    new StringField('Print', true)
                 )
             );
             $lookupDataset->setOrderByField('Transaksi_Nama', 'ASC');
@@ -818,7 +820,8 @@
                     new StringField('Kelengkapan'),
                     new DateTimeField('Tangal_Waktu_Mulai', true),
                     new DateTimeField('Tanggal_Waktu_Berakhir'),
-                    new StringField('Keterangan_Lainnya')
+                    new StringField('Keterangan_Lainnya'),
+                    new StringField('Print', true)
                 )
             );
             $lookupDataset->setOrderByField('Transaksi_Nama', 'ASC');
@@ -1232,7 +1235,8 @@
                     new StringField('Kelengkapan'),
                     new DateTimeField('Tangal_Waktu_Mulai', true),
                     new DateTimeField('Tanggal_Waktu_Berakhir'),
-                    new StringField('Keterangan_Lainnya')
+                    new StringField('Keterangan_Lainnya'),
+                    new StringField('Print', true)
                 )
             );
             $lookupDataset->setOrderByField('Transaksi_Nama', 'ASC');
@@ -1281,7 +1285,8 @@
                     new StringField('Kelengkapan'),
                     new DateTimeField('Tangal_Waktu_Mulai', true),
                     new DateTimeField('Tanggal_Waktu_Berakhir'),
-                    new StringField('Keterangan_Lainnya')
+                    new StringField('Keterangan_Lainnya'),
+                    new StringField('Print', true)
                 )
             );
             $lookupDataset->setOrderByField('Transaksi_Nama', 'ASC');
@@ -1311,7 +1316,8 @@
                     new StringField('Kelengkapan'),
                     new DateTimeField('Tangal_Waktu_Mulai', true),
                     new DateTimeField('Tanggal_Waktu_Berakhir'),
-                    new StringField('Keterangan_Lainnya')
+                    new StringField('Keterangan_Lainnya'),
+                    new StringField('Print', true)
                 )
             );
             $lookupDataset->setOrderByField('Transaksi_Nama', 'ASC');
@@ -1368,7 +1374,8 @@
                     new StringField('Kelengkapan'),
                     new DateTimeField('Tangal_Waktu_Mulai', true),
                     new DateTimeField('Tanggal_Waktu_Berakhir'),
-                    new StringField('Keterangan_Lainnya')
+                    new StringField('Keterangan_Lainnya'),
+                    new StringField('Print', true)
                 )
             );
             $lookupDataset->setOrderByField('Transaksi_Nama', 'ASC');
@@ -1417,7 +1424,8 @@
                     new StringField('Kelengkapan'),
                     new DateTimeField('Tangal_Waktu_Mulai', true),
                     new DateTimeField('Tanggal_Waktu_Berakhir'),
-                    new StringField('Keterangan_Lainnya')
+                    new StringField('Keterangan_Lainnya'),
+                    new StringField('Print', true)
                 )
             );
             $lookupDataset->setOrderByField('Transaksi_Nama', 'ASC');
@@ -2637,7 +2645,8 @@
                     new StringField('Kelengkapan'),
                     new DateTimeField('Tangal_Waktu_Mulai', true),
                     new DateTimeField('Tanggal_Waktu_Berakhir'),
-                    new StringField('Keterangan_Lainnya')
+                    new StringField('Keterangan_Lainnya'),
+                    new StringField('Print', true)
                 )
             );
             $this->dataset->AddLookupField('Transaksi_Mobil', 'mobil', new IntegerField('Mobil_id'), new StringField('Mobil_No_Polisi', false, false, false, false, 'Transaksi_Mobil_Mobil_No_Polisi', 'Transaksi_Mobil_Mobil_No_Polisi_mobil'), 'Transaksi_Mobil_Mobil_No_Polisi_mobil');
@@ -2688,7 +2697,8 @@
                 new FilterColumn($this->dataset, 'Tangal_Waktu_Mulai', 'Tangal_Waktu_Mulai', 'Tanggal Dan Jam Mulai'),
                 new FilterColumn($this->dataset, 'Tanggal_Waktu_Berakhir', 'Tanggal_Waktu_Berakhir', 'Tanggal Dan Jam Berakhir'),
                 new FilterColumn($this->dataset, 'Keterangan_Lainnya', 'Keterangan_Lainnya', 'Keterangan Lainnya'),
-                new FilterColumn($this->dataset, 'Transaksi_Laporan', 'Transaksi_Laporan', 'Transaksi Laporan')
+                new FilterColumn($this->dataset, 'Transaksi_Laporan', 'Transaksi_Laporan', 'Transaksi Laporan'),
+                new FilterColumn($this->dataset, 'Print', 'Print', 'Print')
             );
         }
     
@@ -3354,6 +3364,20 @@
             $column->SetDescription('');
             $column->SetFixedWidth(null);
             $grid->AddViewColumn($column);
+            
+            //
+            // View column for Print field
+            //
+            $column = new TextViewColumn('Print', 'Print', 'Print', $this->dataset);
+            $column->SetOrderable(true);
+            $column->setHrefTemplate('print.php?id=%Transaksi_ID%');
+            $column->setTarget('');
+            $column->SetMaxLength(75);
+            $column->SetFullTextWindowHandlerName('transaksiGrid_Print_handler_list');
+            $column->setMinimalVisibility(ColumnVisibility::PHONE);
+            $column->SetDescription('');
+            $column->SetFixedWidth(null);
+            $grid->AddViewColumn($column);
         }
     
         protected function AddSingleRecordViewColumns(Grid $grid)
@@ -3511,6 +3535,17 @@
             $column->SetMaxLength(75);
             $column->SetFullTextWindowHandlerName('transaksiGrid_Keterangan_Lainnya_handler_view');
             $grid->AddSingleRecordViewColumn($column);
+            
+            //
+            // View column for Print field
+            //
+            $column = new TextViewColumn('Print', 'Print', 'Print', $this->dataset);
+            $column->SetOrderable(true);
+            $column->setHrefTemplate('print.php?id=%Transaksi_ID%');
+            $column->setTarget('');
+            $column->SetMaxLength(75);
+            $column->SetFullTextWindowHandlerName('transaksiGrid_Print_handler_view');
+            $grid->AddSingleRecordViewColumn($column);
         }
     
         protected function AddEditColumns(Grid $grid)
@@ -3520,6 +3555,7 @@
             //
             $editor = new TextEdit('transaksi_id_edit');
             $editColumn = new CustomEditColumn('Transaksi ID', 'Transaksi_ID', $editor, $this->dataset);
+            $editColumn->SetReadOnly(true);
             $validator = new RequiredValidator(StringUtils::Format($this->GetLocalizerCaptions()->GetMessageString('RequiredValidationMessage'), $editColumn->GetCaption()));
             $editor->GetValidatorCollection()->AddValidator($validator);
             $this->ApplyCommonColumnEditProperties($editColumn);
@@ -4052,6 +4088,20 @@
             $editor = new TextAreaEdit('keterangan_lainnya_edit', 50, 8);
             $editColumn = new CustomEditColumn('Keterangan Lainnya', 'Keterangan_Lainnya', $editor, $this->dataset);
             $editColumn->SetAllowSetToNull(true);
+            $this->ApplyCommonColumnEditProperties($editColumn);
+            $grid->AddInsertColumn($editColumn);
+            
+            //
+            // Edit column for Print field
+            //
+            $editor = new TextEdit('print_edit');
+            $editor->SetMaxLength(100);
+            $editColumn = new CustomEditColumn('Print', 'Print', $editor, $this->dataset);
+            $editColumn->SetReadOnly(true);
+            $editColumn->setEnabled(false);
+            $editColumn->SetInsertDefaultValue('Print');
+            $validator = new RequiredValidator(StringUtils::Format($this->GetLocalizerCaptions()->GetMessageString('RequiredValidationMessage'), $editColumn->GetCaption()));
+            $editor->GetValidatorCollection()->AddValidator($validator);
             $this->ApplyCommonColumnEditProperties($editColumn);
             $grid->AddInsertColumn($editColumn);
             $grid->SetShowAddButton(true && $this->GetSecurityInfo()->HasAddGrant());
@@ -4722,6 +4772,16 @@
             GetApplication()->RegisterHTTPHandler($handler);
             
             //
+            // View column for Print field
+            //
+            $column = new TextViewColumn('Print', 'Print', 'Print', $this->dataset);
+            $column->SetOrderable(true);
+            $column->setHrefTemplate('print.php?id=%Transaksi_ID%');
+            $column->setTarget('');
+            $handler = new ShowTextBlobHandler($this->dataset, $this, 'transaksiGrid_Print_handler_list', $column);
+            GetApplication()->RegisterHTTPHandler($handler);
+            
+            //
             // View column for Transaksi_Nama field
             //
             $column = new TextViewColumn('Transaksi_Nama', 'Transaksi_Nama', 'Nama Tamu', $this->dataset);
@@ -4925,6 +4985,16 @@
             $column = new TextViewColumn('Keterangan_Lainnya', 'Keterangan_Lainnya', 'Keterangan Lainnya', $this->dataset);
             $column->SetOrderable(true);
             $handler = new ShowTextBlobHandler($this->dataset, $this, 'transaksiGrid_Keterangan_Lainnya_handler_view', $column);
+            GetApplication()->RegisterHTTPHandler($handler);
+            
+            //
+            // View column for Print field
+            //
+            $column = new TextViewColumn('Print', 'Print', 'Print', $this->dataset);
+            $column->SetOrderable(true);
+            $column->setHrefTemplate('print.php?id=%Transaksi_ID%');
+            $column->setTarget('');
+            $handler = new ShowTextBlobHandler($this->dataset, $this, 'transaksiGrid_Print_handler_view', $column);
             GetApplication()->RegisterHTTPHandler($handler);
             
             $lookupDataset = new TableDataset(

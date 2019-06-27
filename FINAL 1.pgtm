@@ -473,7 +473,7 @@
         <BeforeGridText/>
         <DetailedDescription/>
         <ColumnPresentations>
-          <ColumnPresentation fieldName="Transaksi_ID" caption="Transaksi ID" showColumnFilter="false" selectedFilterOperators="1573119">
+          <ColumnPresentation fieldName="Transaksi_ID" caption="Transaksi ID" showColumnFilter="false" readOnly="true" selectedFilterOperators="1573119">
             <ViewProperties type="text">
               <Format type="number" thousandSeparator=","/>
             </ViewProperties>
@@ -560,6 +560,11 @@
             </ViewProperties>
             <EditProperties type="textBox" maxLength="0"/>
           </ColumnPresentation>
+          <ColumnPresentation fieldName="Print" caption="Print" showColumnFilter="false" readOnly="true" enabled="false" defaultInsertValue="Print" selectedFilterOperators="1589247">
+            <ViewProperties type="text" maxLength="75"/>
+            <Hyperlink template="print.php?id=%Transaksi_ID%" target=""/>
+            <EditProperties type="textBox" maxLength="100"/>
+          </ColumnPresentation>
         </ColumnPresentations>
         <Columns>
           <List>
@@ -581,6 +586,7 @@
             <Column fieldName="Tanggal_Waktu_Berakhir"/>
             <Column fieldName="Keterangan_Lainnya"/>
             <Column fieldName="Transaksi_Laporan" visible="false"/>
+            <Column fieldName="Print"/>
           </List>
           <View>
             <Column fieldName="Transaksi_ID"/>
@@ -601,6 +607,7 @@
             <Column fieldName="Tanggal_Waktu_Berakhir"/>
             <Column fieldName="Keterangan_Lainnya"/>
             <Column fieldName="Transaksi_Laporan" visible="false"/>
+            <Column fieldName="Print"/>
           </View>
           <Edit>
             <Column fieldName="Transaksi_ID"/>
@@ -621,6 +628,7 @@
             <Column fieldName="Tanggal_Waktu_Berakhir"/>
             <Column fieldName="Keterangan_Lainnya"/>
             <Column fieldName="Transaksi_Laporan" visible="false"/>
+            <Column fieldName="Print" visible="false"/>
           </Edit>
           <Insert>
             <Column fieldName="Transaksi_ID" visible="false"/>
@@ -641,6 +649,7 @@
             <Column fieldName="Tanggal_Waktu_Berakhir"/>
             <Column fieldName="Keterangan_Lainnya"/>
             <Column fieldName="Transaksi_Laporan" visible="false"/>
+            <Column fieldName="Print"/>
           </Insert>
           <QuickFilter>
             <Column fieldName="Transaksi_ID" visible="false"/>
@@ -661,6 +670,7 @@
             <Column fieldName="Keterangan_Lainnya"/>
             <Column fieldName="Transaksi_Mobil"/>
             <Column fieldName="Transaksi_Laporan" visible="false"/>
+            <Column fieldName="Print" visible="false"/>
           </QuickFilter>
           <FilterBuilder>
             <Column fieldName="Transaksi_ID"/>
@@ -681,6 +691,7 @@
             <Column fieldName="Tanggal_Waktu_Berakhir"/>
             <Column fieldName="Keterangan_Lainnya"/>
             <Column fieldName="Transaksi_Laporan" visible="false"/>
+            <Column fieldName="Print" visible="false"/>
           </FilterBuilder>
           <Print>
             <Column fieldName="Transaksi_ID"/>
@@ -701,6 +712,7 @@
             <Column fieldName="Tanggal_Waktu_Berakhir"/>
             <Column fieldName="Keterangan_Lainnya"/>
             <Column fieldName="Transaksi_Laporan" visible="false"/>
+            <Column fieldName="Print" visible="false"/>
           </Print>
           <Export>
             <Column fieldName="Transaksi_ID"/>
@@ -721,6 +733,7 @@
             <Column fieldName="Tanggal_Waktu_Berakhir"/>
             <Column fieldName="Keterangan_Lainnya"/>
             <Column fieldName="Transaksi_Laporan" visible="false"/>
+            <Column fieldName="Print" visible="false"/>
           </Export>
           <Compare>
             <Column fieldName="Transaksi_ID"/>
@@ -741,6 +754,7 @@
             <Column fieldName="Tanggal_Waktu_Berakhir"/>
             <Column fieldName="Keterangan_Lainnya"/>
             <Column fieldName="Transaksi_Laporan" visible="false"/>
+            <Column fieldName="Print" visible="false"/>
           </Compare>
           <MultiEdit>
             <Column fieldName="Transaksi_ID" visible="false"/>
@@ -761,6 +775,7 @@
             <Column fieldName="Tanggal_Waktu_Berakhir"/>
             <Column fieldName="Keterangan_Lainnya"/>
             <Column fieldName="Transaksi_Laporan" visible="false"/>
+            <Column fieldName="Print" visible="false"/>
           </MultiEdit>
         </Columns>
         <Details>

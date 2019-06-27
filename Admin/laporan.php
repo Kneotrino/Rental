@@ -600,7 +600,8 @@
                     new StringField('Kelengkapan'),
                     new DateTimeField('Tangal_Waktu_Mulai', true),
                     new DateTimeField('Tanggal_Waktu_Berakhir'),
-                    new StringField('Keterangan_Lainnya')
+                    new StringField('Keterangan_Lainnya'),
+                    new StringField('Print', true)
                 )
             );
             $lookupDataset->setOrderByField('Transaksi_ID', 'ASC');
@@ -707,7 +708,8 @@
                     new StringField('Kelengkapan'),
                     new DateTimeField('Tangal_Waktu_Mulai', true),
                     new DateTimeField('Tanggal_Waktu_Berakhir'),
-                    new StringField('Keterangan_Lainnya')
+                    new StringField('Keterangan_Lainnya'),
+                    new StringField('Print', true)
                 )
             );
             $lookupDataset->setOrderByField('Transaksi_ID', 'ASC');
@@ -817,7 +819,8 @@
                     new StringField('Kelengkapan'),
                     new DateTimeField('Tangal_Waktu_Mulai', true),
                     new DateTimeField('Tanggal_Waktu_Berakhir'),
-                    new StringField('Keterangan_Lainnya')
+                    new StringField('Keterangan_Lainnya'),
+                    new StringField('Print', true)
                 )
             );
             $lookupDataset->setOrderByField('Transaksi_ID', 'ASC');
@@ -1209,7 +1212,8 @@
                     new StringField('Kelengkapan'),
                     new DateTimeField('Tangal_Waktu_Mulai', true),
                     new DateTimeField('Tanggal_Waktu_Berakhir'),
-                    new StringField('Keterangan_Lainnya')
+                    new StringField('Keterangan_Lainnya'),
+                    new StringField('Print', true)
                 )
             );
             $lookupDataset->setOrderByField('Transaksi_ID', 'ASC');
@@ -1258,7 +1262,8 @@
                     new StringField('Kelengkapan'),
                     new DateTimeField('Tangal_Waktu_Mulai', true),
                     new DateTimeField('Tanggal_Waktu_Berakhir'),
-                    new StringField('Keterangan_Lainnya')
+                    new StringField('Keterangan_Lainnya'),
+                    new StringField('Print', true)
                 )
             );
             $lookupDataset->setOrderByField('Transaksi_ID', 'ASC');
@@ -1315,7 +1320,8 @@
                     new StringField('Kelengkapan'),
                     new DateTimeField('Tangal_Waktu_Mulai', true),
                     new DateTimeField('Tanggal_Waktu_Berakhir'),
-                    new StringField('Keterangan_Lainnya')
+                    new StringField('Keterangan_Lainnya'),
+                    new StringField('Print', true)
                 )
             );
             $lookupDataset->setOrderByField('Transaksi_ID', 'ASC');
@@ -1364,7 +1370,8 @@
                     new StringField('Kelengkapan'),
                     new DateTimeField('Tangal_Waktu_Mulai', true),
                     new DateTimeField('Tanggal_Waktu_Berakhir'),
-                    new StringField('Keterangan_Lainnya')
+                    new StringField('Keterangan_Lainnya'),
+                    new StringField('Print', true)
                 )
             );
             $lookupDataset->setOrderByField('Transaksi_ID', 'ASC');
