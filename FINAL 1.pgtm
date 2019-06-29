@@ -1,13 +1,13 @@
 <Project version="18.3.0.1" edition="pro" localizationFileName="E:\Program Files (x86)\SQL Maestro Group\PHP Generator for MySQL Professional\lang.en.php" phpDriver="1" outputPath="C:\xampp\htdocs\Rental\Admin" copySystemFiles="true" outputFilesExtension="php" colorSchemeName="cerulean">
   <ConnectionOptions host="localhost" port="3306" login="root" password="" database="rental" client_encoding="utf8" allow_old_password="false">
-    <ssh_secure secure="false" port="22" authentication_mode="0"/>
+    <ssh_secure secure="false" host="ftpupload.net" port="22" login="b24_24103551" password="P:'[\O[4^=VJH=&quot;A_LOR" authentication_mode="0"/>
     <http_tunnel tunneling="false" url="">
       <http_proxy_server use_proxy="false" port="8080"/>
       <http_authentication/>
     </http_tunnel>
   </ConnectionOptions>
   <ScriptConnectionOptions host="localhost" port="3306" login="root" password="" database="rental" client_encoding="utf8" allow_old_password="false">
-    <ssh_secure secure="false" port="22" authentication_mode="0"/>
+    <ssh_secure secure="false" host="ftpupload.net" port="22" login="b24_24103551" password="P:'[\O[4^=VJH=&quot;A_LOR" authentication_mode="0"/>
     <http_tunnel tunneling="false" url="">
       <http_proxy_server use_proxy="false" port="8080"/>
       <http_authentication/>

@@ -9,7 +9,8 @@ function debug_to_console( $Tag,$data ) {
 }
 
 function getTransaksiByID($id){
-    $sql = "SELECT * FROM `Transaksi` WHERE `Transaksi_id` = '$id'";
+    // $sql = "SELECT * FROM `Transaksi` WHERE `Transaksi_id` = '$id'";
+    $sql = "SELECT * FROM transaksi INNER JOIN mobil ON transaksi.Transaksi_Mobil=mobil.Mobil_id WHERE `Transaksi_ID` = '$id'";
     $connMini = 
       new mysqli(
         $GLOBALS['servername'],

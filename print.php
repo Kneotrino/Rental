@@ -268,17 +268,6 @@ tr, td {
              window.print();
         }
         </script>
-<table style="width:100%">
-        <?php
-            include './connect.php';    
-            // $transaksi_id = $_GET["id"];   
-        ?>
-  <tr>
-    <th>
-        <button onclick="printDiv('invoice')" class="btn warning" >Print</button>
-    </th>
-  </tr>
-</table>
 
     <div class="invoice-box">
         <div class="get_more_info">
@@ -301,6 +290,22 @@ tr, td {
             <tr>
                 <th>YANG BETANDA TANGAN DI BAWAH INI</th>
                 <th>NO.HRM/..../..../..../</th>
+            </tr>
+            <tr>
+                <td>Company</td>
+                <td>Country</td>
+            </tr>
+            <tr>
+                <td>Company</td>
+                <td>Country</td>
+            </tr>
+            <tr>
+                <td>Company</td>
+                <td>Country</td>
+            </tr>
+            <tr>
+                <td>Company</td>
+                <td>Country</td>
             </tr>
             <tr>
                 <td>Company</td>
@@ -369,6 +374,18 @@ tr, td {
             </tr>
         </table>        
     </div>
+    <table style="width:100%">
+        <?php
+            include './connect.php';    
+            // $transaksi_id = $_GET["id"];   
+        ?>
+  <tr>
+    <th>
+        <button onclick="printDiv('invoice')" >Print</button>
+    </th>
+  </tr>
+</table>
+
 <script>
 // Set the date we're counting down to
 

@@ -1,14 +1,37 @@
 <!doctype html>
 <html>
+<?php
+            include './connect.php';    
+            $transaksi_id = $_GET["id"];
+            $transaksi = getTransaksiByID($_GET["id"]);
+            $date=date_create("$transaksi[Transaksi_Tanggal]");
+
+        ?>
 <head>
     <meta charset="utf-8">
-    <title>Kwintasi Hay Rental</title>    
+    <title>Kwintasi Hay Rental <?php 
+    echo "No. $transaksi_id Tgl ";
+    echo date_format($date,"d-m-Y");                
+    
+    ?></title>    
     <style>
 
     @media print
     {
     body * { visibility: hidden; }
-    .invoice-box * { visibility: visible; }
+    .invoice-box * { visibility: visible; 
+    }
+    html, body {
+    height:100%; 
+    margin: 0 !important; 
+    padding: 0 !important;
+    overflow: hidden;
+  }
+    table { /* Or specify a table class */
+    max-height: 100%;
+    overflow: hidden;
+    page-break-after: always;
+  }
     }
 
     .invoice-box {
@@ -17,10 +40,11 @@
         padding: 30px;
         border: 1px solid #eee;
         box-shadow: 0 0 10px rgba(0, 0, 0, .15);
-        font-size: 16px;
+        font-size: 12px;
         line-height: 24px;
         font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
         color: #555;
+        max-height: 900px;
     }
     
     .invoice-box table {
@@ -38,7 +62,7 @@
         text-align: center;
     }
     .invoice-box table tr td:nth-child(2) {
-        text-align: right;
+        text-align: left;
     }
     
     .invoice-box table tr.top table td {
@@ -257,7 +281,7 @@
 
 tr, td {
   text-align: center;
-  padding: 8px;
+  padding: 2px;
 }
     </style>
 </head>
@@ -267,8 +291,10 @@ tr, td {
         function printDiv(divName) {
              window.print();
         }
+        function goBack() {
+             window.history.back();
+        }
         </script>
-
     <div class="invoice-box">
         <div class="get_more_info">
             <div class="row no-gutters">
@@ -280,7 +306,10 @@ tr, td {
                 <div class="col-md-6 block">
                     <div class="max-container-map-left">
                         <h3> HAY RENTAL MOBIL </h3>
-                        <p class="mb-4 pb-0">Jln.Komodo Airnona, Kota Kupang<br>Nusa Tenggara Timur</p>
+                        <p class="mb-4 pb-0">Jln.Komodo Airnona, Kota Kupang
+                            <br>Nusa Tenggara Timur
+                            <br>Nomor Telp : (0380)8442728 /082236338534
+                        </p>
                     </div>
                 </div>
             </div>
@@ -289,80 +318,67 @@ tr, td {
         <table style="border-collapse: collapse;  width: 100%;">
             <tr>
                 <th>YANG BETANDA TANGAN DI BAWAH INI</th>
-                <th>NO.HRM/..../..../..../</th>
+                <th>NO.HRM <?php echo "$transaksi[Transaksi_ID]"?>/..../..../..../</th>
             </tr>
             <tr>
-                <td>Company</td>
-                <td>Country</td>
+                <td>NAMA LENGKAP</td>
+                <td><?php echo "$transaksi[Transaksi_Nama]"?> </td>
             </tr>
             <tr>
-                <td>Company</td>
-                <td>Country</td>
+                <td>NO HP/TELP</td>
+                <td><?php echo "$transaksi[Transaksi_NomorHP]" ?> </td>
             </tr>
             <tr>
-                <td>Company</td>
-                <td>Country</td>
+                <td>ALAMAT</td>
+                <td><?php echo "$transaksi[Transaksi_Alamat]" ?> </td>
             </tr>
             <tr>
-                <td>Company</td>
-                <td>Country</td>
+                <td>NO IDENTITAS YANG DI JAMINKAN</td>
+                <td><?php echo "$transaksi[Transaksi_Jaminan_Identitas]-$transaksi[Transaksi_Nomor_Jaminan_Identitas]" ?> </td>
             </tr>
             <tr>
-                <td>Company</td>
-                <td>Country</td>
+                <th>DENGAN INI MENYATAKAN AKAN MENYEWA KENDARAAN :</th>
+                <th></th>
             </tr>
             <tr>
-                <td>Company</td>
-                <td>Country</td>
+                <td>JENIS KENDARAAN</td>
+                <td><?php echo "$transaksi[Mobil_Merk] $transaksi[Mobil_Tipe]" ?> </td>
             </tr>
             <tr>
-                <td>Company</td>
-                <td>Country</td>
+                <td>NOMOR POLISI</td>
+                <td><?php echo "$transaksi[Mobil_No_Polisi]" ?> </td>
             </tr>
             <tr>
-                <td>Company</td>
-                <td>Country</td>
-            </tr>
-            <tr>
-                <th>YANG BETANDA TANGAN DI BAWAH INI</th>
-                <th>NO.HRM/..../..../..../</th>
-            </tr>
-            <tr>
-                <td>Company</td>
-                <td>Country</td>
-            </tr>
-            <tr>
-                <td>Company</td>
-                <td>Country</td>
-            </tr>
-            <tr>
-                <td>Company</td>
-                <td>Country</td>
+                <td>BENSIN POSISI</td>
+                <td><?php echo "$transaksi[Transaksi_Posisi_Bensin]" ?> </td>
             </tr>
             <tr>
                 <th>Masa Sewa</th>
                 <td>
                     <table>
                         <tr>
-                            <td>Jam</td>
-                            <td>Hari</td>
-                            <td>Bulan</td>
-                            <td>Tahun</td>
+                            <?php echo "<td> $transaksi[Masa_Sewa_Jam] Jam</td>" ?>
+                            <?php echo "<td> $transaksi[Masa_Sewa_Hari] Hari</td>" ?>
+                            <?php echo "<td> $transaksi[Masa_Sewa_Bulan] Bulan</td>" ?>
+                            <?php echo "<td> $transaksi[Masa_Sewa_Tahun] Tahun</td>" ?>
                         </tr>
                     </table>
                 </td>
             </tr>
             <tr>
                 <td>Kelengkapan</td>
-                <td>Country</td>
+                <td><?php echo "$transaksi[Kelengkapan]" ?> </td>
             </tr>
             <tr>
-                <td>Norek Bank Mandiri</td>
-                <td>000000000000000000</td>
+                <td>Norek Bank Mandiri CV.BS HAY RENTAL 1810-0003-9035-2</td>
+                <td></td>
             </tr>
             <tr>
                 <td></td>
-                <td>Di nyatakan di kupang, ../../..</td>
+                <td>Di nyatakan di kupang, <?php 
+                $date=date_create("$transaksi[Transaksi_Tanggal]");
+                echo date_format($date,"d/m/Y");                
+                ?></td>
             </tr>
             <tr>
                 <th>Adminstrasi<br><br><br><br></th>
@@ -370,56 +386,30 @@ tr, td {
             </tr>
             <tr>
                 <th>(...................)</th>
-                <th>(...................)</th>
+                <th>(<?php echo "$transaksi[Transaksi_Nama]"?>)</th>
             </tr>
         </table>        
     </div>
+
     <table style="width:100%">
-        <?php
-            include './connect.php';    
-            // $transaksi_id = $_GET["id"];   
-        ?>
-  <tr>
-    <th>
-        <button onclick="printDiv('invoice')" >Print</button>
-    </th>
-  </tr>
-</table>
+    <tr>
+                <td>            <button onclick="printDiv('invoice')" >Print</button>
+</td>
+            </tr>
+    <tr>
+                <td>            <button onclick="goBack()" >Kembali</button>
+</td>
+            </tr>
+<!-- 
+    <tr>
+        <th>
+            <button onclick="printDiv('invoice')" >Print</button>
+        </th>
+        <th>
+            <button onclick="goBack()" >Kembali</button>
+        </th>
+    </tr> -->
+    </table>
 
-<script>
-// Set the date we're counting down to
-
-
-
-  var countDownDate = new Date("  <?php 
-    echo date_format($dateBatas,"D, d M y H:i:s");
-  ?>").getTime();
-
-  // Update the count down every 1 second
-  var x = setInterval(function() {
-
-  // Get today's date and time
-  var now = new Date().getTime();
-    
-  // Find the distance between now and the count down date
-  var distance = countDownDate - now;
-    
-  // Time calculations for days, hours, minutes and seconds
-  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-    
-  // Output the result in an element with id="demo"
-  document.getElementById("demo").innerHTML = "Batas Pelunasan Deposit(DP)<br>"+days + "d " + hours + "h "
-  + minutes + "m " + seconds + "s ";
-    
-  // If the count down is over, write some text 
-  if (distance < 0) {
-    clearInterval(x);
-    document.getElementById("demo").innerHTML = "BOOKING TELAH KADALUARSA SILAHKAN BUAT BARU";
-  }
-}, 1000);
-</script>    
 </body>
 </html>
