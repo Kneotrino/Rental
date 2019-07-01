@@ -305,8 +305,13 @@ tr, td {
                 </div>
                 <div class="col-md-6 block">
                     <div class="max-container-map-left">
-                        <h3> HAY RENTAL MOBIL </h3>
-                        <p class="mb-4 pb-0">Jln.Komodo Airnona, Kota Kupang
+                        <h3> HAY RENTAL MOBIL</h3>
+                        <!-- <b><u>SURAT JALAN / INVOICE</b></u> -->
+                        <p class="mb-4 pb-0">
+                            <b><u>                            
+                            NO.HRM <?php echo "$transaksi[Transaksi_ID]";
+                                echo date_format($date,"/m/Y");?></b></u>
+                            <br>Jln.Komodo Airnona, Kota Kupang
                             <br>Nusa Tenggara Timur
                             <br>Nomor Telp : (0380)8442728 /082236338534
                         </p>
@@ -318,41 +323,62 @@ tr, td {
         <table style="border-collapse: collapse;  width: 100%;">
             <tr>
                 <th>YANG BETANDA TANGAN DI BAWAH INI</th>
-                <th>NO.HRM <?php echo "$transaksi[Transaksi_ID]"?>/..../..../..../</th>
+                <td>:</td>
             </tr>
             <tr>
                 <td>NAMA LENGKAP</td>
-                <td><?php echo "$transaksi[Transaksi_Nama]"?> </td>
+                <td>: <?php echo "$transaksi[Transaksi_Nama]"?> </td>
             </tr>
             <tr>
                 <td>NO HP/TELP</td>
-                <td><?php echo "$transaksi[Transaksi_NomorHP]" ?> </td>
+                <td>: <?php echo "$transaksi[Transaksi_NomorHP]" ?> </td>
             </tr>
             <tr>
                 <td>ALAMAT</td>
-                <td><?php echo "$transaksi[Transaksi_Alamat]" ?> </td>
+                <td>: <?php echo "$transaksi[Transaksi_Alamat]" ?> </td>
             </tr>
             <tr>
                 <td>NO IDENTITAS YANG DI JAMINKAN</td>
-                <td><?php echo "$transaksi[Transaksi_Jaminan_Identitas]-$transaksi[Transaksi_Nomor_Jaminan_Identitas]" ?> </td>
+                <td>: <?php echo "$transaksi[Transaksi_Jaminan_Identitas]-$transaksi[Transaksi_Nomor_Jaminan_Identitas]" ?> </td>
             </tr>
             <tr>
-                <th>DENGAN INI MENYATAKAN AKAN MENYEWA KENDARAAN :</th>
-                <th></th>
+                <th>DENGAN INI MENYATAKAN AKAN MENYEWA KENDARAAN </th>
+                <td></td>
             </tr>
             <tr>
                 <td>JENIS KENDARAAN</td>
-                <td><?php echo "$transaksi[Mobil_Merk] $transaksi[Mobil_Tipe]" ?> </td>
+                <td>: <?php echo "$transaksi[Mobil_Merk] $transaksi[Mobil_Tipe]" ?> </td>
             </tr>
             <tr>
                 <td>NOMOR POLISI</td>
-                <td><?php echo "$transaksi[Mobil_No_Polisi]" ?> </td>
+                <td>: <?php echo "$transaksi[Mobil_No_Polisi]" ?> </td>
             </tr>
             <tr>
                 <td>BENSIN POSISI</td>
-                <td><?php echo "$transaksi[Transaksi_Posisi_Bensin]" ?> </td>
+                <td>: <?php echo "$transaksi[Transaksi_Posisi_Bensin]" ?> KOTAK</td>
             </tr>
             <tr>
+                <td>TANGGAL KELUAR [JAM]</td>
+                <td>: <?php 
+                $dateout=date_create("$transaksi[Tangal_Waktu_Mulai]");
+                $datemasuk=date_create("$transaksi[Tanggal_Waktu_Berakhir]");
+                echo date_format($dateout,"d/m/Y [H:i]");                
+                 ?></td>
+            </tr>
+            <tr>
+                <td>TANGGAL MASUK [JAM]</td>
+                <td>: <?php 
+                echo date_format($datemasuk,"d/m/Y [H:i]");                
+                // $datemasuk=date_create("$transaksi[Tangal_Waktu_Mulai]");
+                // echo date_format($dateIN,"d/m/Y");                
+                 ?></td>
+            </tr>
+            <tr>
+                <td>PAYMENT/DEPOSIT</td>
+                <td>: <?php  ?></td>
+            </tr>
+
+            <!-- <tr>
                 <th>Masa Sewa</th>
                 <td>
                     <table>
@@ -364,7 +390,7 @@ tr, td {
                         </tr>
                     </table>
                 </td>
-            </tr>
+            </tr> -->
             <tr>
                 <td>Kelengkapan</td>
                 <td><?php echo "$transaksi[Kelengkapan]" ?> </td>

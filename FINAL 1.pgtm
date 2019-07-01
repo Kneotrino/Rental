@@ -542,11 +542,11 @@
             <ViewProperties type="dateTime" dateTimeFormat="d-m-Y"/>
             <EditProperties type="dateTime" dateTimeFormat="d-m-Y H:i:s" firstDayOfWeek="0"/>
           </ColumnPresentation>
-          <ColumnPresentation fieldName="Tangal_Waktu_Mulai" caption="Tanggal Dan Jam Mulai" selectedFilterOperators="2031871">
+          <ColumnPresentation fieldName="Tangal_Waktu_Mulai" caption="Tanggal Dan Jam Keluar" selectedFilterOperators="2031871">
             <ViewProperties type="dateTime" dateTimeFormat="d-m-Y H:i:s"/>
             <EditProperties type="dateTime" dateTimeFormat="d-m-Y H:i:s" firstDayOfWeek="0"/>
           </ColumnPresentation>
-          <ColumnPresentation fieldName="Tanggal_Waktu_Berakhir" caption="Tanggal Dan Jam Berakhir" canSetNull="true" selectedFilterOperators="1573119">
+          <ColumnPresentation fieldName="Tanggal_Waktu_Berakhir" caption="Tanggal Dan Jam Masuk" selectedFilterOperators="1573119">
             <ViewProperties type="dateTime" dateTimeFormat="d-m-Y H:i:s" dateTimeKind="2"/>
             <EditProperties type="dateTime" dateTimeFormat="d-m-Y H:i:s" firstDayOfWeek="0"/>
           </ColumnPresentation>

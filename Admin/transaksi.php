@@ -2694,8 +2694,8 @@
                 new FilterColumn($this->dataset, 'Masa_Sewa_Tahun', 'Masa_Sewa_Tahun', 'Tahun Sewa'),
                 new FilterColumn($this->dataset, 'Kelengkapan', 'Kelengkapan', 'Kelengkapan Kendaraan'),
                 new FilterColumn($this->dataset, 'Transaksi_Tanggal', 'Transaksi_Tanggal', 'Tanggal Bayar'),
-                new FilterColumn($this->dataset, 'Tangal_Waktu_Mulai', 'Tangal_Waktu_Mulai', 'Tanggal Dan Jam Mulai'),
-                new FilterColumn($this->dataset, 'Tanggal_Waktu_Berakhir', 'Tanggal_Waktu_Berakhir', 'Tanggal Dan Jam Berakhir'),
+                new FilterColumn($this->dataset, 'Tangal_Waktu_Mulai', 'Tangal_Waktu_Mulai', 'Tanggal Dan Jam Keluar'),
+                new FilterColumn($this->dataset, 'Tanggal_Waktu_Berakhir', 'Tanggal_Waktu_Berakhir', 'Tanggal Dan Jam Masuk'),
                 new FilterColumn($this->dataset, 'Keterangan_Lainnya', 'Keterangan_Lainnya', 'Keterangan Lainnya'),
                 new FilterColumn($this->dataset, 'Transaksi_Laporan', 'Transaksi_Laporan', 'Transaksi Laporan'),
                 new FilterColumn($this->dataset, 'Print', 'Print', 'Print')
@@ -3334,7 +3334,7 @@
             //
             // View column for Tangal_Waktu_Mulai field
             //
-            $column = new DateTimeViewColumn('Tangal_Waktu_Mulai', 'Tangal_Waktu_Mulai', 'Tanggal Dan Jam Mulai', $this->dataset);
+            $column = new DateTimeViewColumn('Tangal_Waktu_Mulai', 'Tangal_Waktu_Mulai', 'Tanggal Dan Jam Keluar', $this->dataset);
             $column->SetOrderable(true);
             $column->SetDateTimeFormat('d-m-Y H:i:s');
             $column->setMinimalVisibility(ColumnVisibility::PHONE);
@@ -3345,7 +3345,7 @@
             //
             // View column for Tanggal_Waktu_Berakhir field
             //
-            $column = new DateTimeViewColumn('Tanggal_Waktu_Berakhir', 'Tanggal_Waktu_Berakhir', 'Tanggal Dan Jam Berakhir', $this->dataset);
+            $column = new DateTimeViewColumn('Tanggal_Waktu_Berakhir', 'Tanggal_Waktu_Berakhir', 'Tanggal Dan Jam Masuk', $this->dataset);
             $column->SetOrderable(true);
             $column->SetDateTimeFormat('d-m-Y H:i:s');
             $column->setMinimalVisibility(ColumnVisibility::PHONE);
@@ -3514,7 +3514,7 @@
             //
             // View column for Tangal_Waktu_Mulai field
             //
-            $column = new DateTimeViewColumn('Tangal_Waktu_Mulai', 'Tangal_Waktu_Mulai', 'Tanggal Dan Jam Mulai', $this->dataset);
+            $column = new DateTimeViewColumn('Tangal_Waktu_Mulai', 'Tangal_Waktu_Mulai', 'Tanggal Dan Jam Keluar', $this->dataset);
             $column->SetOrderable(true);
             $column->SetDateTimeFormat('d-m-Y H:i:s');
             $grid->AddSingleRecordViewColumn($column);
@@ -3522,7 +3522,7 @@
             //
             // View column for Tanggal_Waktu_Berakhir field
             //
-            $column = new DateTimeViewColumn('Tanggal_Waktu_Berakhir', 'Tanggal_Waktu_Berakhir', 'Tanggal Dan Jam Berakhir', $this->dataset);
+            $column = new DateTimeViewColumn('Tanggal_Waktu_Berakhir', 'Tanggal_Waktu_Berakhir', 'Tanggal Dan Jam Masuk', $this->dataset);
             $column->SetOrderable(true);
             $column->SetDateTimeFormat('d-m-Y H:i:s');
             $grid->AddSingleRecordViewColumn($column);
@@ -3710,7 +3710,7 @@
             // Edit column for Tangal_Waktu_Mulai field
             //
             $editor = new DateTimeEdit('tangal_waktu_mulai_edit', false, 'd-m-Y H:i:s');
-            $editColumn = new CustomEditColumn('Tanggal Dan Jam Mulai', 'Tangal_Waktu_Mulai', $editor, $this->dataset);
+            $editColumn = new CustomEditColumn('Tanggal Dan Jam Keluar', 'Tangal_Waktu_Mulai', $editor, $this->dataset);
             $validator = new RequiredValidator(StringUtils::Format($this->GetLocalizerCaptions()->GetMessageString('RequiredValidationMessage'), $editColumn->GetCaption()));
             $editor->GetValidatorCollection()->AddValidator($validator);
             $this->ApplyCommonColumnEditProperties($editColumn);
@@ -3720,8 +3720,9 @@
             // Edit column for Tanggal_Waktu_Berakhir field
             //
             $editor = new DateTimeEdit('tanggal_waktu_berakhir_edit', false, 'd-m-Y H:i:s');
-            $editColumn = new CustomEditColumn('Tanggal Dan Jam Berakhir', 'Tanggal_Waktu_Berakhir', $editor, $this->dataset);
-            $editColumn->SetAllowSetToNull(true);
+            $editColumn = new CustomEditColumn('Tanggal Dan Jam Masuk', 'Tanggal_Waktu_Berakhir', $editor, $this->dataset);
+            $validator = new RequiredValidator(StringUtils::Format($this->GetLocalizerCaptions()->GetMessageString('RequiredValidationMessage'), $editColumn->GetCaption()));
+            $editor->GetValidatorCollection()->AddValidator($validator);
             $this->ApplyCommonColumnEditProperties($editColumn);
             $grid->AddEditColumn($editColumn);
             
@@ -3886,7 +3887,7 @@
             // Edit column for Tangal_Waktu_Mulai field
             //
             $editor = new DateTimeEdit('tangal_waktu_mulai_edit', false, 'd-m-Y H:i:s');
-            $editColumn = new CustomEditColumn('Tanggal Dan Jam Mulai', 'Tangal_Waktu_Mulai', $editor, $this->dataset);
+            $editColumn = new CustomEditColumn('Tanggal Dan Jam Keluar', 'Tangal_Waktu_Mulai', $editor, $this->dataset);
             $validator = new RequiredValidator(StringUtils::Format($this->GetLocalizerCaptions()->GetMessageString('RequiredValidationMessage'), $editColumn->GetCaption()));
             $editor->GetValidatorCollection()->AddValidator($validator);
             $this->ApplyCommonColumnEditProperties($editColumn);
@@ -3896,8 +3897,9 @@
             // Edit column for Tanggal_Waktu_Berakhir field
             //
             $editor = new DateTimeEdit('tanggal_waktu_berakhir_edit', false, 'd-m-Y H:i:s');
-            $editColumn = new CustomEditColumn('Tanggal Dan Jam Berakhir', 'Tanggal_Waktu_Berakhir', $editor, $this->dataset);
-            $editColumn->SetAllowSetToNull(true);
+            $editColumn = new CustomEditColumn('Tanggal Dan Jam Masuk', 'Tanggal_Waktu_Berakhir', $editor, $this->dataset);
+            $validator = new RequiredValidator(StringUtils::Format($this->GetLocalizerCaptions()->GetMessageString('RequiredValidationMessage'), $editColumn->GetCaption()));
+            $editor->GetValidatorCollection()->AddValidator($validator);
             $this->ApplyCommonColumnEditProperties($editColumn);
             $grid->AddMultiEditColumn($editColumn);
             
@@ -4067,7 +4069,7 @@
             // Edit column for Tangal_Waktu_Mulai field
             //
             $editor = new DateTimeEdit('tangal_waktu_mulai_edit', false, 'd-m-Y H:i:s');
-            $editColumn = new CustomEditColumn('Tanggal Dan Jam Mulai', 'Tangal_Waktu_Mulai', $editor, $this->dataset);
+            $editColumn = new CustomEditColumn('Tanggal Dan Jam Keluar', 'Tangal_Waktu_Mulai', $editor, $this->dataset);
             $validator = new RequiredValidator(StringUtils::Format($this->GetLocalizerCaptions()->GetMessageString('RequiredValidationMessage'), $editColumn->GetCaption()));
             $editor->GetValidatorCollection()->AddValidator($validator);
             $this->ApplyCommonColumnEditProperties($editColumn);
@@ -4077,8 +4079,9 @@
             // Edit column for Tanggal_Waktu_Berakhir field
             //
             $editor = new DateTimeEdit('tanggal_waktu_berakhir_edit', false, 'd-m-Y H:i:s');
-            $editColumn = new CustomEditColumn('Tanggal Dan Jam Berakhir', 'Tanggal_Waktu_Berakhir', $editor, $this->dataset);
-            $editColumn->SetAllowSetToNull(true);
+            $editColumn = new CustomEditColumn('Tanggal Dan Jam Masuk', 'Tanggal_Waktu_Berakhir', $editor, $this->dataset);
+            $validator = new RequiredValidator(StringUtils::Format($this->GetLocalizerCaptions()->GetMessageString('RequiredValidationMessage'), $editColumn->GetCaption()));
+            $editor->GetValidatorCollection()->AddValidator($validator);
             $this->ApplyCommonColumnEditProperties($editColumn);
             $grid->AddInsertColumn($editColumn);
             
@@ -4246,7 +4249,7 @@
             //
             // View column for Tangal_Waktu_Mulai field
             //
-            $column = new DateTimeViewColumn('Tangal_Waktu_Mulai', 'Tangal_Waktu_Mulai', 'Tanggal Dan Jam Mulai', $this->dataset);
+            $column = new DateTimeViewColumn('Tangal_Waktu_Mulai', 'Tangal_Waktu_Mulai', 'Tanggal Dan Jam Keluar', $this->dataset);
             $column->SetOrderable(true);
             $column->SetDateTimeFormat('d-m-Y H:i:s');
             $grid->AddPrintColumn($column);
@@ -4254,7 +4257,7 @@
             //
             // View column for Tanggal_Waktu_Berakhir field
             //
-            $column = new DateTimeViewColumn('Tanggal_Waktu_Berakhir', 'Tanggal_Waktu_Berakhir', 'Tanggal Dan Jam Berakhir', $this->dataset);
+            $column = new DateTimeViewColumn('Tanggal_Waktu_Berakhir', 'Tanggal_Waktu_Berakhir', 'Tanggal Dan Jam Masuk', $this->dataset);
             $column->SetOrderable(true);
             $column->SetDateTimeFormat('d-m-Y H:i:s');
             $grid->AddPrintColumn($column);
@@ -4403,7 +4406,7 @@
             //
             // View column for Tangal_Waktu_Mulai field
             //
-            $column = new DateTimeViewColumn('Tangal_Waktu_Mulai', 'Tangal_Waktu_Mulai', 'Tanggal Dan Jam Mulai', $this->dataset);
+            $column = new DateTimeViewColumn('Tangal_Waktu_Mulai', 'Tangal_Waktu_Mulai', 'Tanggal Dan Jam Keluar', $this->dataset);
             $column->SetOrderable(true);
             $column->SetDateTimeFormat('d-m-Y H:i:s');
             $grid->AddExportColumn($column);
@@ -4411,7 +4414,7 @@
             //
             // View column for Tanggal_Waktu_Berakhir field
             //
-            $column = new DateTimeViewColumn('Tanggal_Waktu_Berakhir', 'Tanggal_Waktu_Berakhir', 'Tanggal Dan Jam Berakhir', $this->dataset);
+            $column = new DateTimeViewColumn('Tanggal_Waktu_Berakhir', 'Tanggal_Waktu_Berakhir', 'Tanggal Dan Jam Masuk', $this->dataset);
             $column->SetOrderable(true);
             $column->SetDateTimeFormat('d-m-Y H:i:s');
             $grid->AddExportColumn($column);
@@ -4560,7 +4563,7 @@
             //
             // View column for Tangal_Waktu_Mulai field
             //
-            $column = new DateTimeViewColumn('Tangal_Waktu_Mulai', 'Tangal_Waktu_Mulai', 'Tanggal Dan Jam Mulai', $this->dataset);
+            $column = new DateTimeViewColumn('Tangal_Waktu_Mulai', 'Tangal_Waktu_Mulai', 'Tanggal Dan Jam Keluar', $this->dataset);
             $column->SetOrderable(true);
             $column->SetDateTimeFormat('d-m-Y H:i:s');
             $grid->AddCompareColumn($column);
@@ -4568,7 +4571,7 @@
             //
             // View column for Tanggal_Waktu_Berakhir field
             //
-            $column = new DateTimeViewColumn('Tanggal_Waktu_Berakhir', 'Tanggal_Waktu_Berakhir', 'Tanggal Dan Jam Berakhir', $this->dataset);
+            $column = new DateTimeViewColumn('Tanggal_Waktu_Berakhir', 'Tanggal_Waktu_Berakhir', 'Tanggal Dan Jam Masuk', $this->dataset);
             $column->SetOrderable(true);
             $column->SetDateTimeFormat('d-m-Y H:i:s');
             $grid->AddCompareColumn($column);
