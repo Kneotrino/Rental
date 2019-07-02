@@ -246,7 +246,6 @@
     display: flex;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
-    height: 300px;
     margin-right: -15px;
     margin-left: -15px;
 }
@@ -296,7 +295,7 @@ tr, td {
         }
         </script>
     <div class="invoice-box">
-        <div class="get_more_info">
+        <!-- <div class="get_more_info">
             <div class="row no-gutters">
                 <div class="col-md-6">
                     <div class="form-footer block"">
@@ -305,8 +304,7 @@ tr, td {
                 </div>
                 <div class="col-md-6 block">
                     <div class="max-container-map-left">
-                        <h3> HAY RENTAL MOBIL</h3>
-                        <!-- <b><u>SURAT JALAN / INVOICE</b></u> -->
+                        <h3> HAY RENTAL MOBIL <br><p class="mb-4 pb-0">SURAT JALAN / INVOICE</p></h3>
                         <p class="mb-4 pb-0">
                             <b><u>                            
                             NO.HRM <?php echo "$transaksi[Transaksi_ID]";
@@ -318,9 +316,23 @@ tr, td {
                     </div>
                 </div>
             </div>
-        </div>
-
+        </div> -->
         <table style="border-collapse: collapse;  width: 100%;">
+            <tr>
+                <td><p style="text-align:center;"><img src="logo.jpeg" width="160" height="160" alt="Logo"></p></td>
+                <td><b style="font-size:20px;"> HAY RENTAL</h2></b><br>SURAT JALAN / INVOICE<br>
+                NO.HRM <?php echo "$transaksi[Transaksi_ID]";
+                                echo date_format($date,"/m/Y");?></b></u>
+                            <br>Jln.Komodo Airnona, Kota Kupang
+                            <br>Nusa Tenggara Timur
+                            <br>Nomor Telp : (0380)8442728 /082236338534
+            </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+            </tr>
+
             <tr>
                 <th>YANG BETANDA TANGAN DI BAWAH INI</th>
                 <td>:</td>
