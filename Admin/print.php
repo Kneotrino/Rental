@@ -408,7 +408,7 @@ tr, td {
                 <td><?php echo "$transaksi[Kelengkapan]" ?> </td>
             </tr>
             <tr>
-                <td>Norek Bank Mandiri CV.BS HAY RENTAL 1810-0003-9035-2</td>
+                <td><b>An CV.Berkat Sejahtera - HAY RENTAL<br> Bank Mandiri Norek 181-00-0039035-2</b></td>
                 <td></td>
             </tr>
             <tr>
@@ -419,14 +419,22 @@ tr, td {
                 ?></td>
             </tr>
             <tr>
-                <th>Adminstrasi<br><br><br><br></th>
-                <th>Penyewa<br><br><br><br></th>
+                <th>Adminstrasi<br><br><br></th>
+                <th>Penyewa<br><br><br></th>
             </tr>
             <tr>
                 <th>(...................)</th>
                 <th>(<?php echo "$transaksi[Transaksi_Nama]"?>)</th>
             </tr>
-        </table>        
+            <tr>
+                <th colspan="2">
+                <p style = "font-family:Apple Chancery, cursive;font-size:16px;font-style:italic;">
+                    "Selamat Menikmati Perjalanan Anda"
+                </p>    
+                </th>            
+            </tr>
+        </table>    
+        <!-- <center>selamat menikmati perjalanan anda</center>     -->
     </div>
 
     <table style="width:100%">

@@ -60,9 +60,10 @@ function GetPageGroups()
 function GetPageInfos()
 {
     $result = array();
-    $result[] = array('caption' => 'Laporan', 'short_caption' => 'Laporan', 'filename' => 'laporan.php', 'name' => 'laporan', 'group_name' => 'Default', 'add_separator' => false, 'description' => '');
     $result[] = array('caption' => 'Mobil', 'short_caption' => 'Mobil', 'filename' => 'mobil.php', 'name' => 'mobil', 'group_name' => 'Default', 'add_separator' => false, 'description' => '');
     $result[] = array('caption' => 'Transaksi', 'short_caption' => 'Transaksi', 'filename' => 'transaksi.php', 'name' => 'transaksi', 'group_name' => 'Default', 'add_separator' => false, 'description' => '');
+    $result[] = array('caption' => 'Laporan', 'short_caption' => 'Laporan', 'filename' => 'laporan.php', 'name' => 'laporan', 'group_name' => 'Default', 'add_separator' => false, 'description' => '');
+    $result[] = array('caption' => 'Tamu', 'short_caption' => 'Tamu', 'filename' => 'tamu.php', 'name' => 'Tamu', 'group_name' => 'Default', 'add_separator' => false, 'description' => '');
     $result[] = array('caption' => 'User', 'short_caption' => 'User', 'filename' => 'user.php', 'name' => 'user', 'group_name' => 'Default', 'add_separator' => false, 'description' => '');
     return $result;
 }

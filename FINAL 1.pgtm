@@ -18,184 +18,36 @@
     <DataSource name="user"/>
     <DataSource name="mobil"/>
     <DataSource name="laporan"/>
+    <DataSource name="Tamu" type="query">
+      <SelectStatement>
+SELECT DISTINCT Transaksi_Nama,Transaksi_NomorHP,Transaksi_Alamat,Transaksi_Nomor_Jaminan_Identitas FROM `transaksi`      </SelectStatement>
+    </DataSource>
   </DataSources>
   <Presentation disableMagicQuotesRuntime="false" showEnvironmentVariables="false" showExecutedQueries="false" showPHPErrorsAndWarnings="false" hasHomePage="false">
     <Pages>
-      <Page type="table" tableName="laporan" numberByDataSource="0" fileName="laporan" caption="Laporan" shortCaption="Laporan" addSeparator="false" horizontalFilterCondition="" recordsPerPage="20" NavigatorPosition="3" insertAbilityMode="3" editAbilityMode="3" multiEditAbility="3" deleteAbilityMode="3" copyAbilityMode="0" deleteSelectedAbilityMode="3" contentEncoding="UTF-8" exportAllRecordsAvailable="31" exportSelectedRecordsAvailable="31" exportSingleRecordFromGridAvailable="0" exportRecordFromViewFormAvailable="31" printAvailable="13" showKeyColumnsImagesInGridHeader="false" recordsComparisionAvailable="false" condensedTable="true">
-        <DefaultSortedColumns>
-          <Column fieldName="Laporan_Created" orderType="1"/>
-        </DefaultSortedColumns>
-        <BeforeGridText/>
-        <DetailedDescription/>
-        <ColumnPresentations>
-          <ColumnPresentation fieldName="Laporan_Id" caption="Laporan Id" showColumnFilter="false" selectedFilterOperators="1573119">
-            <ViewProperties type="text">
-              <Format type="number" thousandSeparator=","/>
-            </ViewProperties>
-            <EditProperties type="textBox" maxLength="0"/>
-          </ColumnPresentation>
-          <ColumnPresentation fieldName="Laporan_Pemasukan" caption="Laporan Pemasukan" showColumnFilter="false" canSetNull="true" defaultInsertValue="0" selectedFilterOperators="1573119">
-            <ViewProperties type="text">
-              <Format type="number" thousandSeparator=","/>
-            </ViewProperties>
-            <EditProperties type="textBox" maxLength="0"/>
-          </ColumnPresentation>
-          <ColumnPresentation fieldName="Laporan_Pengeluaran" caption="Laporan Pengeluaran" showColumnFilter="false" canSetNull="true" defaultInsertValue="0" selectedFilterOperators="1573119">
-            <ViewProperties type="text">
-              <Format type="number" thousandSeparator=","/>
-            </ViewProperties>
-            <EditProperties type="textBox" maxLength="0"/>
-          </ColumnPresentation>
-          <ColumnPresentation fieldName="Laporan_Keterangan" caption="Laporan Keterangan" showColumnFilter="false" canSetNull="true" selectedFilterOperators="1589247">
-            <ViewProperties type="text" maxLength="75"/>
-            <EditProperties type="textArea" columnCount="50" rowCount="8" placeholder=""/>
-          </ColumnPresentation>
-          <ColumnPresentation fieldName="Laporan_Tanggal" caption="Laporan Tanggal" defaultInsertValue="%CURRENT_DATE%" selectedFilterOperators="2031871">
-            <ViewProperties type="dateTime" dateTimeFormat="d-m-Y H:i:s"/>
-            <EditProperties type="dateTime" dateTimeFormat="d-m-Y H:i:s" firstDayOfWeek="0"/>
-          </ColumnPresentation>
-          <ColumnPresentation fieldName="Laporan_Mobil" caption="Laporan Mobil" selectedFilterOperators="1573119">
-            <Lookup tableName="mobil" linkFieldName="Mobil_id" displayFieldName="Mobil_No_Polisi" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
-            <ViewProperties type="text"/>
-            <EditProperties type="dynamicCombobox" itemTemplate="%Mobil_No_Polisi% %Mobil_Tipe%"/>
-          </ColumnPresentation>
-          <ColumnPresentation fieldName="Laporan_Transaksi" caption="Laporan Transaksi" selectedFilterOperators="1573119">
-            <Lookup tableName="transaksi" linkFieldName="Transaksi_ID" displayFieldName="Transaksi_ID" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
-            <ViewProperties type="text">
-              <Format type="number" decimalSeparator="." thousandSeparator=","/>
-            </ViewProperties>
-            <EditProperties type="dynamicCombobox" itemTemplate="%Transaksi_ID%-%Transaksi_Nama%"/>
-          </ColumnPresentation>
-          <ColumnPresentation fieldName="Laporan_Created" caption="Laporan Created" selectedFilterOperators="2031871">
-            <ViewProperties type="dateTime" dateTimeFormat="d-m-Y H:i:s"/>
-            <EditProperties type="dateTime" dateTimeFormat="d-m-Y H:i:s" firstDayOfWeek="0"/>
-          </ColumnPresentation>
-        </ColumnPresentations>
-        <Columns>
-          <List>
-            <Column fieldName="Laporan_Id"/>
-            <Column fieldName="Laporan_Pemasukan"/>
-            <Column fieldName="Laporan_Pengeluaran"/>
-            <Column fieldName="Laporan_Keterangan"/>
-            <Column fieldName="Laporan_Tanggal"/>
-            <Column fieldName="Laporan_Mobil"/>
-            <Column fieldName="Laporan_Transaksi"/>
-            <Column fieldName="Laporan_Created"/>
-          </List>
-          <View>
-            <Column fieldName="Laporan_Id"/>
-            <Column fieldName="Laporan_Pemasukan"/>
-            <Column fieldName="Laporan_Pengeluaran"/>
-            <Column fieldName="Laporan_Keterangan"/>
-            <Column fieldName="Laporan_Tanggal"/>
-            <Column fieldName="Laporan_Mobil"/>
-            <Column fieldName="Laporan_Transaksi"/>
-            <Column fieldName="Laporan_Created"/>
-          </View>
-          <Edit>
-            <Column fieldName="Laporan_Id" visible="false"/>
-            <Column fieldName="Laporan_Pemasukan"/>
-            <Column fieldName="Laporan_Pengeluaran"/>
-            <Column fieldName="Laporan_Keterangan"/>
-            <Column fieldName="Laporan_Tanggal"/>
-            <Column fieldName="Laporan_Mobil"/>
-            <Column fieldName="Laporan_Transaksi"/>
-            <Column fieldName="Laporan_Created" visible="false"/>
-          </Edit>
-          <Insert>
-            <Column fieldName="Laporan_Id" visible="false"/>
-            <Column fieldName="Laporan_Pemasukan"/>
-            <Column fieldName="Laporan_Pengeluaran"/>
-            <Column fieldName="Laporan_Keterangan"/>
-            <Column fieldName="Laporan_Tanggal"/>
-            <Column fieldName="Laporan_Mobil"/>
-            <Column fieldName="Laporan_Transaksi"/>
-            <Column fieldName="Laporan_Created" visible="false"/>
-          </Insert>
-          <QuickFilter>
-            <Column fieldName="Laporan_Id"/>
-            <Column fieldName="Laporan_Pemasukan"/>
-            <Column fieldName="Laporan_Pengeluaran"/>
-            <Column fieldName="Laporan_Keterangan"/>
-            <Column fieldName="Laporan_Tanggal"/>
-            <Column fieldName="Laporan_Created"/>
-            <Column fieldName="Laporan_Mobil"/>
-            <Column fieldName="Laporan_Transaksi"/>
-          </QuickFilter>
-          <FilterBuilder>
-            <Column fieldName="Laporan_Id"/>
-            <Column fieldName="Laporan_Pemasukan"/>
-            <Column fieldName="Laporan_Pengeluaran"/>
-            <Column fieldName="Laporan_Keterangan"/>
-            <Column fieldName="Laporan_Tanggal"/>
-            <Column fieldName="Laporan_Mobil"/>
-            <Column fieldName="Laporan_Transaksi"/>
-            <Column fieldName="Laporan_Created"/>
-          </FilterBuilder>
-          <Print>
-            <Column fieldName="Laporan_Id"/>
-            <Column fieldName="Laporan_Pemasukan"/>
-            <Column fieldName="Laporan_Pengeluaran"/>
-            <Column fieldName="Laporan_Keterangan"/>
-            <Column fieldName="Laporan_Tanggal"/>
-            <Column fieldName="Laporan_Mobil"/>
-            <Column fieldName="Laporan_Transaksi"/>
-            <Column fieldName="Laporan_Created"/>
-          </Print>
-          <Export>
-            <Column fieldName="Laporan_Id"/>
-            <Column fieldName="Laporan_Pemasukan"/>
-            <Column fieldName="Laporan_Pengeluaran"/>
-            <Column fieldName="Laporan_Keterangan"/>
-            <Column fieldName="Laporan_Tanggal"/>
-            <Column fieldName="Laporan_Mobil"/>
-            <Column fieldName="Laporan_Transaksi"/>
-            <Column fieldName="Laporan_Created"/>
-          </Export>
-          <Compare>
-            <Column fieldName="Laporan_Id" visible="false"/>
-            <Column fieldName="Laporan_Pemasukan"/>
-            <Column fieldName="Laporan_Pengeluaran"/>
-            <Column fieldName="Laporan_Keterangan"/>
-            <Column fieldName="Laporan_Tanggal"/>
-            <Column fieldName="Laporan_Mobil"/>
-            <Column fieldName="Laporan_Transaksi"/>
-            <Column fieldName="Laporan_Created"/>
-          </Compare>
-          <MultiEdit>
-            <Column fieldName="Laporan_Id" visible="false"/>
-            <Column fieldName="Laporan_Pemasukan"/>
-            <Column fieldName="Laporan_Pengeluaran"/>
-            <Column fieldName="Laporan_Keterangan"/>
-            <Column fieldName="Laporan_Tanggal"/>
-            <Column fieldName="Laporan_Mobil"/>
-            <Column fieldName="Laporan_Transaksi"/>
-            <Column fieldName="Laporan_Created" visible="false"/>
-          </MultiEdit>
-        </Columns>
-        <Details/>
-        <RecordPermissions useRecordPermissions="false"/>
-        <PartitionNavigators/>
-      </Page>
       <Page type="table" tableName="mobil" numberByDataSource="0" fileName="mobil" caption="Mobil" shortCaption="Mobil" viewFormCaptionTemplate="%Mobil_No_Polisi%" editFormCaptionTemplate="%Mobil_No_Polisi%" addSeparator="false" horizontalFilterCondition="" recordsPerPage="20" NavigatorPosition="3" insertAbilityMode="3" editAbilityMode="3" multiEditAbility="3" deleteAbilityMode="3" copyAbilityMode="0" deleteSelectedAbilityMode="3" contentEncoding="UTF-8" exportAllRecordsAvailable="31" exportSelectedRecordsAvailable="31" exportSingleRecordFromGridAvailable="0" exportRecordFromViewFormAvailable="31" printAvailable="13" showKeyColumnsImagesInGridHeader="false" recordsComparisionAvailable="false" condensedTable="true">
         <BeforeGridText/>
         <DetailedDescription/>
         <ColumnPresentations>
-          <ColumnPresentation fieldName="Mobil_id" caption="Mobil Id" showColumnFilter="false" selectedFilterOperators="1573119">
+          <ColumnPresentation fieldName="Mobil_id" caption="Mobil Id" totalFunction="5" showColumnFilter="false" selectedFilterOperators="1573119">
             <ViewProperties type="text">
               <Format type="number" thousandSeparator=","/>
             </ViewProperties>
             <EditProperties type="textBox" maxLength="0"/>
           </ColumnPresentation>
-          <ColumnPresentation fieldName="Mobil_Keterangan" caption="Mobil Keterangan" showColumnFilter="false" canSetNull="true" selectedFilterOperators="1589247">
-            <ViewProperties type="text" maxLength="75"/>
-            <EditProperties type="textBox" maxLength="0"/>
-          </ColumnPresentation>
-          <ColumnPresentation fieldName="Mobil_Merk" caption="Mobil Merk" showColumnFilter="false" canSetNull="true" selectedFilterOperators="1589247">
+          <ColumnPresentation fieldName="Mobil_Keterangan" caption="Mobil Pemilik" showColumnFilter="false" canSetNull="true" selectedFilterOperators="1589247">
             <ViewProperties type="text" maxLength="75"/>
             <EditProperties type="textBox" maxLength="0"/>
           </ColumnPresentation>
           <ColumnPresentation fieldName="Mobil_No_Polisi" caption="Mobil No Polisi" showColumnFilter="false" canSetNull="true" selectedFilterOperators="1589247">
+            <ViewProperties type="text" maxLength="75"/>
+            <EditProperties type="textBox" maxLength="0"/>
+          </ColumnPresentation>
+          <ColumnPresentation fieldName="Mobil_Tipe" caption="Mobil Tipe" showColumnFilter="false" canSetNull="true" selectedFilterOperators="1589247">
+            <ViewProperties type="text" maxLength="75"/>
+            <EditProperties type="textBox" maxLength="0"/>
+          </ColumnPresentation>
+          <ColumnPresentation fieldName="Mobil_Merk" caption="Mobil Merk" showColumnFilter="false" canSetNull="true" selectedFilterOperators="1589247">
             <ViewProperties type="text" maxLength="75"/>
             <EditProperties type="textBox" maxLength="0"/>
           </ColumnPresentation>
@@ -205,105 +57,120 @@
             </ViewProperties>
             <EditProperties type="textBox" maxLength="0"/>
           </ColumnPresentation>
-          <ColumnPresentation fieldName="Mobil_Tipe" caption="Mobil Tipe" showColumnFilter="false" canSetNull="true" selectedFilterOperators="1589247">
-            <ViewProperties type="text" maxLength="75"/>
-            <EditProperties type="textBox" maxLength="0"/>
-          </ColumnPresentation>
           <ColumnPresentation fieldName="Mobil_Warna" caption="Mobil Warna" showColumnFilter="false" canSetNull="true" selectedFilterOperators="1589247">
             <ViewProperties type="text" maxLength="75"/>
             <EditProperties type="textBox" maxLength="0"/>
+          </ColumnPresentation>
+          <ColumnPresentation fieldName="Aktif" caption="Aktif" selectedFilterOperators="1589247">
+            <ViewProperties type="text"/>
+            <EditProperties type="comboBox">
+              <Values>
+                <Value name="Aktif" caption="Aktif"/>
+                <Value name="Keluar" caption="Keluar"/>
+              </Values>
+            </EditProperties>
           </ColumnPresentation>
         </ColumnPresentations>
         <Columns>
           <List>
             <Column fieldName="Mobil_id"/>
             <Column fieldName="Mobil_Keterangan"/>
-            <Column fieldName="Mobil_Merk"/>
             <Column fieldName="Mobil_No_Polisi"/>
-            <Column fieldName="Mobil_Tahun"/>
             <Column fieldName="Mobil_Tipe"/>
+            <Column fieldName="Mobil_Merk" visible="false"/>
+            <Column fieldName="Mobil_Tahun"/>
             <Column fieldName="Mobil_Warna"/>
+            <Column fieldName="Aktif"/>
           </List>
           <View>
             <Column fieldName="Mobil_id"/>
             <Column fieldName="Mobil_Keterangan"/>
-            <Column fieldName="Mobil_Merk"/>
             <Column fieldName="Mobil_No_Polisi"/>
-            <Column fieldName="Mobil_Tahun"/>
             <Column fieldName="Mobil_Tipe"/>
+            <Column fieldName="Mobil_Merk" visible="false"/>
+            <Column fieldName="Mobil_Tahun"/>
             <Column fieldName="Mobil_Warna"/>
+            <Column fieldName="Aktif"/>
           </View>
           <Edit>
             <Column fieldName="Mobil_id" visible="false"/>
             <Column fieldName="Mobil_Keterangan"/>
-            <Column fieldName="Mobil_Merk"/>
             <Column fieldName="Mobil_No_Polisi"/>
-            <Column fieldName="Mobil_Tahun"/>
             <Column fieldName="Mobil_Tipe"/>
+            <Column fieldName="Mobil_Merk" visible="false"/>
+            <Column fieldName="Mobil_Tahun"/>
             <Column fieldName="Mobil_Warna"/>
+            <Column fieldName="Aktif"/>
           </Edit>
           <Insert>
             <Column fieldName="Mobil_id" visible="false"/>
             <Column fieldName="Mobil_Keterangan"/>
-            <Column fieldName="Mobil_Merk"/>
             <Column fieldName="Mobil_No_Polisi"/>
-            <Column fieldName="Mobil_Tahun"/>
             <Column fieldName="Mobil_Tipe"/>
+            <Column fieldName="Mobil_Merk" visible="false"/>
+            <Column fieldName="Mobil_Tahun"/>
             <Column fieldName="Mobil_Warna"/>
+            <Column fieldName="Aktif"/>
           </Insert>
           <QuickFilter>
             <Column fieldName="Mobil_id"/>
             <Column fieldName="Mobil_Keterangan"/>
-            <Column fieldName="Mobil_Merk"/>
+            <Column fieldName="Mobil_Merk" visible="false"/>
             <Column fieldName="Mobil_No_Polisi"/>
             <Column fieldName="Mobil_Tahun"/>
             <Column fieldName="Mobil_Tipe"/>
             <Column fieldName="Mobil_Warna"/>
+            <Column fieldName="Aktif"/>
           </QuickFilter>
           <FilterBuilder>
             <Column fieldName="Mobil_id"/>
             <Column fieldName="Mobil_Keterangan"/>
-            <Column fieldName="Mobil_Merk"/>
             <Column fieldName="Mobil_No_Polisi"/>
-            <Column fieldName="Mobil_Tahun"/>
             <Column fieldName="Mobil_Tipe"/>
+            <Column fieldName="Mobil_Merk" visible="false"/>
+            <Column fieldName="Mobil_Tahun"/>
             <Column fieldName="Mobil_Warna"/>
+            <Column fieldName="Aktif"/>
           </FilterBuilder>
           <Print>
             <Column fieldName="Mobil_id"/>
             <Column fieldName="Mobil_Keterangan"/>
-            <Column fieldName="Mobil_Merk"/>
             <Column fieldName="Mobil_No_Polisi"/>
-            <Column fieldName="Mobil_Tahun"/>
             <Column fieldName="Mobil_Tipe"/>
+            <Column fieldName="Mobil_Merk" visible="false"/>
+            <Column fieldName="Mobil_Tahun"/>
             <Column fieldName="Mobil_Warna"/>
+            <Column fieldName="Aktif"/>
           </Print>
           <Export>
             <Column fieldName="Mobil_id"/>
             <Column fieldName="Mobil_Keterangan"/>
-            <Column fieldName="Mobil_Merk"/>
             <Column fieldName="Mobil_No_Polisi"/>
-            <Column fieldName="Mobil_Tahun"/>
             <Column fieldName="Mobil_Tipe"/>
+            <Column fieldName="Mobil_Merk" visible="false"/>
+            <Column fieldName="Mobil_Tahun"/>
             <Column fieldName="Mobil_Warna"/>
+            <Column fieldName="Aktif"/>
           </Export>
           <Compare>
             <Column fieldName="Mobil_id" visible="false"/>
             <Column fieldName="Mobil_Keterangan"/>
-            <Column fieldName="Mobil_Merk"/>
             <Column fieldName="Mobil_No_Polisi"/>
-            <Column fieldName="Mobil_Tahun"/>
             <Column fieldName="Mobil_Tipe"/>
+            <Column fieldName="Mobil_Merk" visible="false"/>
+            <Column fieldName="Mobil_Tahun"/>
             <Column fieldName="Mobil_Warna"/>
+            <Column fieldName="Aktif"/>
           </Compare>
           <MultiEdit>
             <Column fieldName="Mobil_id" visible="false"/>
             <Column fieldName="Mobil_Keterangan"/>
-            <Column fieldName="Mobil_Merk"/>
             <Column fieldName="Mobil_No_Polisi"/>
-            <Column fieldName="Mobil_Tahun"/>
             <Column fieldName="Mobil_Tipe"/>
+            <Column fieldName="Mobil_Merk" visible="false"/>
+            <Column fieldName="Mobil_Tahun"/>
             <Column fieldName="Mobil_Warna"/>
+            <Column fieldName="Aktif"/>
           </MultiEdit>
         </Columns>
         <Details>
@@ -318,13 +185,13 @@
                   </ViewProperties>
                   <EditProperties type="textBox" maxLength="0"/>
                 </ColumnPresentation>
-                <ColumnPresentation fieldName="Laporan_Pemasukan" caption="Laporan Pemasukan" showColumnFilter="false" canSetNull="true" defaultInsertValue="0" selectedFilterOperators="1573119">
+                <ColumnPresentation fieldName="Laporan_Pemasukan" caption="Pemasukan 10%" showColumnFilter="false" canSetNull="true" defaultInsertValue="0" selectedFilterOperators="1573119">
                   <ViewProperties type="text">
                     <Format type="number" thousandSeparator=","/>
                   </ViewProperties>
                   <EditProperties type="textBox" maxLength="0"/>
                 </ColumnPresentation>
-                <ColumnPresentation fieldName="Laporan_Pengeluaran" caption="Laporan Pengeluaran" showColumnFilter="false" canSetNull="true" defaultInsertValue="0" selectedFilterOperators="1573119">
+                <ColumnPresentation fieldName="Laporan_Pengeluaran" caption="Setoran Pemilik Mobil" showColumnFilter="false" canSetNull="true" defaultInsertValue="0" selectedFilterOperators="1573119">
                   <ViewProperties type="text">
                     <Format type="number" thousandSeparator=","/>
                   </ViewProperties>
@@ -335,7 +202,7 @@
                   <ViewProperties type="text"/>
                   <EditProperties type="comboBox"/>
                 </ColumnPresentation>
-                <ColumnPresentation fieldName="Laporan_Transaksi" caption="Laporan Transaksi" selectedFilterOperators="1573119">
+                <ColumnPresentation fieldName="Laporan_Transaksi" caption="Tanggal Pembayaran" selectedFilterOperators="1573119">
                   <Lookup tableName="transaksi" linkFieldName="Transaksi_ID" displayFieldName="Transaksi_ID" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
                   <ViewProperties type="text">
                     <Format type="number" decimalSeparator="." thousandSeparator=","/>
@@ -350,7 +217,7 @@
                   <ViewProperties type="dateTime" dateTimeFormat="d-m-Y H:i:s"/>
                   <EditProperties type="dateTime" dateTimeFormat="d-m-Y H:i:s" firstDayOfWeek="0"/>
                 </ColumnPresentation>
-                <ColumnPresentation fieldName="Laporan_Created" caption="Laporan Created" readOnly="true" defaultInsertValue="%CURRENT_DATETIME%" selectedFilterOperators="2031871">
+                <ColumnPresentation fieldName="Laporan_Created" caption="Tanggal Input" readOnly="true" defaultInsertValue="%CURRENT_DATETIME%" selectedFilterOperators="2031871">
                   <ViewProperties type="dateTime" dateTimeFormat="d-m-Y H:i:s"/>
                   <EditProperties type="dateTime" dateTimeFormat="d-m-Y H:i:s" firstDayOfWeek="0"/>
                 </ColumnPresentation>
@@ -473,7 +340,7 @@
         <BeforeGridText/>
         <DetailedDescription/>
         <ColumnPresentations>
-          <ColumnPresentation fieldName="Transaksi_ID" caption="Transaksi ID" showColumnFilter="false" readOnly="true" selectedFilterOperators="1573119">
+          <ColumnPresentation fieldName="Transaksi_ID" caption="Transaksi ID" totalFunction="5" showColumnFilter="false" readOnly="true" selectedFilterOperators="1573119">
             <ViewProperties type="text">
               <Format type="number" thousandSeparator=","/>
             </ViewProperties>
@@ -502,7 +369,7 @@
           <ColumnPresentation fieldName="Transaksi_Mobil" caption="Jenis Mobil " canSetNull="true" selectedFilterOperators="1573119">
             <Lookup tableName="mobil" linkFieldName="Mobil_id" displayFieldName="Mobil_No_Polisi" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
             <ViewProperties type="text"/>
-            <EditProperties type="dynamicCombobox" itemTemplate="%Mobil_No_Polisi% %Mobil_Tipe%"/>
+            <EditProperties type="dynamicCombobox" itemTemplate="%Mobil_id%-%Mobil_No_Polisi%-%Mobil_Tipe%-%Mobil_Keterangan% "/>
           </ColumnPresentation>
           <ColumnPresentation fieldName="Transaksi_Posisi_Bensin" caption="Posisi Bensin (Kotak)" showColumnFilter="false" canSetNull="true" selectedFilterOperators="1573119">
             <ViewProperties type="text">
@@ -538,7 +405,7 @@
             <ViewProperties type="text" maxLength="75"/>
             <EditProperties type="textArea" columnCount="50" rowCount="8" placeholder=""/>
           </ColumnPresentation>
-          <ColumnPresentation fieldName="Transaksi_Tanggal" caption="Tanggal Bayar" defaultInsertValue="%CURRENT_DATETIME%" selectedFilterOperators="2031871">
+          <ColumnPresentation fieldName="Transaksi_Tanggal" caption="Tanggal Bayar" canSetNull="true" defaultInsertValue="%CURRENT_DATETIME%" selectedFilterOperators="2031871">
             <ViewProperties type="dateTime" dateTimeFormat="d-m-Y"/>
             <EditProperties type="dateTime" dateTimeFormat="d-m-Y H:i:s" firstDayOfWeek="0"/>
           </ColumnPresentation>
@@ -555,6 +422,18 @@
             <EditProperties type="textArea" columnCount="50" rowCount="8" placeholder=""/>
           </ColumnPresentation>
           <ColumnPresentation fieldName="Transaksi_Laporan" caption="Transaksi Laporan" showColumnFilter="false" selectedFilterOperators="1573119">
+            <ViewProperties type="text">
+              <Format type="number" thousandSeparator=","/>
+            </ViewProperties>
+            <EditProperties type="textBox" maxLength="0"/>
+          </ColumnPresentation>
+          <ColumnPresentation fieldName="Jumlah_Stor" caption="Jumlah Stor" totalFunction="2" showColumnFilter="false" defaultInsertValue="0" selectedFilterOperators="1573119">
+            <ViewProperties type="text">
+              <Format type="number" thousandSeparator=","/>
+            </ViewProperties>
+            <EditProperties type="textBox" maxLength="0"/>
+          </ColumnPresentation>
+          <ColumnPresentation fieldName="Jumlah_Tagihan" caption="Jumlah Tagihan" totalFunction="2" showColumnFilter="false" defaultInsertValue="0" selectedFilterOperators="1573119">
             <ViewProperties type="text">
               <Format type="number" thousandSeparator=","/>
             </ViewProperties>
@@ -586,6 +465,8 @@
             <Column fieldName="Tanggal_Waktu_Berakhir"/>
             <Column fieldName="Keterangan_Lainnya"/>
             <Column fieldName="Transaksi_Laporan" visible="false"/>
+            <Column fieldName="Jumlah_Stor"/>
+            <Column fieldName="Jumlah_Tagihan"/>
             <Column fieldName="Print"/>
           </List>
           <View>
@@ -607,6 +488,8 @@
             <Column fieldName="Tanggal_Waktu_Berakhir"/>
             <Column fieldName="Keterangan_Lainnya"/>
             <Column fieldName="Transaksi_Laporan" visible="false"/>
+            <Column fieldName="Jumlah_Stor"/>
+            <Column fieldName="Jumlah_Tagihan"/>
             <Column fieldName="Print"/>
           </View>
           <Edit>
@@ -628,6 +511,8 @@
             <Column fieldName="Tanggal_Waktu_Berakhir"/>
             <Column fieldName="Keterangan_Lainnya"/>
             <Column fieldName="Transaksi_Laporan" visible="false"/>
+            <Column fieldName="Jumlah_Stor"/>
+            <Column fieldName="Jumlah_Tagihan"/>
             <Column fieldName="Print" visible="false"/>
           </Edit>
           <Insert>
@@ -649,6 +534,8 @@
             <Column fieldName="Tanggal_Waktu_Berakhir"/>
             <Column fieldName="Keterangan_Lainnya"/>
             <Column fieldName="Transaksi_Laporan" visible="false"/>
+            <Column fieldName="Jumlah_Stor"/>
+            <Column fieldName="Jumlah_Tagihan"/>
             <Column fieldName="Print"/>
           </Insert>
           <QuickFilter>
@@ -671,6 +558,8 @@
             <Column fieldName="Transaksi_Mobil"/>
             <Column fieldName="Transaksi_Laporan" visible="false"/>
             <Column fieldName="Print" visible="false"/>
+            <Column fieldName="Jumlah_Stor"/>
+            <Column fieldName="Jumlah_Tagihan"/>
           </QuickFilter>
           <FilterBuilder>
             <Column fieldName="Transaksi_ID"/>
@@ -691,6 +580,8 @@
             <Column fieldName="Tanggal_Waktu_Berakhir"/>
             <Column fieldName="Keterangan_Lainnya"/>
             <Column fieldName="Transaksi_Laporan" visible="false"/>
+            <Column fieldName="Jumlah_Stor"/>
+            <Column fieldName="Jumlah_Tagihan"/>
             <Column fieldName="Print" visible="false"/>
           </FilterBuilder>
           <Print>
@@ -712,6 +603,8 @@
             <Column fieldName="Tanggal_Waktu_Berakhir"/>
             <Column fieldName="Keterangan_Lainnya"/>
             <Column fieldName="Transaksi_Laporan" visible="false"/>
+            <Column fieldName="Jumlah_Stor"/>
+            <Column fieldName="Jumlah_Tagihan"/>
             <Column fieldName="Print" visible="false"/>
           </Print>
           <Export>
@@ -733,6 +626,8 @@
             <Column fieldName="Tanggal_Waktu_Berakhir"/>
             <Column fieldName="Keterangan_Lainnya"/>
             <Column fieldName="Transaksi_Laporan" visible="false"/>
+            <Column fieldName="Jumlah_Stor"/>
+            <Column fieldName="Jumlah_Tagihan"/>
             <Column fieldName="Print" visible="false"/>
           </Export>
           <Compare>
@@ -754,6 +649,8 @@
             <Column fieldName="Tanggal_Waktu_Berakhir"/>
             <Column fieldName="Keterangan_Lainnya"/>
             <Column fieldName="Transaksi_Laporan" visible="false"/>
+            <Column fieldName="Jumlah_Stor"/>
+            <Column fieldName="Jumlah_Tagihan"/>
             <Column fieldName="Print" visible="false"/>
           </Compare>
           <MultiEdit>
@@ -775,6 +672,8 @@
             <Column fieldName="Tanggal_Waktu_Berakhir"/>
             <Column fieldName="Keterangan_Lainnya"/>
             <Column fieldName="Transaksi_Laporan" visible="false"/>
+            <Column fieldName="Jumlah_Stor"/>
+            <Column fieldName="Jumlah_Tagihan"/>
             <Column fieldName="Print" visible="false"/>
           </MultiEdit>
         </Columns>
@@ -790,13 +689,13 @@
                   </ViewProperties>
                   <EditProperties type="textBox" maxLength="0"/>
                 </ColumnPresentation>
-                <ColumnPresentation fieldName="Laporan_Pemasukan" caption="Laporan Pemasukan" showColumnFilter="false" canSetNull="true" defaultInsertValue="0" selectedFilterOperators="1573119">
+                <ColumnPresentation fieldName="Laporan_Pemasukan" caption="Pemasukan 10%" showColumnFilter="false" canSetNull="true" defaultInsertValue="0" selectedFilterOperators="1573119">
                   <ViewProperties type="text">
                     <Format type="number" thousandSeparator=","/>
                   </ViewProperties>
                   <EditProperties type="textBox" maxLength="0"/>
                 </ColumnPresentation>
-                <ColumnPresentation fieldName="Laporan_Pengeluaran" caption="Laporan Pengeluaran" showColumnFilter="false" canSetNull="true" defaultInsertValue="0" selectedFilterOperators="1573119">
+                <ColumnPresentation fieldName="Laporan_Pengeluaran" caption="Setoran Pemilik Mobil" showColumnFilter="false" canSetNull="true" defaultInsertValue="0" selectedFilterOperators="1573119">
                   <ViewProperties type="text">
                     <Format type="number" thousandSeparator=","/>
                   </ViewProperties>
@@ -807,7 +706,7 @@
                   <ViewProperties type="text"/>
                   <EditProperties type="dynamicCombobox" itemTemplate="%Mobil_No_Polisi% %Mobil_Tipe%"/>
                 </ColumnPresentation>
-                <ColumnPresentation fieldName="Laporan_Transaksi" caption="Laporan Transaksi" readOnly="true" selectedFilterOperators="1573119">
+                <ColumnPresentation fieldName="Laporan_Transaksi" caption="Tanggal Pembayaran" readOnly="true" selectedFilterOperators="1573119">
                   <Lookup tableName="transaksi" linkFieldName="Transaksi_ID" displayFieldName="Transaksi_Nama" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
                   <ViewProperties type="text"/>
                   <EditProperties type="dynamicCombobox"/>
@@ -820,7 +719,7 @@
                   <ViewProperties type="dateTime" dateTimeFormat="d-m-Y H:i:s"/>
                   <EditProperties type="dateTime" dateTimeFormat="d-m-Y H:i:s" firstDayOfWeek="0"/>
                 </ColumnPresentation>
-                <ColumnPresentation fieldName="Laporan_Created" caption="Laporan Created" canSetNull="true" readOnly="true" controlVisible="false" enabled="false" defaultInsertValue="%CURRENT_DATETIME%" selectedFilterOperators="2031871">
+                <ColumnPresentation fieldName="Laporan_Created" caption="Tanggal Input" canSetNull="true" readOnly="true" controlVisible="false" enabled="false" defaultInsertValue="%CURRENT_DATETIME%" selectedFilterOperators="2031871">
                   <ViewProperties type="dateTime" dateTimeFormat="d-m-Y H:i:s"/>
                   <EditProperties type="dateTime" dateTimeFormat="d-m-Y H:i:s" firstDayOfWeek="0"/>
                 </ColumnPresentation>
@@ -946,7 +845,7 @@
                   </ViewProperties>
                   <EditProperties type="textBox" maxLength="0"/>
                 </ColumnPresentation>
-                <ColumnPresentation fieldName="Mobil_Keterangan" caption="Mobil Keterangan" showColumnFilter="false" canSetNull="true" selectedFilterOperators="1589247">
+                <ColumnPresentation fieldName="Mobil_Keterangan" caption="Mobil Pemilik" showColumnFilter="false" canSetNull="true" selectedFilterOperators="1589247">
                   <ViewProperties type="text" maxLength="75"/>
                   <EditProperties type="textBox" maxLength="100"/>
                 </ColumnPresentation>
@@ -972,6 +871,15 @@
                   <ViewProperties type="text" maxLength="75"/>
                   <EditProperties type="textBox" maxLength="100"/>
                 </ColumnPresentation>
+                <ColumnPresentation fieldName="Aktif" caption="Aktif" selectedFilterOperators="1589247">
+                  <ViewProperties type="text"/>
+                  <EditProperties type="comboBox">
+                    <Values>
+                      <Value name="Aktif" caption="Aktif"/>
+                      <Value name="Keluar" caption="Keluar"/>
+                    </Values>
+                  </EditProperties>
+                </ColumnPresentation>
               </ColumnPresentations>
               <Columns>
                 <List>
@@ -982,6 +890,7 @@
                   <Column fieldName="Mobil_Tahun"/>
                   <Column fieldName="Mobil_Tipe"/>
                   <Column fieldName="Mobil_Warna"/>
+                  <Column fieldName="Aktif"/>
                 </List>
                 <View>
                   <Column fieldName="Mobil_id"/>
@@ -991,6 +900,7 @@
                   <Column fieldName="Mobil_Tahun"/>
                   <Column fieldName="Mobil_Tipe"/>
                   <Column fieldName="Mobil_Warna"/>
+                  <Column fieldName="Aktif"/>
                 </View>
                 <Edit>
                   <Column fieldName="Mobil_id" visible="false"/>
@@ -1000,6 +910,7 @@
                   <Column fieldName="Mobil_Tahun" visible="false"/>
                   <Column fieldName="Mobil_Tipe" visible="false"/>
                   <Column fieldName="Mobil_Warna" visible="false"/>
+                  <Column fieldName="Aktif"/>
                 </Edit>
                 <Insert>
                   <Column fieldName="Mobil_id" visible="false"/>
@@ -1009,6 +920,7 @@
                   <Column fieldName="Mobil_Tahun" visible="false"/>
                   <Column fieldName="Mobil_Tipe" visible="false"/>
                   <Column fieldName="Mobil_Warna" visible="false"/>
+                  <Column fieldName="Aktif"/>
                 </Insert>
                 <QuickFilter>
                   <Column fieldName="Mobil_id"/>
@@ -1018,6 +930,7 @@
                   <Column fieldName="Mobil_Tahun"/>
                   <Column fieldName="Mobil_Tipe"/>
                   <Column fieldName="Mobil_Warna"/>
+                  <Column fieldName="Aktif"/>
                 </QuickFilter>
                 <FilterBuilder>
                   <Column fieldName="Mobil_id"/>
@@ -1027,6 +940,7 @@
                   <Column fieldName="Mobil_Tahun"/>
                   <Column fieldName="Mobil_Tipe"/>
                   <Column fieldName="Mobil_Warna"/>
+                  <Column fieldName="Aktif"/>
                 </FilterBuilder>
                 <Print>
                   <Column fieldName="Mobil_id"/>
@@ -1036,6 +950,7 @@
                   <Column fieldName="Mobil_Tahun"/>
                   <Column fieldName="Mobil_Tipe"/>
                   <Column fieldName="Mobil_Warna"/>
+                  <Column fieldName="Aktif"/>
                 </Print>
                 <Export>
                   <Column fieldName="Mobil_id"/>
@@ -1045,6 +960,7 @@
                   <Column fieldName="Mobil_Tahun"/>
                   <Column fieldName="Mobil_Tipe"/>
                   <Column fieldName="Mobil_Warna"/>
+                  <Column fieldName="Aktif"/>
                 </Export>
                 <Compare>
                   <Column fieldName="Mobil_id" visible="false"/>
@@ -1054,6 +970,7 @@
                   <Column fieldName="Mobil_Tahun"/>
                   <Column fieldName="Mobil_Tipe"/>
                   <Column fieldName="Mobil_Warna"/>
+                  <Column fieldName="Aktif"/>
                 </Compare>
                 <MultiEdit>
                   <Column fieldName="Mobil_id" visible="false"/>
@@ -1063,6 +980,7 @@
                   <Column fieldName="Mobil_Tahun" visible="false"/>
                   <Column fieldName="Mobil_Tipe" visible="false"/>
                   <Column fieldName="Mobil_Warna" visible="false"/>
+                  <Column fieldName="Aktif"/>
                 </MultiEdit>
               </Columns>
               <Details/>
@@ -1074,6 +992,251 @@
             </MasterForeignKeyColumnMap>
           </Detail>
         </Details>
+        <RecordPermissions useRecordPermissions="false"/>
+        <PartitionNavigators/>
+      </Page>
+      <Page type="table" tableName="laporan" numberByDataSource="0" fileName="laporan" caption="Laporan" shortCaption="Laporan" addSeparator="false" horizontalFilterCondition="" recordsPerPage="20" NavigatorPosition="3" insertAbilityMode="3" editAbilityMode="3" multiEditAbility="3" deleteAbilityMode="3" copyAbilityMode="0" deleteSelectedAbilityMode="3" contentEncoding="UTF-8" exportAllRecordsAvailable="31" exportSelectedRecordsAvailable="31" exportSingleRecordFromGridAvailable="0" exportRecordFromViewFormAvailable="31" printAvailable="13" showKeyColumnsImagesInGridHeader="false" recordsComparisionAvailable="false" condensedTable="true">
+        <DefaultSortedColumns>
+          <Column fieldName="Laporan_Created" orderType="1"/>
+        </DefaultSortedColumns>
+        <BeforeGridText/>
+        <DetailedDescription/>
+        <ColumnPresentations>
+          <ColumnPresentation fieldName="Laporan_Id" caption="Laporan Id" showColumnFilter="false" selectedFilterOperators="1573119">
+            <ViewProperties type="text">
+              <Format type="number" thousandSeparator=","/>
+            </ViewProperties>
+            <EditProperties type="textBox" maxLength="0"/>
+          </ColumnPresentation>
+          <ColumnPresentation fieldName="Laporan_Pemasukan" caption="Pemasukan 10%" totalFunction="2" showColumnFilter="false" canSetNull="true" defaultInsertValue="0" selectedFilterOperators="1573119">
+            <ViewProperties type="text">
+              <Format type="number" thousandSeparator=","/>
+            </ViewProperties>
+            <EditProperties type="textBox" maxLength="0"/>
+          </ColumnPresentation>
+          <ColumnPresentation fieldName="Laporan_Pengeluaran" caption="Setoran Pemilik Mobil" totalFunction="2" showColumnFilter="false" canSetNull="true" defaultInsertValue="0" selectedFilterOperators="1573119">
+            <ViewProperties type="text">
+              <Format type="number" thousandSeparator=","/>
+            </ViewProperties>
+            <EditProperties type="textBox" maxLength="0"/>
+          </ColumnPresentation>
+          <ColumnPresentation fieldName="Laporan_Keterangan" caption="Laporan Keterangan" showColumnFilter="false" canSetNull="true" selectedFilterOperators="1589247">
+            <ViewProperties type="text" maxLength="75"/>
+            <EditProperties type="textArea" columnCount="50" rowCount="8" placeholder=""/>
+          </ColumnPresentation>
+          <ColumnPresentation fieldName="Laporan_Tanggal" caption="Tanggal Pembayaran" defaultInsertValue="%CURRENT_DATE%" selectedFilterOperators="2031871">
+            <ViewProperties type="dateTime" dateTimeFormat="d-m-Y H:i:s"/>
+            <EditProperties type="dateTime" dateTimeFormat="d-m-Y H:i:s" firstDayOfWeek="0"/>
+          </ColumnPresentation>
+          <ColumnPresentation fieldName="Laporan_Mobil" caption="Laporan Mobil" selectedFilterOperators="1573119">
+            <Lookup tableName="mobil" linkFieldName="Mobil_id" displayFieldName="Mobil_No_Polisi" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+            <ViewProperties type="text"/>
+            <Hyperlink template="http://localhost/Rental/admin/mobil.php?operation=view&amp;pk0=%Laporan_Mobil%" target=""/>
+            <EditProperties type="dynamicCombobox" itemTemplate="%Mobil_No_Polisi% %Mobil_Tipe%"/>
+          </ColumnPresentation>
+          <ColumnPresentation fieldName="Laporan_Transaksi" caption="Laporan Transaksi" selectedFilterOperators="1573119">
+            <Lookup tableName="transaksi" linkFieldName="Transaksi_ID" displayFieldName="Transaksi_ID" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+            <ViewProperties type="text">
+              <Format type="number" decimalSeparator="." thousandSeparator=","/>
+            </ViewProperties>
+            <Hyperlink template="http://localhost/Rental/admin/transaksi.php?operation=view&amp;pk0=%Laporan_Transaksi%" target=""/>
+            <EditProperties type="dynamicCombobox" itemTemplate="%Transaksi_ID%-%Transaksi_Nama%"/>
+          </ColumnPresentation>
+          <ColumnPresentation fieldName="Laporan_Created" caption="Tanggal Input" selectedFilterOperators="2031871">
+            <ViewProperties type="dateTime" dateTimeFormat="d-m-Y H:i:s"/>
+            <EditProperties type="dateTime" dateTimeFormat="d-m-Y H:i:s" firstDayOfWeek="0"/>
+          </ColumnPresentation>
+        </ColumnPresentations>
+        <Columns>
+          <List>
+            <Column fieldName="Laporan_Id"/>
+            <Column fieldName="Laporan_Pemasukan"/>
+            <Column fieldName="Laporan_Pengeluaran"/>
+            <Column fieldName="Laporan_Keterangan"/>
+            <Column fieldName="Laporan_Tanggal"/>
+            <Column fieldName="Laporan_Mobil"/>
+            <Column fieldName="Laporan_Transaksi"/>
+            <Column fieldName="Laporan_Created"/>
+          </List>
+          <View>
+            <Column fieldName="Laporan_Id"/>
+            <Column fieldName="Laporan_Pemasukan"/>
+            <Column fieldName="Laporan_Pengeluaran"/>
+            <Column fieldName="Laporan_Keterangan"/>
+            <Column fieldName="Laporan_Tanggal"/>
+            <Column fieldName="Laporan_Mobil"/>
+            <Column fieldName="Laporan_Transaksi"/>
+            <Column fieldName="Laporan_Created"/>
+          </View>
+          <Edit>
+            <Column fieldName="Laporan_Id" visible="false"/>
+            <Column fieldName="Laporan_Pemasukan"/>
+            <Column fieldName="Laporan_Pengeluaran"/>
+            <Column fieldName="Laporan_Keterangan"/>
+            <Column fieldName="Laporan_Tanggal"/>
+            <Column fieldName="Laporan_Mobil"/>
+            <Column fieldName="Laporan_Transaksi"/>
+            <Column fieldName="Laporan_Created" visible="false"/>
+          </Edit>
+          <Insert>
+            <Column fieldName="Laporan_Id" visible="false"/>
+            <Column fieldName="Laporan_Pemasukan"/>
+            <Column fieldName="Laporan_Pengeluaran"/>
+            <Column fieldName="Laporan_Keterangan"/>
+            <Column fieldName="Laporan_Tanggal"/>
+            <Column fieldName="Laporan_Mobil"/>
+            <Column fieldName="Laporan_Transaksi"/>
+            <Column fieldName="Laporan_Created" visible="false"/>
+          </Insert>
+          <QuickFilter>
+            <Column fieldName="Laporan_Id"/>
+            <Column fieldName="Laporan_Pemasukan"/>
+            <Column fieldName="Laporan_Pengeluaran"/>
+            <Column fieldName="Laporan_Keterangan"/>
+            <Column fieldName="Laporan_Tanggal"/>
+            <Column fieldName="Laporan_Created"/>
+            <Column fieldName="Laporan_Mobil"/>
+            <Column fieldName="Laporan_Transaksi"/>
+          </QuickFilter>
+          <FilterBuilder>
+            <Column fieldName="Laporan_Id"/>
+            <Column fieldName="Laporan_Pemasukan"/>
+            <Column fieldName="Laporan_Pengeluaran"/>
+            <Column fieldName="Laporan_Keterangan"/>
+            <Column fieldName="Laporan_Tanggal"/>
+            <Column fieldName="Laporan_Mobil"/>
+            <Column fieldName="Laporan_Transaksi"/>
+            <Column fieldName="Laporan_Created"/>
+          </FilterBuilder>
+          <Print>
+            <Column fieldName="Laporan_Id"/>
+            <Column fieldName="Laporan_Pemasukan"/>
+            <Column fieldName="Laporan_Pengeluaran"/>
+            <Column fieldName="Laporan_Keterangan"/>
+            <Column fieldName="Laporan_Tanggal"/>
+            <Column fieldName="Laporan_Mobil"/>
+            <Column fieldName="Laporan_Transaksi"/>
+            <Column fieldName="Laporan_Created"/>
+          </Print>
+          <Export>
+            <Column fieldName="Laporan_Id"/>
+            <Column fieldName="Laporan_Pemasukan"/>
+            <Column fieldName="Laporan_Pengeluaran"/>
+            <Column fieldName="Laporan_Keterangan"/>
+            <Column fieldName="Laporan_Tanggal"/>
+            <Column fieldName="Laporan_Mobil"/>
+            <Column fieldName="Laporan_Transaksi"/>
+            <Column fieldName="Laporan_Created"/>
+          </Export>
+          <Compare>
+            <Column fieldName="Laporan_Id" visible="false"/>
+            <Column fieldName="Laporan_Pemasukan"/>
+            <Column fieldName="Laporan_Pengeluaran"/>
+            <Column fieldName="Laporan_Keterangan"/>
+            <Column fieldName="Laporan_Tanggal"/>
+            <Column fieldName="Laporan_Mobil"/>
+            <Column fieldName="Laporan_Transaksi"/>
+            <Column fieldName="Laporan_Created"/>
+          </Compare>
+          <MultiEdit>
+            <Column fieldName="Laporan_Id" visible="false"/>
+            <Column fieldName="Laporan_Pemasukan"/>
+            <Column fieldName="Laporan_Pengeluaran"/>
+            <Column fieldName="Laporan_Keterangan"/>
+            <Column fieldName="Laporan_Tanggal"/>
+            <Column fieldName="Laporan_Mobil"/>
+            <Column fieldName="Laporan_Transaksi"/>
+            <Column fieldName="Laporan_Created" visible="false"/>
+          </MultiEdit>
+        </Columns>
+        <Details/>
+        <RecordPermissions useRecordPermissions="false"/>
+        <PartitionNavigators/>
+      </Page>
+      <Page type="query" queryName="Tamu" numberByDataSource="0" fileName="tamu" caption="Tamu" shortCaption="Tamu" addSeparator="false" horizontalFilterCondition="" recordsPerPage="20" NavigatorPosition="3" insertAbilityMode="0" viewAbilityMode="0" editAbilityMode="0" multiEditAbility="0" copyAbilityMode="0" contentEncoding="UTF-8" exportAllRecordsAvailable="31" exportSelectedRecordsAvailable="31" exportSingleRecordFromGridAvailable="0" exportRecordFromViewFormAvailable="31" printAvailable="13" showKeyColumnsImagesInGridHeader="false" recordsComparisionAvailable="false" condensedTable="true">
+        <BeforeGridText/>
+        <DetailedDescription/>
+        <ColumnPresentations>
+          <ColumnPresentation fieldName="Transaksi_Nama" caption="Nama" totalFunction="5" showColumnFilter="false" selectedFilterOperators="1589247">
+            <ViewProperties type="text"/>
+            <EditProperties type="textBox" maxLength="0"/>
+          </ColumnPresentation>
+          <ColumnPresentation fieldName="Transaksi_NomorHP" caption="Nomor HP" showColumnFilter="false" selectedFilterOperators="1589247">
+            <ViewProperties type="text"/>
+            <EditProperties type="textBox" maxLength="0"/>
+          </ColumnPresentation>
+          <ColumnPresentation fieldName="Transaksi_Alamat" caption="Alamat" showColumnFilter="false" selectedFilterOperators="1589247">
+            <ViewProperties type="text"/>
+            <EditProperties type="textBox" maxLength="0"/>
+          </ColumnPresentation>
+          <ColumnPresentation fieldName="Transaksi_Nomor_Jaminan_Identitas" caption="Nomor Jaminan Identitas" showColumnFilter="false" selectedFilterOperators="1589247">
+            <ViewProperties type="text"/>
+            <EditProperties type="textBox" maxLength="0"/>
+          </ColumnPresentation>
+        </ColumnPresentations>
+        <Columns>
+          <List>
+            <Column fieldName="Transaksi_Nama"/>
+            <Column fieldName="Transaksi_NomorHP"/>
+            <Column fieldName="Transaksi_Alamat"/>
+            <Column fieldName="Transaksi_Nomor_Jaminan_Identitas"/>
+          </List>
+          <View>
+            <Column fieldName="Transaksi_Nama"/>
+            <Column fieldName="Transaksi_NomorHP"/>
+            <Column fieldName="Transaksi_Alamat"/>
+            <Column fieldName="Transaksi_Nomor_Jaminan_Identitas"/>
+          </View>
+          <Edit>
+            <Column fieldName="Transaksi_Nama"/>
+            <Column fieldName="Transaksi_NomorHP"/>
+            <Column fieldName="Transaksi_Alamat"/>
+            <Column fieldName="Transaksi_Nomor_Jaminan_Identitas"/>
+          </Edit>
+          <Insert>
+            <Column fieldName="Transaksi_Nama"/>
+            <Column fieldName="Transaksi_NomorHP"/>
+            <Column fieldName="Transaksi_Alamat"/>
+            <Column fieldName="Transaksi_Nomor_Jaminan_Identitas"/>
+          </Insert>
+          <QuickFilter>
+            <Column fieldName="Transaksi_Nama"/>
+            <Column fieldName="Transaksi_NomorHP"/>
+            <Column fieldName="Transaksi_Alamat"/>
+            <Column fieldName="Transaksi_Nomor_Jaminan_Identitas"/>
+          </QuickFilter>
+          <FilterBuilder>
+            <Column fieldName="Transaksi_Nama"/>
+            <Column fieldName="Transaksi_NomorHP"/>
+            <Column fieldName="Transaksi_Alamat"/>
+            <Column fieldName="Transaksi_Nomor_Jaminan_Identitas"/>
+          </FilterBuilder>
+          <Print>
+            <Column fieldName="Transaksi_Nama"/>
+            <Column fieldName="Transaksi_NomorHP"/>
+            <Column fieldName="Transaksi_Alamat"/>
+            <Column fieldName="Transaksi_Nomor_Jaminan_Identitas"/>
+          </Print>
+          <Export>
+            <Column fieldName="Transaksi_Nama"/>
+            <Column fieldName="Transaksi_NomorHP"/>
+            <Column fieldName="Transaksi_Alamat"/>
+            <Column fieldName="Transaksi_Nomor_Jaminan_Identitas"/>
+          </Export>
+          <Compare>
+            <Column fieldName="Transaksi_Nama"/>
+            <Column fieldName="Transaksi_NomorHP"/>
+            <Column fieldName="Transaksi_Alamat"/>
+            <Column fieldName="Transaksi_Nomor_Jaminan_Identitas"/>
+          </Compare>
+          <MultiEdit>
+            <Column fieldName="Transaksi_Nama"/>
+            <Column fieldName="Transaksi_NomorHP"/>
+            <Column fieldName="Transaksi_Alamat"/>
+            <Column fieldName="Transaksi_Nomor_Jaminan_Identitas"/>
+          </MultiEdit>
+        </Columns>
+        <Details/>
         <RecordPermissions useRecordPermissions="false"/>
         <PartitionNavigators/>
       </Page>

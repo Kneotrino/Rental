@@ -20,12 +20,13 @@ $appGrants = array();
 
 $dataSourceRecordPermissions = array();
 
-$tableCaptions = array('laporan' => 'Laporan',
-'mobil' => 'Mobil',
+$tableCaptions = array('mobil' => 'Mobil',
 'mobil.laporan' => 'Mobil->Laporan',
 'transaksi' => 'Transaksi',
 'transaksi.laporan' => 'Transaksi->Laporan',
 'transaksi.mobil' => 'Transaksi->Mobil',
+'laporan' => 'Laporan',
+'Tamu' => 'Tamu',
 'user' => 'User');
 
 $usersTableInfo = array(
